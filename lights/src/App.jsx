@@ -1,23 +1,27 @@
 import Banner from './components/Banner';
+import Catalog from './components/Catalog';
 import Comments from './components/Comments';
 import Copyright from './components/Copyright';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Lights from './components/Lights';
+import OurLights from './components/OurLights';
 import Services from './components/Services';
 
 function App() {
   return (
     <>
-      <Header />
+   
+    <Header />
 
-      <Banner />
+    <Catalog />
 
-      <Services />
+      {/* <Banner /> */}
 
-      <Lights />
+      {/* <Services /> */}
 
-      <Comments />
+      {/* <OurLights /> */}
+
+      {/* <Comments /> */}
 
       <Footer />
 

@@ -1,0 +1,12 @@
+.catalog_section {
+    width: 100%;
+    float: left;
+    height: auto;
+    text-align: center;
+    background-color: #fabc26;
+}
+
+.catalog_section h2 {
+   font-size: 40px;
+   text-transform: uppercase;
+}

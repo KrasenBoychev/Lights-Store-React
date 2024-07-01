@@ -1,4 +1,4 @@
-export default function Lights() {
+export default function OurLights() {
   return (
     <div className="furnitures_section layout_padding">
       <div className="container">

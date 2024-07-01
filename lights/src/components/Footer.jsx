@@ -24,7 +24,6 @@ export default function Footer() {
                   <ul>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Our Offices</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
                   </ul> 
                 </p>
                 </div>
