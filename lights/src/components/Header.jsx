@@ -3,7 +3,9 @@ export default function Header() {
     <div className="header_section">
       <div className="container-fluid">
          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="logo"><a href="index.html"><img src="images/logo.png" /></a></div>
+            {/* <div className="logo"><a href="index.html">
+               <img src="images/logo-copy.png" />
+               </a></div> */}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -19,7 +21,7 @@ export default function Header() {
                      <a className="nav-link" href="about.html">About</a>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="shop.html">Shop</a>
+                     <a className="nav-link" href="shop.html">Lights</a>
                   </li>
                   <li className="nav-item">
                      <a className="nav-link" href="contact.html">Contact</a>
@@ -30,8 +32,9 @@ export default function Header() {
                </form>
                <div className="search_icon">
                   <ul>
-                     <li><a href="#"><img src="images/search-icon.png" /></a></li>
-                     <li><a href="#">LOGIN</a></li>
+                     {/* <li><a href="#"><img src="images/search-icon.png" /></a></li> */}
+                     <li><a href="#">Login</a></li>
+                     <li><a href="#">Register</a></li>
                   </ul>
                </div>
             </div>

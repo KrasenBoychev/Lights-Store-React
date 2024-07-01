@@ -11,8 +11,7 @@ export default function Comments() {
           </ol>
           <div className="carousel-inner">
              <div className="carousel-item active">
-                <h1 className="client_text">what is says our clients</h1>
-                <p className="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                <h1 className="client_text">What our customers say</h1>
                 <div className="clients_section2 layout_padding">
                    <div className="client_1">
                       <div className="row">
@@ -42,7 +41,6 @@ export default function Comments() {
              </div>
              <div className="carousel-item">
                 <h1 className="client_text">what is says our clients</h1>
-                <p className="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
                 <div className="clients_section2 layout_padding">
                    <div className="client_1">
                       <div className="row">
@@ -72,7 +70,6 @@ export default function Comments() {
              </div>
              <div className="carousel-item">
                 <h1 className="client_text">what is says our clients</h1>
-                <p className="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
                 <div className="clients_section2 layout_padding">
                    <div className="client_1">
                       <div className="row">
@@ -102,7 +99,6 @@ export default function Comments() {
              </div>
              <div className="carousel-item">
                 <h1 className="client_text">what is says our clients</h1>
-                <p className="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
                 <div className="clients_section2 layout_padding">
                    <div className="client_1">
                       <div className="row">

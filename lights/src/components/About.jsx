@@ -2,17 +2,34 @@ export default function About() {
   return (
     <div className="about_section layout_padding">
       <div className="container">
-         <div className="row">
-            <div className="col-md-6">
-               <h1 className="about_text">About Us</h1>
-               <p className="lorem_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believableThere are many variations of passages of Lorem Ipsum available, but the majority have able</p>
-               <div className="read_bt1"><a href="#">Read More</a></div>
+        <div className="row">
+          <div className="col-md-6">
+            <h1 className="about_text">About Us</h1>
+            <p className="lorem_text">
+              The company was found in 1997 in Varna, where we opened our first
+              store. We started with a team of 5 people and now we are a team of
+              50 people with 10 stores located in 10 different cities and towns.
+            </p>
+            <p className="lorem_text">
+              Our mission is to offer excellent quality lights and services
+              which support our customers through the process of creating a
+              project to the installation. Our range of lights offer some of the
+              most popular styles such as modern, traditional, industrial and
+              vintage. You will find different combinations of colours and
+              designs as we always try to offer unusual style which will
+              make your home, office or commercial place looks amazing!
+            </p>
+            <div className="read_bt1">
+              <a href="#">Lights</a>
             </div>
-            <div className="col-md-6">
-               <div className="image_1"><img src="images/img-1.png" /></div>
+          </div>
+          <div className="col-md-6">
+            <div className="image_1">
+              <img src="images/bulb-background.jpg" />
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
+    </div>
   );
 }

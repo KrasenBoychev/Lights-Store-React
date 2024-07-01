@@ -225,7 +225,7 @@ button {
 .header_section{
     width: 100%;
     float: left;
-    background-image: url(../images/header-bg.png);
+    /* background-image: url(../images/header-bg.png); */
     height: auto;
     background-size: 100%;
 }
@@ -253,7 +253,7 @@ button {
 }
 
 .search_icon{
-    width: 12%;
+    width: 15%;
     float: left;
 }
 .search_icon ul{
@@ -294,7 +294,7 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
+    background-image: url(../images/bakcground-led-lights.png);
     height: auto;
     padding-bottom: 50px;
     background-size: 100%;
@@ -305,11 +305,17 @@ button {
     float: left;
     text-align: center;
 }
+
+.carousel-background{
+    background-color: orange;
+    border-radius: 5px;
+}
+
 .furniture_text{
     width: 100%;
     float: left;
     font-size: 100px;
-    color: #090808;
+    color: #ffffff;
     text-align: center;
     text-transform: uppercase;
 }
@@ -317,7 +323,7 @@ button {
     width: 50%;
     margin: 0 auto;
     font-size: 16px;
-    color: #090808;
+    color: #ffffff;
     text-align: center;
 }
 .contact_bt_main{
@@ -352,7 +358,7 @@ button {
 .fa-angle-left:before {
     content: "\f105";
 }
-#costum_slider a.carousel-control-prev {
+/* #costum_slider a.carousel-control-prev {
     position: absolute;
     left: -153px;
     top: 57%;
@@ -378,7 +384,7 @@ button {
 #costum_slider .carousel-control-prev:hover, #costum_slider .carousel-control-next:hover, #costum_slider .carousel-control-prev:focus, #costum_slider .carousel-control-next:focus {
     background: #f8ca12;
     color: #fff;
-}
+} */
 
 .services_section{
     width: 100%;
@@ -502,12 +508,13 @@ button {
     width: 100%;
     float: left;
     padding-bottom: 90px;
+    background-color: #fabc26;
 }
 .our_text{
     width: 100%;
     float: left;
     font-size: 36px;
-    color: #121111;
+    color: #ffffff;
     text-transform: uppercase;
     text-align: center;
 }
@@ -579,7 +586,7 @@ a:hover {
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #fabb25;
+    color: #000000;
     text-transform: uppercase;
     font-weight: bold;
     padding-top: 35px;
@@ -973,6 +980,7 @@ textarea#comment::placeholder {
     color: #fefefe;
     margin-left: 0px;
 }
+
 .footer_lorem_text1{
     width: 100%;
     float: left;
@@ -980,6 +988,23 @@ textarea#comment::placeholder {
     color: #fefefe;
     margin-left: 0px;
 }
+
+.footer_lorem_text1 a {
+    color: white;
+}
+
+.footer_lorem_text1 a:hover {
+    color: #fdbe28;
+}
+
+.let-us-help-icons li {
+    margin-bottom: 15px;
+}
+
+.let-us-help-icons img {
+    margin-right: 10px;
+}
+
 .social_icon {
     width: 100%;
     margin: 0 auto;
