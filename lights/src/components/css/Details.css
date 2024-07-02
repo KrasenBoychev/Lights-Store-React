@@ -67,7 +67,8 @@
     font-size: 25px;
     border-radius: 5px;
     color: #fff;
-    background-color: orange;
+    background-color: #fabc26;
+    text-transform: uppercase;
 }
 
 .item-details-button button:hover {

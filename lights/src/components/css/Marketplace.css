@@ -1,0 +1,14 @@
+.catalog_section > p {
+    margin: 20px auto;
+    padding: 20px;
+    width: 30%;
+    font-weight: bold;
+    background-color: #fabc26;
+    text-transform: uppercase;
+}
+
+.catalog_section > p:hover {
+    color: #fff;
+    background-color: black;
+}
+
