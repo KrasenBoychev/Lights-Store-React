@@ -2,6 +2,7 @@ import Banner from './components/Banner';
 import Catalog from './components/Catalog';
 import Comments from './components/Comments';
 import Copyright from './components/Copyright';
+import Details from './components/Details';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import OurLights from './components/OurLights';
@@ -13,7 +14,7 @@ function App() {
    
     <Header />
 
-    <Catalog />
+    <Details />
 
       {/* <Banner /> */}
 

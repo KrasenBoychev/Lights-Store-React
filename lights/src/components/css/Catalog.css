@@ -1,0 +1,22 @@
+.catalog_section {
+    width: 100%;
+    float: left;
+    height: auto;
+    text-align: center;
+}
+
+.catalog_section h1 {
+    padding: 30px;
+    font-size: 40px;
+    color: #ffff;
+    background-color: #fabc26;
+    text-transform: uppercase;
+}
+
+.items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+    justify-items: center;
+    margin: 30px;
+}

@@ -15,16 +15,10 @@ export default function Header() {
                      <a className="nav-link" href="index.html">Home</a>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="services.html">services</a>
-                  </li>
-                  <li className="nav-item">
                      <a className="nav-link" href="about.html">About</a>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="shop.html">Lights</a>
-                  </li>
-                  <li className="nav-item">
-                     <a className="nav-link" href="contact.html">Contact</a>
+                     <a className="nav-link" href="shop.html">Catalog</a>
                   </li>
                </ul>
                <form className="form-inline my-2 my-lg-0">

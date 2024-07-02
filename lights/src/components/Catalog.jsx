@@ -1,12 +1,14 @@
-import './Catalog.css';
+import CatalogLight from './CatalogLight';
+import './css/Catalog.css';
 
 export default function Catalog() {
   return (
-    <div className="catalog_section layout_padding">
-        <h2>Catalog</h2>
-        {/* change if you have time "<h2>Catalog</h2>" with "Search" functionality */}
+    <div className="catalog_section">
+        <h1>Catalog</h1>
 
-        
+        <div className='items-container'>
+          <CatalogLight />
+        </div>
     </div>
   );
 }
