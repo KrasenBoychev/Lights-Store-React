@@ -28,11 +28,18 @@ export default function Header() {
                   <h1 className="call_text">Call Us : +01 1234567890</h1>
                </form>
                <div className="search_icon">
-                  <ul>
                      {/* <li><a href="#"><img src="images/search-icon.png" /></a></li> */}
-                     <li><a href="#">Login</a></li>
-                     <li><a href="#">Register</a></li>
-                  </ul>
+                     {Object.entries(sessionStorage).length == 0 
+                           ?  
+                              <ul>
+                                 <li className="nav-item"><a className="nav-link" href="#">Login</a></li>
+                                 <li className="nav-item"><a className="nav-link" href="#">Register</a></li>
+                              </ul>
+                           : <ul>
+                                 <li className="nav-item"><a className="nav-link" href="#">Profile</a></li>
+                                 <li className="nav-item"><a className="nav-link" href="#">Logout</a></li>
+                             </ul>
+                     }
                </div>
             </div>
          </nav>
