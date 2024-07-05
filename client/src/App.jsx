@@ -19,7 +19,7 @@ function App() {
    
     <Header />
 
-    <Details />
+    <Login />
 
       {/* <Banner /> */}
 

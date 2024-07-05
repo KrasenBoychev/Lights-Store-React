@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { register } from '../../api/api';
 import './css/Login.css';
-import { useState } from 'react';
 
 export default function Register() {
   const [email, setEmail] = useState('');
