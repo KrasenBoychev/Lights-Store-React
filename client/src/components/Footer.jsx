@@ -11,21 +11,17 @@ export default function Footer() {
                 </div>
                 <div className="col-lg-3 col-sm-6">
                 <h1 className="customer_text">LET US HELP YOU</h1>
-                <p className="footer_lorem_text">
-                    <ul className="let-us-help-icons">
-                      <li><img src="images/phone.png" />+01 1234567890</li>
-                      <li><img src="images/email.png" />lights@lights.com</li>
-                    </ul>
-                </p>
+                <ul className="let-us-help-icons footer_lorem_text">
+                  <li><img src="images/phone.png" />+01 1234567890</li>
+                  <li><img src="images/email.png" />lights@lights.com</li>
+                </ul>
                 </div>
                 <div className="col-lg-3 col-sm-6">
                 <h1 className="customer_text">INFORMATION</h1>
-                <p className="footer_lorem_text1">
-                  <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Offices</a></li>
-                  </ul> 
-                </p>
+                <ul className="footer_lorem_text1">
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Our Offices</a></li>
+                </ul> 
                 </div>
                 <div className="col-lg-3 col-sm-6">
                 <h1 className="customer_text">Join us</h1>
