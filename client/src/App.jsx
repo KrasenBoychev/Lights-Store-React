@@ -9,6 +9,7 @@ import OurLights from './components/OurLights';
 import Services from './components/Services';
 import Login from './components/Login';
 import CreateLight from './components/CreateLight';
+import Details from './components/Details';
 
 function App() {
   
@@ -18,7 +19,7 @@ function App() {
    
     <Header />
 
-    <Catalog />
+    <Details />
 
       {/* <Banner /> */}
 
