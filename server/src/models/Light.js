@@ -18,7 +18,7 @@ const LightSchema = new Schema({
         type: String,
         required: true
     },
-    author: {
+    ownerId: {
         type: Types.ObjectId,
         ref: 'User',
       },

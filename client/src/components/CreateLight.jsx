@@ -35,11 +35,16 @@ export default function CreateLight() {
         </label>
 
         <label>
-          Price: <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
+          Sale Price: <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
         </label>
 
         <label>
-          Date: <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+          Date of Purchase: <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+        </label>
+
+        {/* create proper uploader */}
+        <label>
+          Image: <input type="text" name="image"/>
         </label>
 
         <label>
@@ -97,6 +102,10 @@ export default function CreateLight() {
 
         <label>
           Number of bulbs: <input type="number" name="bulb-number" />
+        </label>
+
+        <label>
+          Notes: <textarea name="notes"></textarea>
         </label>
 
         <button type="submit" onClick={handleOnSubmit}>Add</button>

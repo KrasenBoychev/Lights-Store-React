@@ -26,8 +26,13 @@
     background-color: #fabc26;
 }
 
-.create-wrapper button, .create-wrapper > label, .create-wrapper > label input, .create-wrapper p, .create-wrapper div label {
-    margin: auto;
+.create-wrapper button, 
+.create-wrapper > label, 
+.create-wrapper > label input, 
+.create-wrapper p, 
+.create-wrapper div label,
+.create-wrapper > label textarea{
+    margin: auto; 
     display: block;
 }
 
@@ -43,7 +48,9 @@
     margin-right: 5px;
 }
 
-.create-wrapper > label input, .create-wrapper p {
+.create-wrapper > label input, 
+.create-wrapper p,
+.create-wrapper > label textarea {
     width: 300px;
 }
 

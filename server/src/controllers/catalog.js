@@ -4,7 +4,7 @@ const {
   getAll,
   create,
   getById,
-  getByAuthorId,
+  getByOwnerId,
   update,
   deleteById,
 } = require('../services/lights');
@@ -18,10 +18,10 @@ catalogRouter.get('/', async (req, res) => {
   let data;
 
   if (req.query.where) {
-    const authorId = req.query.where.match(/_ownerId="(.+?)"/)?.[1];
+    const ownerId = req.query.where.match(/_ownerId="(.+?)"/)?.[1];
 
-    // if (authorId) {
-    //   data = await getByAuthorId(authorId);
+    // if (ownerId) {
+    //   data = await getByOwnerId(ownerId);
     // }
   }
 

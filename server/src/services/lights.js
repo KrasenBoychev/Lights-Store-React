@@ -4,21 +4,21 @@ async function getAll() {
     return Light.find().lean();
 }
 
-// async function getByAuthorId(id) {
-//     return Furniture.find({ author: id }).lean();
+// async function getByOwnerId(id) {
+//     return Furniture.find({ ownerId: id }).lean();
 // }
 
 // async function getById(id) {
 //     return Furniture.findById(id).lean();
 // }
 
-async function create(data, authorId) {
+async function create(data, ownerId) {
     const record = new Light({
         name: data.name,
         price: data.price,
         date: data.date,
         dimensions: data.dimensions,
-        author: authorId
+        ownerId: ownerId
     });
 
     await record.save();
@@ -33,7 +33,7 @@ async function create(data, authorId) {
 //         throw new ReferenceError('Record not found ' + id);
 //     }
 
-//     if (record.author.toString() != userId) {
+//     if (record.ownerId.toString() != userId) {
 //         throw new Error('Access denied');
 //     }
 
@@ -57,7 +57,7 @@ async function create(data, authorId) {
 //         throw new ReferenceError('Record not found ' + id);
 //     }
 
-//     if (record.author.toString() != userId) {
+//     if (record.ownerId.toString() != userId) {
 //         throw new Error('Access denied');
 //     }
 
@@ -70,5 +70,5 @@ module.exports = {
      create,
     // update,
     // deleteById,
-    // getByAuthorId
+    // getByOwnerId
 };
