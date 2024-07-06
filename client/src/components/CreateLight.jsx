@@ -1,54 +1,90 @@
 import { useState } from 'react';
-import './css/CreateLight.css';
 import { createRecord } from '../../api/data';
-
+import { storage } from '../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 } from 'uuid';
+import './css/CreateLight.css';
 
 export default function CreateLight() {
-
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [date, setDate] = useState('');
   const [dimensions, setDimensions] = useState('');
+  const [imageURL, setImageURL] = useState('');
 
-    const handleOnSubmit = async (e) => {
-        e.preventDefault();
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
 
-        const result = await createRecord({ name, price, date, dimensions });
-        if (result) {
-            alert('Data saved successfully');
-            setName('');
-            setPrice('');
-            setDate('');
-            setDimensions('');
-        }
-    };
+    const imageRef = ref(storage, `images/${imageURL.name + v4()}`);
+    await uploadBytes(imageRef, imageURL);
+
+    const downloadURL = await getDownloadURL(imageRef);
+
+    const result = await createRecord({ name, price, date, dimensions, downloadURL });
+    if (result) {
+      alert('Data saved successfully');
+      setName('');
+      setPrice('');
+      setDate('');
+      setDimensions('');
+      setImageURL('');
+    }
+  };
 
   return (
     <div className="create_section">
       <h1>Add your light</h1>
 
-    {/* Add Image Uploader */}
+      {/* Add Image Uploader */}
 
       <div className="create-wrapper">
         <label>
-          Name: <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </label>
 
         <label>
-          Sale Price: <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
+          Sale Price:
+          <input
+            type="number"
+            name="price"
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </label>
 
         <label>
-          Date of Purchase: <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+          Date of Purchase:
+          <input
+            type="date"
+            name="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </label>
 
-        {/* create proper uploader */}
         <label>
-          Image: <input type="text" name="image"/>
+          Image:
+          <input
+            type="file"
+            name="image"
+            onChange={(event) => setImageURL(event.target.files[0])}
+          />
         </label>
 
         <label>
-          Dimensions(cm): <input type="text" name="dimensions" placeholder="H/W/D" value={dimensions} onChange={(e) => setDimensions(e.target.value)}/>
+          Dimensions(cm):
+          <input
+            type="text"
+            name="dimensions"
+            placeholder="H/W/D"
+            value={dimensions}
+            onChange={(e) => setDimensions(e.target.value)}
+          />
         </label>
 
         <p>
@@ -65,10 +101,12 @@ export default function CreateLight() {
 
         <div>
           <label>
-            Min(cm):<input type="number" name="min-height" />
+            Min(cm):
+            <input type="number" name="min-height" />
           </label>
           <label>
-            Max(cm):<input type="number" name="max-height" />
+            Max(cm):
+            <input type="number" name="max-height" />
           </label>
         </div>
 
@@ -85,7 +123,12 @@ export default function CreateLight() {
         </p>
 
         <label>
-          Kelvins: <input type="number" name="kelvins" placeholder="between 2700 and 6000" />
+          Kelvins:
+          <input
+            type="number"
+            name="kelvins"
+            placeholder="between 2700 and 6000"
+          />
         </label>
 
         <label>
@@ -97,7 +140,8 @@ export default function CreateLight() {
         </label>
 
         <label>
-          Bulb type: <input type="text" name="bulb-type" placeholder="e.x. E27" />
+          Bulb type:{' '}
+          <input type="text" name="bulb-type" placeholder="e.x. E27" />
         </label>
 
         <label>
@@ -108,7 +152,9 @@ export default function CreateLight() {
           Notes: <textarea name="notes"></textarea>
         </label>
 
-        <button type="submit" onClick={handleOnSubmit}>Add</button>
+        <button type="submit" onClick={handleOnSubmit}>
+          Add
+        </button>
       </div>
     </div>
   );

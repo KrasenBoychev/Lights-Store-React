@@ -28,7 +28,7 @@ export default function CatalogLight(props) {
   return (
     <>
         <div className="container_main">
-          <img src="images/img-2.png" />
+          <img src={currLight.imageURL} />
           <div className="overlay">
             <a href="#" className="icon" title="User Profile">
               <i className="fa fa-search"></i>

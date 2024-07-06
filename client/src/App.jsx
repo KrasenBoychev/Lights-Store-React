@@ -19,7 +19,7 @@ function App() {
    
     <Header />
 
-    <CreateLight />
+    <Catalog />
 
       {/* <Banner /> */}
 

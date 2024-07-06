@@ -18,6 +18,10 @@ const LightSchema = new Schema({
         type: String,
         required: true
     },
+    imageURL: {
+        type: String,
+        required: true
+    },
     ownerId: {
         type: Types.ObjectId,
         ref: 'User',

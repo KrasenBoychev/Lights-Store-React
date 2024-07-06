@@ -18,6 +18,7 @@ async function create(data, ownerId) {
         price: data.price,
         date: data.date,
         dimensions: data.dimensions,
+        imageURL: data.downloadURL,
         ownerId: ownerId
     });
 
