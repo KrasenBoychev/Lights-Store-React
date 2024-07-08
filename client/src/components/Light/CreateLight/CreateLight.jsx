@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { createRecord } from '../../api/data';
-import { storage } from '../firebase';
+import { createRecord } from '../../../../api/data';
+import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
-import './css/CreateLight.css';
+import './CreateLight.css';
 
 export default function CreateLight() {
   const [name, setName] = useState('');

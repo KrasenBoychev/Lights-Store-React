@@ -1,20 +1,20 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Fragment } from 'react';
-import Header from './components/Header';
-import Banner from './components/Banner';
-import Services from './components/Services';
-import OurLights from './components/OurLights';
-import Comments from './components/Comments';
-import About from './components/About';
-import Catalog from './components/Catalog';
-import Marketplace from './components/Marketplace';
-import Details from './components/Details';
-import CreateLight from './components/CreateLight';
-import Login from './components/Login';
-import Register from './components/Register';
-import Footer from './components/Footer';
-import Copyright from './components/Copyright';
-import NotFound from './components/NotFound';
+import Header from './components/Header/Header';
+import Banner from './components/Home/Banner';
+import Services from './components/Home/Services';
+import OurLights from './components/Home/OurLights';
+import Comments from './components/Home/Comments';
+import About from './components/Main/About';
+import Catalog from './components/Main/Catalog/Catalog';
+import Marketplace from './components/Main/Marketplace/Marketplace';
+import Details from './components/Light/Details/Details';
+import CreateLight from './components/Light/CreateLight/CreateLight';
+import Login from './components/Main/Login/Login';
+import Register from './components/Main/Register';
+import Footer from './components/Footer/Footer';
+import Copyright from './components/Footer/Copyright';
+import NotFound from './components/Not Found/NotFound';
 
 function App() {
   return (
@@ -43,7 +43,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Link to="/catalog/:id">Go to Details Component</Link>
       <Footer />
       <Copyright />
     </>

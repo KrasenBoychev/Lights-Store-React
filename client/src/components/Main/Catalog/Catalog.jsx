@@ -1,7 +1,7 @@
-import './css/Catalog.css';
-import { getLights } from '../../api/data';
 import { useEffect, useState } from 'react';
-import CatalogLight from './CatalogLight';
+import { getLights } from '../../../../api/data';
+import CatalogLight from '../../Light/CatalogLight/CatalogLight';
+import './Catalog.css';
 
 export default function Catalog() {
   const [lights, setLights] = useState([]);

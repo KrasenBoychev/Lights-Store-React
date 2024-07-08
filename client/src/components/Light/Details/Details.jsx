@@ -1,5 +1,5 @@
-import './css/Details.css';
 import { useLocation } from 'react-router-dom';
+import './Details.css';
 
 export default function Details() {
   const location = useLocation();

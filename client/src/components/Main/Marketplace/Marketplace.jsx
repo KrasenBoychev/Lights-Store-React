@@ -1,6 +1,7 @@
-import CatalogLight from './CatalogLight';
-import './css/Catalog.css';
-import './css/Marketplace.css';
+
+import CatalogLight from '../../Light/CatalogLight/CatalogLight';
+import '../Catalog/Catalog.css';
+import './Marketplace.css';
 
 export default function Marketplace() {
   return (

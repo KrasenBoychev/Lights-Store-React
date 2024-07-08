@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import './css/CatalogLight.css';
 import { Link } from 'react-router-dom';
+import './CatalogLight.css';
 
 export default function CatalogLight({ light }) {
   const { imageURL, name, price, _id } = light;
