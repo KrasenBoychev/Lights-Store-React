@@ -26,6 +26,30 @@ const LightSchema = new Schema({
         type: String,
         required: true
     },
+    minHeight: {
+        type: Number
+    },
+    maxHeight: {
+        type: Number
+    },
+    kelvins: {
+        type: Number
+    },
+    lumens: {
+        type: Number
+    },
+    watt: {
+        type: Number
+    },
+    bulbType: {
+        type: String
+    },
+    bulbsRequired: {
+        type: Number
+    },
+    notes: {
+        type: String
+    },
     ownerId: {
         type: Types.ObjectId,
         ref: 'User',
