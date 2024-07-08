@@ -15,10 +15,12 @@ import Register from './components/Main/Register';
 import Footer from './components/Footer/Footer';
 import Copyright from './components/Footer/Copyright';
 import NotFound from './components/Not Found/NotFound';
+import ScrollTop from './components/ScrollTop';
 
 function App() {
   return (
     <>
+      <ScrollTop />
       <Header />
 
       <Routes>
