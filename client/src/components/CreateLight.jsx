@@ -9,6 +9,7 @@ export default function CreateLight() {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [date, setDate] = useState('');
+  const [quantites, setQuantities] = useState('');
   const [dimensions, setDimensions] = useState('');
   const [imageURL, setImageURL] = useState('');
 
@@ -17,15 +18,16 @@ export default function CreateLight() {
 
     const imageRef = ref(storage, `images/${imageURL.name + v4()}`);
     await uploadBytes(imageRef, imageURL);
-
     const downloadURL = await getDownloadURL(imageRef);
 
-    const result = await createRecord({ name, price, date, dimensions, downloadURL });
+    //add quantites field
+    const result = await createRecord({ name, price, date, quantites, dimensions, downloadURL });
     if (result) {
       alert('Data saved successfully');
       setName('');
       setPrice('');
       setDate('');
+      setQuantities('');
       setDimensions('');
       setImageURL('');
     }
@@ -34,8 +36,6 @@ export default function CreateLight() {
   return (
     <div className="create_section">
       <h1>Add your light</h1>
-
-      {/* Add Image Uploader */}
 
       <div className="create-wrapper">
         <label>
@@ -64,6 +64,15 @@ export default function CreateLight() {
             name="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Quantities:
+          <input
+            type="number"
+            name="quantities"
+            onChange={(e) => setQuantities(e.target.value)}
           />
         </label>
 

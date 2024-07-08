@@ -7,12 +7,14 @@ export default function Catalog() {
   const [lights, setLights] = useState([]);
 
   useEffect(() => {
-    async function getAllLights() {
-      const allLights = await getLights();
-      setLights(allLights);
-    }
-
-    getAllLights();
+    (async function getAllLights() {
+      try {
+        const allLights = await getLights();
+        setLights(allLights);
+      } catch (err) {
+        alert(err.message);
+      }
+    })();
   }, []);
 
   return (
@@ -22,11 +24,7 @@ export default function Catalog() {
       <div className="items-container">
         {lights.length > 0 ? (
           lights.map((light) => {
-            return (
-              <div key={light._id} className="item-wrapper">
-                <CatalogLight light={light} />
-              </div>
-            );
+            return <CatalogLight key={light._id} {...light} />;
           })
         ) : (
           <p>There are no lights available at the moment</p>

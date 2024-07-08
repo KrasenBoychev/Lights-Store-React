@@ -14,6 +14,10 @@ const LightSchema = new Schema({
         type: String,
         required: true
     },
+    quantities: {
+        type: Number,
+        required: true
+    },
     dimensions: {
         type: String,
         required: true
