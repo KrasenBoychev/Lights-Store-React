@@ -77,15 +77,6 @@ export default function CreateLight() {
         </label>
 
         <label>
-          Image:
-          <input
-            type="file"
-            name="image"
-            onChange={(event) => setImageURL(event.target.files[0])}
-          />
-        </label>
-
-        <label>
           Dimensions(cm):
           <input
             type="text"
@@ -93,6 +84,15 @@ export default function CreateLight() {
             placeholder="H/W/D"
             value={dimensions}
             onChange={(e) => setDimensions(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Image:
+          <input
+            type="file"
+            name="image"
+            onChange={(event) => setImageURL(event.target.files[0])}
           />
         </label>
 

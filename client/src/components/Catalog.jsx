@@ -24,7 +24,7 @@ export default function Catalog() {
       <div className="items-container">
         {lights.length > 0 ? (
           lights.map((light) => {
-            return <CatalogLight key={light._id} {...light} />;
+            return <CatalogLight key={light._id} light={light} />;
           })
         ) : (
           <p>There are no lights available at the moment</p>

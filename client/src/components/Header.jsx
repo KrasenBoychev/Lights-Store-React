@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Header() {
   return (
     <div className="header_section">
@@ -12,16 +14,16 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                     <a className="nav-link" href="index.html">Home</a>
+                     <Link className="nav-link" to='/'>Home</Link>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="about.html">About</a>
+                     <Link className="nav-link" to='/about'>About</Link>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="shop.html">Catalog</a>
+                     <Link className="nav-link" to='/catalog'>Catalog</Link>
                   </li>
                   <li className="nav-item">
-                     <a className="nav-link" href="shop.html">Marketplace</a>
+                     <Link className="nav-link" to='/marketplace'>Marketplace</Link>
                   </li>
                </ul>
                <form className="form-inline my-2 my-lg-0">
@@ -32,12 +34,20 @@ export default function Header() {
                      {Object.entries(sessionStorage).length == 0 
                            ?  
                               <ul>
-                                 <li className="nav-item"><a className="nav-link" href="#">Login</a></li>
-                                 <li className="nav-item"><a className="nav-link" href="#">Register</a></li>
+                                 <li className="nav-item">
+                                    <Link className="nav-link" to='/login'>Login</Link>
+                                 </li>
+                                 <li className="nav-item">
+                                    <Link className="nav-link" to='/register'>Register</Link>
+                                 </li>
                               </ul>
                            : <ul>
-                                 <li className="nav-item"><a className="nav-link" href="#">Profile</a></li>
-                                 <li className="nav-item"><a className="nav-link" href="#">Logout</a></li>
+                                 <li className="nav-item">
+                                    <Link className="nav-link" to='/profile'>Profile</Link>
+                                 </li>
+                                 <li className="nav-item">
+                                    <Link className="nav-link" to='/logout'>Logout</Link>
+                                 </li>
                              </ul>
                      }
                </div>
