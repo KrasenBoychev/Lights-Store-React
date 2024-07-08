@@ -17,10 +17,29 @@ async function create(data, ownerId) {
         name: data.name,
         price: data.price,
         date: data.date,
+        quantities: data.quantities,
         dimensions: data.dimensions,
         imageURL: data.downloadURL,
         ownerId: ownerId
     });
+
+    if (data.minHeight) {
+        record.minHeight = data.minHeight;
+        record.maxHeight = data.maxHeight;
+    }
+
+    if (data.kelvins) {
+        record.kelvins = data.kelvins;
+        record.lumens = data.lumens;
+        record.watt = data.watt;
+    } else {
+        record.bulbType = data.bulbType;
+        record.bulbsRequired = data.bulbsRequired;
+    }
+
+    if (data.notes) {
+        record.notes = data.notes;
+    }
 
     await record.save();
 

@@ -16,7 +16,7 @@ export default function CatalogLight({ light }) {
         </div>
       </div>
       <p className="item-name">{name}</p>
-      <p className="item-price">{price}lv.</p>
+      <p className="item-price">{price.toFixed(2)}lv.</p>
     </div>
   );
 }
