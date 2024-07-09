@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <ScrollTop />
-      <Header userNav={userNav}/>
+      <Header navValues={{userNav, setUserNav}}/>
 
       <Routes>
         <Route

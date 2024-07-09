@@ -1,7 +1,19 @@
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../api/api';
 
-export default function Header({ userNav }) {
+export default function Header({ navValues }) {
+  const navigate = useNavigate();
+
+  async function logoutFunc() {
+    try {
+      await logout();
+      navValues.setUserNav(false);
+      navigate('/');
+    } catch(error) {
+      alert(error.message);
+    }
+  }
   return (
     <div className="header_section">
       <div className="container-fluid">
@@ -48,7 +60,7 @@ export default function Header({ userNav }) {
             </form>
             <div className="search_icon">
               {/* <li><a href="#"><img src="images/search-icon.png" /></a></li> */}
-              {userNav ? (
+              {navValues.userNav ? (
                 <ul>
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
@@ -56,7 +68,7 @@ export default function Header({ userNav }) {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/logout">
+                    <Link className="nav-link" to="/logout" onClick={ logoutFunc }>
                       Logout
                     </Link>
                   </li>
