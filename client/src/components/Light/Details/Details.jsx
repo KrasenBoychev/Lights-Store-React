@@ -6,8 +6,7 @@ export default function Details() {
   const { light } = location.state; 
 
   const [ height, width, depth ] = light.dimensions.split('/');
-  console.log(light.dimensions.split('/'));
-
+  
   return (
     <div className="details_section layout">
       <div className="item-details">
@@ -37,8 +36,8 @@ export default function Details() {
                   </>
                 : ''
             }
-            {light.notes ? <li>Notes: {light.notes}</li> : ''}
-            {light.date ? <li>Date of purchase: {light.date}</li> : ''}
+            {light.showNotes ? light.notes ? <li>Notes: {light.notes}</li> : '' : ''}
+            {light.showDate ? <li>Date of purchase: {light.date}</li> : ''}
           </ul>
         </div>
 

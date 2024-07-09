@@ -16,10 +16,14 @@ export async function getLights() {
 //     return await api.get(host + '/data/catalog/' + id);
 // }
 
-// export async function getMyFurniture() {
-//     const userId = sessionStorage.getItem('userId');
-//     return await api.get(host + `/data/catalog?where=_ownerId%3D%22${userId}%22`);
-// }
+export async function getCatalogLights(adminId) {
+    //const userId = sessionStorage.getItem('userId');
+    return await api.get(host + `/data/catalog?where=_ownerId%3D%22${adminId}%22`);
+}
+
+export async function getMarketplaceLights() {
+    return await api.get(host + '/data/catalog/marketplace');
+}
 
 export async function createRecord(data) {
     return await api.post(host + '/data/catalog', data);

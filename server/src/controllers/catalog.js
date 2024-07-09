@@ -5,6 +5,7 @@ const {
   create,
   getById,
   getByOwnerId,
+  getCustomersLights,
   update,
   deleteById,
 } = require('../services/lights');
@@ -20,14 +21,23 @@ catalogRouter.get('/', async (req, res) => {
   if (req.query.where) {
     const ownerId = req.query.where.match(/_ownerId="(.+?)"/)?.[1];
 
-    // if (ownerId) {
-    //   data = await getByOwnerId(ownerId);
-    // }
+    if (ownerId) {
+      data = await getByOwnerId(ownerId);
+    }
   }
+
+  console.log(req.baseUrl);
 
   if (!data) {
     data = await getAll();
   }
+
+  res.json(data);
+});
+
+catalogRouter.get('/marketplace', async (req, res) => {
+  
+  const data = await getCustomersLights();
 
   res.json(data);
 });

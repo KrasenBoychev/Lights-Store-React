@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLights } from '../../../../api/data';
+import { getCatalogLights } from '../../../../api/data';
 import CatalogLight from '../../Light/CatalogLight/CatalogLight';
 import './Catalog.css';
 
@@ -9,7 +9,7 @@ export default function Catalog() {
   useEffect(() => {
     (async function getAllLights() {
       try {
-        const allLights = await getLights();
+        const allLights = await getCatalogLights('668cfe59f18d95a1f2f52a13');
         setLights(allLights);
       } catch (err) {
         alert(err.message);
@@ -24,6 +24,8 @@ export default function Catalog() {
       <div className="items-container">
         {lights.length > 0 ? (
           lights.map((light) => {
+            light.showDate = false;
+            light.showNotes = false;
             return <CatalogLight key={light._id} light={light} />;
           })
         ) : (

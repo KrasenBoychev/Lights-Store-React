@@ -10,7 +10,7 @@ export default function CatalogLight({ light }) {
       <div className="container_main">
         <img src={imageURL} />
         <div className="overlay">
-          <Link className="icon" title="User Profile" to={_id} state={{ light}}>
+          <Link className="icon" title="User Profile" to={_id} state={{ light }}>
               <i className="fa fa-search"></i>
           </Link>
         </div>

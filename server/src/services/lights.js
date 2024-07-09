@@ -4,9 +4,13 @@ async function getAll() {
     return Light.find().lean();
 }
 
-// async function getByOwnerId(id) {
-//     return Furniture.find({ ownerId: id }).lean();
-// }
+async function getByOwnerId(id) {
+    return Light.find({ ownerId: id }).lean();
+}
+
+async function getCustomersLights() {
+    return Light.find( { ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } } );
+}
 
 // async function getById(id) {
 //     return Furniture.findById(id).lean();
@@ -20,7 +24,6 @@ async function create(data, ownerId) {
         quantities: data.quantities,
         dimensions: data.dimensions,
         imageURL: data.downloadURL,
-        ownerId: ownerId
     });
 
     if (data.minHeight) {
@@ -40,6 +43,8 @@ async function create(data, ownerId) {
     if (data.notes) {
         record.notes = data.notes;
     }
+
+    data.ownerId = ownerId;
 
     await record.save();
 
@@ -90,5 +95,6 @@ module.exports = {
      create,
     // update,
     // deleteById,
-    // getByOwnerId
+    getByOwnerId,
+    getCustomersLights
 };
