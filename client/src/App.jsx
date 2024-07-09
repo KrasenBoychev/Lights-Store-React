@@ -19,11 +19,12 @@ import ScrollTop from './ScrollTop';
 
 function App() {
   const [spinner, setSpinner] = useState(false);
+  const [userNav, setUserNav] = useState(false);
 
   return (
     <>
       <ScrollTop />
-      <Header />
+      <Header userNav={userNav}/>
 
       <Routes>
         <Route
@@ -43,8 +44,8 @@ function App() {
         <Route path="/marketplace" element={<Marketplace spinnerValues={{spinner, setSpinner}}/>} />
         <Route path="/marketplace/:id" element={<Details />} />
         <Route path="/createlight" element={<CreateLight spinnerValues={{spinner, setSpinner}}/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login setUserNav={ setUserNav }/>} />
+        <Route path="/register" element={<Register setUserNav={ setUserNav }/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

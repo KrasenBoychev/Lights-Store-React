@@ -1,19 +1,22 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { register } from '../../../api/api';
 import './Login/Login.css';
 
-export default function Register() {
+export default function Register({ setUserNav }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
 
         const result = await register(email, password);
         if (result) {
-            alert('Data saved successfully');
-            setEmail('');
-            setPassword('');
+            setUserNav(true);
+            navigate('/');
         }
     };
 
