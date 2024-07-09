@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { createRecord } from '../../../../api/data';
 import { storage } from '../../../firebase';
@@ -6,9 +7,13 @@ import { v4 } from 'uuid';
 import Adjustable from './parts/Adjustable';
 import IntegratedLed from './parts/IntegratedLed';
 import BulbTypeLight from './parts/BulbTypeLight';
+import Spinner from '../../Spinner';
 import './CreateLight.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function CreateLight() {
+export default function CreateLight({ spinnerValues }) {
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [date, setDate] = useState('');
@@ -120,6 +125,8 @@ export default function CreateLight() {
     }
 
     try {
+      spinnerValues.setSpinner(true);
+
       const imageRef = ref(storage, `images/${imageURL.name + v4()}`);
       await uploadBytes(imageRef, imageURL);
       const downloadURL = await getDownloadURL(imageRef);
@@ -127,17 +134,19 @@ export default function CreateLight() {
       data.downloadURL = downloadURL;
 
       await createRecord(data);
-      alert('Successfull');
+      navigate('/marketplace');
 
     } catch (err) {
       alert(err.message);
+    } finally {
+        spinnerValues.setSpinner(false);
     }
   };
   return (
     <div className="create_section">
       <h1>Add your light</h1>
-
-      <div className="create-wrapper">
+    {spinnerValues.spinner ? <Spinner /> 
+      : <div className="create-wrapper">
         <label>
           Name:
           <input
@@ -257,7 +266,8 @@ export default function CreateLight() {
         <button type="submit" onClick={handleOnSubmit}>
           Add
         </button>
-      </div>
-    </div>
+      </div> 
+    }
+    </div> 
   );
 }

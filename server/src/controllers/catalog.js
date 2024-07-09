@@ -25,9 +25,7 @@ catalogRouter.get('/', async (req, res) => {
       data = await getByOwnerId(ownerId);
     }
   }
-
-  console.log(req.baseUrl);
-
+  
   if (!data) {
     data = await getAll();
   }

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services';
@@ -15,9 +15,11 @@ import Register from './components/Main/Register';
 import Footer from './components/Footer/Footer';
 import Copyright from './components/Footer/Copyright';
 import NotFound from './components/Not Found/NotFound';
-import ScrollTop from './components/ScrollTop';
+import ScrollTop from './ScrollTop';
 
 function App() {
+  const [spinner, setSpinner] = useState(false);
+
   return (
     <>
       <ScrollTop />
@@ -36,11 +38,11 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog" element={<Catalog spinnerValues={{spinner, setSpinner}}/>} />
         <Route path="/catalog/:id" element={<Details />} />
-        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/marketplace" element={<Marketplace spinnerValues={{spinner, setSpinner}}/>} />
         <Route path="/marketplace/:id" element={<Details />} />
-        <Route path="/createlight" element={<CreateLight />} />
+        <Route path="/createlight" element={<CreateLight spinnerValues={{spinner, setSpinner}}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
