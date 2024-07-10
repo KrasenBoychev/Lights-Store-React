@@ -1,0 +1,22 @@
+.notfound_section {
+    width: 100%;
+    float: left;
+    height: auto;
+    background-color: #fabc26;
+}
+
+.notfound_section div {
+    margin: auto;
+    padding: 150px;
+    display: block;
+    text-align: center;
+}
+
+.notfound_section p {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    word-spacing: 0.5cm;
+    letter-spacing: 0.1cm;
+}
