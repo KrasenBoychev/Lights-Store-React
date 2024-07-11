@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-export default function IntegratedLed({ values }) {
-  const { kelvins, setKelvins, lumens, setLumens, watt, setWatt } = values;
+export default function IntegratedLed(props) {
+  const { kelvins, lumens, watt } = props.values;
   return (
     <>
       <label>
@@ -10,7 +10,7 @@ export default function IntegratedLed({ values }) {
           name="kelvins"
           placeholder="between 2700 and 6000"
           value={kelvins}
-          onChange={(e) => setKelvins(e.target.value)}
+          onChange={props.changeHandler}
         />
       </label>
 
@@ -20,7 +20,7 @@ export default function IntegratedLed({ values }) {
           type="number"
           name="lumens"
           value={lumens}
-          onChange={(e) => setLumens(e.target.value)}
+          onChange={props.changeHandler}
         />
       </label>
 
@@ -30,7 +30,7 @@ export default function IntegratedLed({ values }) {
           type="number"
           name="watt"
           value={watt}
-          onChange={(e) => setWatt(e.target.value)}
+          onChange={props.changeHandler}
         />
       </label>
     </>

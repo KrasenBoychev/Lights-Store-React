@@ -6,6 +6,7 @@ import RePass from './RePass';
 import './LoginAndRegister.css';
 
 export default function LoginAndRegister(props) {
+  const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
     email: '',
@@ -13,7 +14,6 @@ export default function LoginAndRegister(props) {
     rePass: ''
   });
 
-  const navigate = useNavigate();
 
   const changeHandler = async (e) => {
     setFormValues((oldValues) => ({

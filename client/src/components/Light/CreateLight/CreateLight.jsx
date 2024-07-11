@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createRecord } from '../../../../api/data';
 import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -9,23 +10,30 @@ import IntegratedLed from './parts/IntegratedLed';
 import BulbTypeLight from './parts/BulbTypeLight';
 import Spinner from '../../Spinner';
 import './CreateLight.css';
-import { useNavigate } from 'react-router-dom';
 
-export default function CreateLight({ spinnerValues }) {
+export default function CreateLight(light) {
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [date, setDate] = useState('');
-  const [quantities, setQuantities] = useState('');
-  const [dimensions, setDimensions] = useState('');
-  const [imageURL, setImageURL] = useState('');
-  const [notes, setNotes] = useState('');
+  const [spinner, setSpinner] = useState(false);
+
+  const [formValues, setFormValues] = useState({
+    name: light.name || '',
+    price: '',
+    date: '',
+    quantities: '',
+    dimensions: '',
+    imageURL: '',
+    notes: '',
+    minHeight: '',
+    maxHeight: '',
+    kelvins: '',
+    lumens: '',
+    watt: '',
+    bulbType: '',
+    bulbsRequired: '',
+  });
 
   const [adjustable, setAdjustable] = useState(false);
-  const [minHeight, setMinHeight] = useState('');
-  const [maxHeight, setMaxHeight] = useState('');
-
   const adjustableOptionHandler = (e) => {
     const value = e.target.value;
 
@@ -37,15 +45,6 @@ export default function CreateLight({ spinnerValues }) {
   };
 
   const [integratedLed, setIntegratedLed] = useState(null);
-  const [kelvins, setKelvins] = useState('');
-  const [lumens, setLumens] = useState('');
-  const [watt, setWatt] = useState('');
-  const [bulbType, setBulbType] = useState('');
-  const [bulbsRequired, setBulbsRequired] = useState('');
-
-  const integratedLedValues = {kelvins, setKelvins, lumens, setLumens, watt, setWatt};
-  const bulbTypeLightValues = {bulbType, setBulbType, bulbsRequired, setBulbsRequired};
-
   const integratedLedOptionHandler = (e) => {
     const value = e.target.value;
 
@@ -56,76 +55,85 @@ export default function CreateLight({ spinnerValues }) {
     }
   };
 
-  const handleOnSubmit = async (e) => {
+  const changeHandler = async (e) => {
+    setFormValues((oldValues) => ({
+      ...oldValues,
+      [e.target.name]: e.target.type === 'file'
+        ? e.target.files[0]
+        : e.target.value,
+    }));
+  };
+
+  const formSubmitHandler = async (e) => {
     e.preventDefault();
 
-    let data = {};
+    const {name, price, quantities, imageURL} = formValues;
 
     if (name == '' || price == '' || quantities == '' || imageURL == '') {
       alert('All mandatory fields required!');
       return;
-    } 
+    }
 
-    data = { name, price, quantities };
+    let data = { name, price, quantities };
 
     const currDate = new Date();
-    const dateProvided = new Date(date);
+    const dateProvided = new Date(formValues.date);
 
     if (currDate <= dateProvided) {
       alert('Date is not valid!');
       return;
     } else {
-      data.date = date;
+      data.date = formValues.date;
     }
 
-    const result = dimensions.match(/^\d+\/\d+\/\d+$/);
+    const result = formValues.dimensions.match(/^\d+\/\d+\/\d+$/);
     if (!result) {
       alert('Dimensions is not valid!');
       return;
     } else {
-      data.dimensions = dimensions;
+      data.dimensions = formValues.dimensions;
     }
 
     if (adjustable == true) {
-      if (minHeight == '' || maxHeight == '') {
+      if (formValues.minHeight == '' || formValues.maxHeight == '') {
         alert('Min and Max fields Required!');
         return;
       } else {
-        data.minHeight = minHeight;
-        data.maxHeight = maxHeight;
+        data.minHeight = formValues.minHeight;
+        data.maxHeight = formValues.maxHeight;
       }
-    } 
+    }
 
     if (integratedLed == null) {
       alert('Integrated LED Required!');
       return;
     } else if (integratedLed == true) {
-      if (kelvins == '' || lumens == '' || watt == '') {
+      if (formValues.kelvins == '' || formValues.lumens == '' || formValues.watt == '') {
         alert('Integrated LED info required!');
         return;
       }
-      data.kelvins = kelvins;
-      data.lumens = lumens;
-      data.watt = watt;
+      data.kelvins = formValues.kelvins;
+      data.lumens = formValues.lumens;
+      data.watt = formValues.watt;
     } else {
-      if(bulbType == '' || bulbsRequired == '') {
+      if (formValues.bulbType == '' || formValues.bulbsRequired == '') {
         alert('Bulb Type Light info is required!');
         return;
       }
-      data.bulbType = bulbType;
-      data.bulbsRequired = bulbsRequired;
+      data.bulbType = formValues.bulbType;
+      data.bulbsRequired = formValues.bulbsRequired;
     }
 
-    if (notes != '') {
-      if (notes.length > 40) {
+    if (formValues.notes != '') {
+      if (formValues.notes.length > 40) {
         alert('Notes should be maximum 40 symbols!');
         return;
       }
-      data.notes = notes;
+      data.notes = formValues.notes;
     }
 
     try {
-      spinnerValues.setSpinner(true);
+      setSpinner(true);
 
       const imageRef = ref(storage, `images/${imageURL.name + v4()}`);
       await uploadBytes(imageRef, imageURL);
@@ -135,139 +143,154 @@ export default function CreateLight({ spinnerValues }) {
 
       await createRecord(data);
       navigate('/marketplace');
-
     } catch (err) {
       alert(err.message);
     } finally {
-        spinnerValues.setSpinner(false);
+      setSpinner(false);
     }
   };
   return (
     <div className="create_section">
       <h1>Add your light</h1>
-    {spinnerValues.spinner ? <Spinner /> 
-      : <div className="create-wrapper">
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
+      {spinner ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={formSubmitHandler}>
+          <div className="create-wrapper">
+            <label>
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={formValues.name}
+                onChange={changeHandler}
+              />
+            </label>
 
-        <label>
-          Sale Price:
-          <input
-            type="number"
-            name="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
+            <label>
+              Sale Price:
+              <input
+                type="number"
+                name="price"
+                value={formValues.price}
+                onChange={changeHandler}
+              />
+            </label>
 
-        <label>
-          Date of Purchase:
-          <input
-            type="date"
-            name="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </label>
+            <label>
+              Date of Purchase:
+              <input
+                type="date"
+                name="date"
+                value={formValues.date}
+                onChange={changeHandler}
+              />
+            </label>
 
-        <label>
-          Quantities:
-          <input
-            type="number"
-            name="quantities"
-            value={quantities}
-            onChange={(e) => setQuantities(e.target.value)}
-          />
-        </label>
+            <label>
+              Quantities:
+              <input
+                type="number"
+                name="quantities"
+                value={formValues.quantities}
+                onChange={changeHandler}
+              />
+            </label>
 
-        <label>
-          Dimensions(cm):
-          <input
-            type="text"
-            name="dimensions"
-            placeholder="H/W/D"
-            value={dimensions}
-            onChange={(e) => setDimensions(e.target.value)}
-          />
-        </label>
+            <label>
+              Dimensions(cm):
+              <input
+                type="text"
+                name="dimensions"
+                placeholder="H/W/D"
+                value={formValues.dimensions}
+                onChange={changeHandler}
+              />
+            </label>
 
-        <label>
-          Upload Image:
-          <input
-            type="file"
-            name="image"
-            onChange={(e) => setImageURL(e.target.files[0])}
-          />
-        </label>
+            <label>
+              Upload Image:
+              <input
+                type="file" 
+                name="imageURL" 
+                accept="image/png, image/jpeg"
+                onChange={changeHandler}
+              />
+            </label>
 
-        <p>
-          Is Adjustable?
-          <label>
-            <input
-              type="radio"
-              name="adjustable"
-              value="yes"
-              onChange={adjustableOptionHandler}
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="adjustable"
-              value="no"
-              defaultChecked
-              onChange={adjustableOptionHandler}
-            />
-            No
-          </label>
-        </p>
+            <p>
+              Is Adjustable?
+              <label>
+                <input
+                  type="radio"
+                  name="adjustable"
+                  value="yes"
+                  onChange={adjustableOptionHandler}
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="adjustable"
+                  value="no"
+                  defaultChecked
+                  onChange={adjustableOptionHandler}
+                />
+                No
+              </label>
+            </p>
 
-        {adjustable && (
-          <Adjustable
-              values={{ minHeight, setMinHeight, maxHeight, setMaxHeight }}
-          />
-        )}
+            {adjustable && 
+              <Adjustable values={formValues} changeHandler={changeHandler} />
+            }
 
-        <p>
-          Is Integrated LED?
-          <label>
-            <input
-              type="radio"
-              name="integrated"
-              value="yes"
-              onChange={integratedLedOptionHandler}
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="integrated"
-              value="no"
-              onChange={integratedLedOptionHandler}
-            />
-            No
-          </label>
-        </p>
+            <p>
+              Is Integrated LED?
+              <label>
+                <input
+                  type="radio"
+                  name="integrated"
+                  value="yes"
+                  onChange={integratedLedOptionHandler}
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="integrated"
+                  value="no"
+                  onChange={integratedLedOptionHandler}
+                />
+                No
+              </label>
+            </p>
 
-        {integratedLed == null ? '' : integratedLed == true ? <IntegratedLed values={integratedLedValues}/> : <BulbTypeLight values={bulbTypeLightValues}/>}
+            {integratedLed == null ? (
+              ''
+            ) : integratedLed == true ? (
+              <IntegratedLed values={formValues} changeHandler={changeHandler}/>
+            ) : (
+              <BulbTypeLight values={formValues} changeHandler={changeHandler}/>
+            )}
 
-        <label>
-          Notes: <textarea name="notes" maxLength={40} placeholder="40 symbols maximum" value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
-        </label>
-        <button type="submit" onClick={handleOnSubmit}>
-          Add
-        </button>
-      </div> 
-    }
-    </div> 
+            <label>
+              Notes:{' '}
+              <textarea
+                name="notes"
+                maxLength={40}
+                placeholder="40 symbols maximum"
+                value={formValues.notes}
+                onChange={changeHandler}
+              ></textarea>
+            </label>
+            <button type="submit">
+              Add
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
