@@ -6,13 +6,12 @@ import Banner from './components/Home/Banner';
 import Services from './components/Home/Services';
 import OurLights from './components/Home/OurLights';
 import Comments from './components/Home/Comments';
-import About from './components/Main/About';
-import ShowLights from './components/Main/ShowLights/ShowLights';
+import About from './components/About/About';
+import ShowLights from './components/ShowLights/ShowLights';
 import Details from './components/Light/Details/Details';
 import CreateLight from './components/Light/CreateLight/CreateLight';
-import Login from './components/Main/Login/Login';
-import Register from './components/Main/Register';
-import Profile from './components/Main/Profile/Profile';
+import LoginAndRegister from './components/LoginAndRegister/LoginAndRegister';
+import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
 import Copyright from './components/Footer/Copyright';
 import NotFound from './components/Not Found/NotFound';
@@ -39,13 +38,13 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/catalog" element={<ShowLights props={{getDataFunc: catalogFunc, page: 'catalog'}}/>} />
+        <Route path="/catalog" element={<ShowLights getDataFunc={catalogFunc} page={'catalog'}/>} />
         <Route path="/catalog/:id" element={<Details />} />
-        <Route path="/marketplace" element={<ShowLights props={{getDataFunc: marketplaceFunc, page: 'marketplace'}} />} />
+        <Route path="/marketplace" element={<ShowLights getDataFunc={marketplaceFunc} page={'marketplace'} />} />
         <Route path="/marketplace/:id" element={<Details />} />
         <Route path="/createlight" element={<CreateLight />} />
-        <Route path="/login" element={<Login setUserNav={ setUserNav }/>} />
-        <Route path="/register" element={<Register setUserNav={ setUserNav }/>} />
+        <Route path="/login" element={<LoginAndRegister setUserNav={setUserNav} page={'login'}/>} />
+        <Route path="/register" element={<LoginAndRegister setUserNav={setUserNav} page={'register'}/>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

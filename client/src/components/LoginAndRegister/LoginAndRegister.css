@@ -31,6 +31,10 @@
     font-size: 40px;
 }
 
+.login-form button {
+    text-transform: uppercase;
+}
+
 .login-form button:hover {
     color: white;
     background-color: black;

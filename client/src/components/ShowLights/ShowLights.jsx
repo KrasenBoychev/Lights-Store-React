@@ -2,12 +2,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import CatalogLight from '../../Light/CatalogLight/CatalogLight';
-import Spinner from '../../Spinner';
+import CatalogLight from '../Light/CatalogLight/CatalogLight';
+import Spinner from '../Spinner';
 import './ShowLights.css';
 import CreateLightParagraph from './CreateLightParagraph';
 
-export default function ShowLights({ props }) {
+export default function ShowLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
 
