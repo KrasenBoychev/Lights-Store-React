@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { logout } from '../../../api/api';
 
 export default function Header({ navValues }) {
@@ -46,7 +46,7 @@ export default function Header({ navValues }) {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/catalog">
-                  Catalog
+                      Catalog
                 </Link>
               </li>
               <li className="nav-item">
@@ -60,7 +60,7 @@ export default function Header({ navValues }) {
             </form>
             <div className="search_icon">
               {/* <li><a href="#"><img src="images/search-icon.png" /></a></li> */}
-              {navValues.userNav ? (
+              {navValues.userNav || Object.entries(sessionStorage).length > 0 ? (
                 <ul>
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
