@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { useNavigate, useLocation, redirect } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createRecord, editRecord, getLightById } from '../../../../api/data';
 import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -154,8 +154,8 @@ export default function CreateLight() {
     }
 
     if (formValues.notes != '') {
-      if (formValues.notes.length > 40) {
-        alert('Notes should be maximum 40 symbols!');
+      if (formValues.notes.length > 30) {
+        alert('Notes should be maximum 30 symbols!');
         return;
       }
       data.notes = formValues.notes;
@@ -340,8 +340,8 @@ export default function CreateLight() {
               Notes:{' '}
               <textarea
                 name="notes"
-                maxLength={40}
-                placeholder="40 symbols maximum"
+                maxLength={30}
+                placeholder="30 symbols maximum"
                 value={formValues.notes}
                 onChange={changeHandler}
               ></textarea>

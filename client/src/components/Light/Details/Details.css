@@ -62,7 +62,7 @@
     margin-top: 20px;
 }
 
-.item-details-button button {
+.item-details-button button, .item-details-button p {
     width: 150px;
     margin: auto 10px;
     font-weight: bold;
@@ -75,4 +75,10 @@
 
 .item-details-button button:hover {
     background-color: black;
+}
+
+.item-details-button p {
+    width: 400px;
+    padding: 10px;
+    margin: auto;
 }

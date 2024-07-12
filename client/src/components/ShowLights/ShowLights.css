@@ -11,6 +11,8 @@
     color: #ffff;
     background-color: #fabc26;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
+    word-spacing: 5px;
 }
 
 .catalog_section > p {

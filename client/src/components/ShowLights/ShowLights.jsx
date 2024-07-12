@@ -6,12 +6,14 @@ import { useLocation } from 'react-router-dom';
 
 import CatalogLight from '../Light/CatalogLight/CatalogLight';
 import Spinner from '../Spinner';
-import './ShowLights.css';
 import CreateLightParagraph from './CreateLightParagraph';
+import Search from './Search';
+import './ShowLights.css';
 
 export default function ShowLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
+  const [filteredLights, setFilteredLights] = useState([]);
 
   const location = useLocation();
   const currPage = location.pathname.split('/')[1];
@@ -22,6 +24,7 @@ export default function ShowLights(props) {
         setSpinner(true);
         const allLights = await props.getDataFunc();
         setLights(allLights);
+        setFilteredLights(allLights);
       } catch (err) {
         alert(err.message);
       } finally {
@@ -32,19 +35,29 @@ export default function ShowLights(props) {
 
   return (
     <div className="catalog_section">
-      <h1>Welcome to {currPage}</h1>
+      <h1>
+          {currPage == 'profile' 
+              ? 'My Lights'
+              : 'Welcome to ' + currPage
+        }
+      </h1>
 
-      {currPage == 'marketplace' || currPage == 'profile' ? (
+      {currPage == 'profile' ? (
         <CreateLightParagraph />
       ) : (
-        ''
+        currPage == 'marketplace' 
+          ? (
+            <Search lightsState={{lights, setLights}} filteredLightsState={{filteredLights, setFilteredLights}}/>
+          ) : (
+            ''
+          )
       )}
 
       <div className="items-container">
         {spinner ? (
           <Spinner />
-        ) : lights.length > 0 ? (
-          lights.map((light) => {
+        ) : filteredLights.length > 0 ? (
+          filteredLights.map((light) => {
             if (currPage == 'catalog') {
               light.showDate = false;
               light.showNotes = false;

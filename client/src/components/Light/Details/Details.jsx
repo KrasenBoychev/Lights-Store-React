@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { deleteRecord } from '../../../../api/data';
 import Spinner from '../../Spinner';
@@ -14,6 +14,11 @@ export default function Details() {
   const [height, width, depth] = light.dimensions.split('/');
 
   const [spinner, setSpinner] = useState(false);
+  
+  const [boughtItem, setBoughtItem] = useState(false);
+  const buyClickHandler = () => {
+    setBoughtItem(true);
+  };
 
   const deleteClickHandler = async (lightId) => {
     const confirm = window.confirm('Are you sure');
@@ -103,7 +108,9 @@ export default function Details() {
                 </button>
               </>
             ) : (
-              <button>Buy</button>
+              boughtItem 
+                  ? <p>Light added to your cart</p>
+                  : <button onClick={buyClickHandler}>Buy</button>
             )}
           </div>
         </div>
