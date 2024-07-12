@@ -2,6 +2,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import CatalogLight from '../Light/CatalogLight/CatalogLight';
 import Spinner from '../Spinner';
 import './ShowLights.css';
@@ -10,6 +12,9 @@ import CreateLightParagraph from './CreateLightParagraph';
 export default function ShowLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
+
+  const location = useLocation();
+  const currPage = location.pathname.split('/')[1];
 
   useEffect(() => {
     (async function getAllLights() {
@@ -27,9 +32,9 @@ export default function ShowLights(props) {
 
   return (
     <div className="catalog_section">
-      <h1>Welcome to {props.page}</h1>
+      <h1>Welcome to {currPage}</h1>
 
-      {props.page == 'marketplace' || props.page == 'profile' ? (
+      {currPage == 'marketplace' || currPage == 'profile' ? (
         <CreateLightParagraph />
       ) : (
         ''
@@ -40,7 +45,7 @@ export default function ShowLights(props) {
           <Spinner />
         ) : lights.length > 0 ? (
           lights.map((light) => {
-            if (props.page == 'catalog') {
+            if (currPage == 'catalog') {
               light.showDate = false;
               light.showNotes = false;
             } else {

@@ -40,14 +40,14 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/catalog" element={<ShowLights getDataFunc={catalogFunc} page={'catalog'}/>} />
+        <Route path="/catalog" element={<ShowLights getDataFunc={catalogFunc} />} />
         <Route path="/catalog/:id" element={<Details />} />
-        <Route path="/marketplace" element={<ShowLights getDataFunc={marketplaceFunc} page={'marketplace'} />} />
+        <Route path="/marketplace" element={<ShowLights getDataFunc={marketplaceFunc} />} />
         <Route path="/marketplace/:id" element={<Details />} />
         <Route path="/createlight" element={<CreateLight />} />
         <Route path="/login" element={<Login setUserNav={setUserNav} />} />
         <Route path="/register" element={<Register setUserNav={setUserNav} />} />
-        <Route path="/profile" element={<ShowLights getDataFunc={profileFunc} page={'profile'}/>} />
+        <Route path="/profile" element={<ShowLights getDataFunc={profileFunc} />} />
         <Route path="/profile/:id" element={<Details />} />
         <Route path="/edit/:id" element={<CreateLight />} />
         <Route path="*" element={<NotFound />} />
