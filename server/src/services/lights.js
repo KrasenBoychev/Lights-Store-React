@@ -12,6 +12,14 @@ async function getCustomersLights() {
   return Light.find({ ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } });
 }
 
+async function getMarketplaceLights(userId) {
+  if (userId) {
+    return Light.find({ ownerId: { $nin: ['668cfe59f18d95a1f2f52a13', userId] }});
+  } else {
+    return Light.find({ ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } });
+  }
+}
+
 async function getById(id) {
   return Light.findById(id).lean();
 }
@@ -114,4 +122,5 @@ module.exports = {
   deleteById,
   getByOwnerId,
   getCustomersLights,
+  getMarketplaceLights
 };
