@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Fragment, useState } from 'react';
-import { catalogFunc, marketplaceFunc } from './utils/fetchData';
+import { catalogFunc, marketplaceFunc, profileFunc } from './utils/fetchData';
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services';
@@ -47,7 +47,9 @@ function App() {
         <Route path="/createlight" element={<CreateLight />} />
         <Route path="/login" element={<Login setUserNav={setUserNav} />} />
         <Route path="/register" element={<Register setUserNav={setUserNav} />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ShowLights getDataFunc={profileFunc} page={'profile'}/>} />
+        <Route path="/profile/:id" element={<Details />} />
+        <Route path="/edit/:id" element={<CreateLight />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

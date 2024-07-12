@@ -11,33 +11,42 @@ export default function ShowLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
 
-    useEffect(() => {
-        (async function getAllLights() {
-            try {
-            setSpinner(true);
-            const allLights = await props.getDataFunc();
-            setLights(allLights);
-            } catch (err) {
-            alert(err.message);
-            } finally {
-            setSpinner(false);
-            }
-        })();
-    }, [props.getDataFunc]);
+  useEffect(() => {
+    (async function getAllLights() {
+      try {
+        setSpinner(true);
+        const allLights = await props.getDataFunc();
+        setLights(allLights);
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        setSpinner(false);
+      }
+    })();
+  }, [props.getDataFunc]);
 
   return (
     <div className="catalog_section">
       <h1>Welcome to {props.page}</h1>
-      
-      {props.page == 'marketplace' ? <CreateLightParagraph /> : ''}
+
+      {props.page == 'marketplace' || props.page == 'profile' ? (
+        <CreateLightParagraph />
+      ) : (
+        ''
+      )}
 
       <div className="items-container">
         {spinner ? (
           <Spinner />
         ) : lights.length > 0 ? (
           lights.map((light) => {
-            light.showDate = true;
-            light.showNotes = true;
+            if (props.page == 'catalog') {
+              light.showDate = false;
+              light.showNotes = false;
+            } else {
+              light.showDate = true;
+              light.showNotes = true;
+            }
             return <CatalogLight key={light._id} light={light} />;
           })
         ) : (

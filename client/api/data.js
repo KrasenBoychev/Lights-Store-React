@@ -12,13 +12,17 @@ export async function getLights() {
     return await api.get(host + '/data/catalog');
 }
 
-// export async function getItemById(id) {
-//     return await api.get(host + '/data/catalog/' + id);
-// }
+export async function getLightById(id) {
+    return await api.get(host + '/data/catalog/' + id);
+}
 
 export async function getCatalogLights(adminId) {
-    //const userId = sessionStorage.getItem('userId');
     return await api.get(host + `/data/catalog?where=_ownerId%3D%22${adminId}%22`);
+}
+
+export async function getProfileLights() {
+    const userId = sessionStorage.getItem('userId');
+    return await api.get(host + `/data/catalog?where=_ownerId%3D%22${userId}%22`);
 }
 
 export async function getMarketplaceLights() {
@@ -29,10 +33,10 @@ export async function createRecord(data) {
     return await api.post(host + '/data/catalog', data);
 }
 
-// export async function editRecord(id, data) {
-//     return await api.put(host + '/data/catalog/' + id, data);
-// }
+export async function editRecord(id, data) {
+    return await api.put(host + '/data/catalog/' + id, data);
+}
 
-// export async function deleteRecord(id) {
-//     return await api.del(host + '/data/catalog/' + id);
-// }
+export async function deleteRecord(id) {
+    return await api.del(host + '/data/catalog/' + id);
+}

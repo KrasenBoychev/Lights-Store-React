@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { createRecord } from '../../../../api/data';
+import { useNavigate, useLocation, redirect } from 'react-router-dom';
+import { createRecord, editRecord, getLightById } from '../../../../api/data';
 import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
@@ -11,29 +11,44 @@ import BulbTypeLight from './parts/BulbTypeLight';
 import Spinner from '../../Spinner';
 import './CreateLight.css';
 
-export default function CreateLight(light) {
-  const navigate = useNavigate();
-
+export default function CreateLight() {
   const [spinner, setSpinner] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currPage = location.pathname.split('/')[1];
+
+  let light = null;
+  if (location.state) {
+    light = location.state.light;
+  }
+  
   const [formValues, setFormValues] = useState({
-    name: light.name || '',
-    price: '',
-    date: '',
-    quantities: '',
-    dimensions: '',
+    name: light ? light.name ? light.name : '' : '',
+    price: light ? light.price ? light.price : '' : '',
+    date: light ? light.date ? light.date : '' : '',
+    quantities: light ? light.quantities ? light.quantities : '' : '',
+    dimensions: light ? light.dimensions ? light.dimensions : '' : '',
     imageURL: '',
-    notes: '',
-    minHeight: '',
-    maxHeight: '',
-    kelvins: '',
-    lumens: '',
-    watt: '',
-    bulbType: '',
-    bulbsRequired: '',
+    notes: light ? light.notes ? light.notes : '' : '',
+    minHeight: light ? light.minHeight ? light.minHeight : '' : '',
+    maxHeight: light ? light.maxHeight ? light.maxHeight : '' : '',
+    kelvins: light ? light.kelvins ? light.kelvins : '' : '',
+    lumens: light ? light.lumens ? light.lumens : '' : '',
+    watt: light ? light.watt ? light.watt : '' : '',
+    bulbType: light ? light.bulbType ? light.bulbType : '' : '',
+    bulbsRequired: light ? light.bulbsRequired ? light.bulbsRequired : '' : '',
   });
 
-  const [adjustable, setAdjustable] = useState(false);
+  let adjustableStateValue;
+  if (formValues.minHeight) {
+    adjustableStateValue = true;
+  } else {
+    adjustableStateValue = false;
+  }
+
+  const [adjustable, setAdjustable] = useState(adjustableStateValue);
+
   const adjustableOptionHandler = (e) => {
     const value = e.target.value;
 
@@ -44,7 +59,16 @@ export default function CreateLight(light) {
     }
   };
 
-  const [integratedLed, setIntegratedLed] = useState(null);
+  let integratedLedStateValue;
+  if (formValues.kelvins) {
+    integratedLedStateValue = true;
+  } else if (formValues.bulbType) {
+    integratedLedStateValue = false;
+  } else {
+    integratedLedStateValue = null;
+  }
+  const [integratedLed, setIntegratedLed] = useState(integratedLedStateValue);
+
   const integratedLedOptionHandler = (e) => {
     const value = e.target.value;
 
@@ -67,9 +91,9 @@ export default function CreateLight(light) {
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const {name, price, quantities, imageURL} = formValues;
+    const {name, price, quantities} = formValues;
 
-    if (name == '' || price == '' || quantities == '' || imageURL == '') {
+    if (name == '' || price == '' || quantities == '') {
       alert('All mandatory fields required!');
       return;
     }
@@ -92,6 +116,11 @@ export default function CreateLight(light) {
       return;
     } else {
       data.dimensions = formValues.dimensions;
+    }
+
+    if (!light && formValues.imageURL == '') {
+      alert('Image is required');
+      return;
     }
 
     if (adjustable == true) {
@@ -135,19 +164,48 @@ export default function CreateLight(light) {
     try {
       setSpinner(true);
 
-      const imageRef = ref(storage, `images/${imageURL.name + v4()}`);
-      await uploadBytes(imageRef, imageURL);
-      const downloadURL = await getDownloadURL(imageRef);
+      if (light && formValues.imageURL == '') {
+        data.downloadURL = light.imageURL;
+      } else {
+        const imageRef = ref(storage, `images/${formValues.imageURL.name + v4()}`);
+        await uploadBytes(imageRef, formValues.imageURL);
+        const downloadURL = await getDownloadURL(imageRef);
+        data.downloadURL = downloadURL;
+      }
 
-      data.downloadURL = downloadURL;
+      if (currPage == 'createLight') {
+        await createRecord(data);
+      } else if (currPage == 'edit') {
+        await editRecord(light._id, data);
+      } else {
+        return;
+      }
 
-      await createRecord(data);
-      navigate('/marketplace');
     } catch (err) {
       alert(err.message);
     } finally {
       setSpinner(false);
     }
+
+    if (currPage == 'createLight') {
+      navigate('/profile');
+    } else if (currPage == 'edit') {
+      let editedLight;
+      try {
+        setSpinner(true);
+        editedLight = await getLightById(light._id);
+      } catch(error) {
+        alert(error.message);
+        return;
+      } finally {
+        setSpinner(false);
+      }
+      
+      editedLight.showNotes = true;
+      editedLight.showDate = true;
+      navigate('/profile/'+ light._id, {state: {light: editedLight}});
+    }
+
   };
   return (
     <div className="create_section">
@@ -225,6 +283,7 @@ export default function CreateLight(light) {
                   type="radio"
                   name="adjustable"
                   value="yes"
+                  defaultChecked={adjustable}
                   onChange={adjustableOptionHandler}
                 />
                 Yes
@@ -234,7 +293,7 @@ export default function CreateLight(light) {
                   type="radio"
                   name="adjustable"
                   value="no"
-                  defaultChecked
+                  defaultChecked={!adjustable}
                   onChange={adjustableOptionHandler}
                 />
                 No
@@ -252,6 +311,7 @@ export default function CreateLight(light) {
                   type="radio"
                   name="integrated"
                   value="yes"
+                  defaultChecked={integratedLed}
                   onChange={integratedLedOptionHandler}
                 />
                 Yes
@@ -261,6 +321,7 @@ export default function CreateLight(light) {
                   type="radio"
                   name="integrated"
                   value="no"
+                  defaultChecked={integratedLed == null ? false : !integratedLed}
                   onChange={integratedLedOptionHandler}
                 />
                 No
