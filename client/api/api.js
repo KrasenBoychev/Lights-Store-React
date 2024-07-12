@@ -75,7 +75,7 @@ export async function login(email, password) {
     return result;
 }
 
-export async function register(email, password) {
+export async function registerRequest(email, password) {
     const result = await post(settings.host + '/users/register', { email, password }); 
 
     sessionStorage.setItem('email', result.email);

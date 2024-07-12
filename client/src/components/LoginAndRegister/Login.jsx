@@ -1,19 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { login, register } from '../../../api/api';
-import RePass from './RePass';
+import { login } from '../../../api/api';
 import './LoginAndRegister.css';
 
-export default function LoginAndRegister(props) {
+export default function Login(props) {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
-    rePass: ''
   });
-
 
   const changeHandler = async (e) => {
     setFormValues((oldValues) => ({
@@ -25,18 +22,10 @@ export default function LoginAndRegister(props) {
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
-    let result;
+    const { email, password } = formValues;
 
-    const {email, password} = formValues;
+    const result = await login(email, password);
 
-    if (props.page == 'login') {
-        result = await login(email, password);
-    } else if (props.page == 'register') {
-        result = await register(email, password);
-    } else {
-        navigate('/');
-    }
-    
     if (result) {
       props.setUserNav(true);
       navigate('/');
@@ -47,7 +36,7 @@ export default function LoginAndRegister(props) {
     <div className="login_section">
       <div className="login-form">
         <form method="post" onSubmit={formSubmitHandler}>
-          <h2>{props.page}</h2>
+          <h2>Login</h2>
           <div className="form-input">
             <input
               type="email"
@@ -69,20 +58,12 @@ export default function LoginAndRegister(props) {
             />
           </div>
 
-          {props.page == 'register' ? <RePass /> : ''}
-
-          <button type="submit">{props.page}</button>
+          <button type="submit">Login</button>
         </form>
 
-        {props.page == 'register' ? (
-          <p>
-            Have an account yet? <Link to="/login">Login here</Link>.
-          </p>
-        ) : (
-          <p>
-            Do not have an account? <Link to="/register">Register here</Link>.
-          </p>
-        )}
+        <p>
+          Do not have an account? <Link to="/register">Register here</Link>.
+        </p>
       </div>
     </div>
   );
