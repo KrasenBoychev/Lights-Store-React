@@ -15,6 +15,40 @@
     word-spacing: 5px;
 }
 
+.catalog_section form {
+    width: 750px;
+    margin: 20px auto;
+    background-color: #fabc26;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.marketplace-search-form input, .marketplace-search-form select, .marketplace-search-form button {
+    width: 180px;
+    height: 30px;
+    margin: 10px;
+}
+
+.marketplace-search-form select {
+    text-align: center;
+}
+
+.marketplace-search-form button {
+    width: 80px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.marketplace-search-form button:hover {
+    color: white;
+    background-color: black;
+}
+
 .catalog_section > p {
     margin: 20px auto;
     padding: 20px;

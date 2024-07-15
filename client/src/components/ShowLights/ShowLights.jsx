@@ -14,6 +14,11 @@ export default function ShowLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
+  const [formValues, setFormValues] = useState({
+    name: '',
+    price: '',
+    lightType: '',
+  });
 
   const location = useLocation();
   const currPage = location.pathname.split('/')[1];
@@ -43,6 +48,7 @@ export default function ShowLights(props) {
         <Search
           lightsState={{ lights, setLights }}
           filteredLightsState={{ filteredLights, setFilteredLights }}
+          formState = {{ formValues, setFormValues }}
         />
       ) : (
         ''

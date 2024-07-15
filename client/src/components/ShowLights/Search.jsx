@@ -1,48 +1,56 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-
 export default function Search(props) {
-  const [searchName, setSearchName] = useState('');
-  const [searchPrice, setSearchPrice] = useState(null);
-  
-  const {lightsState, filteredLightsState} = props;
+  const { lightsState, filteredLightsState, formState } = props;
 
-  const handleNameChange = (e) => {
-    const inputValue = e.target.value;
-    setSearchName(inputValue);
-
-    const filteredItems = lightsState.lights.filter((light) =>
-      light.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-
-    filteredLightsState.setFilteredLights(filteredItems);
+  const changeHandler = async (e) => {
+    formState.setFormValues((oldValues) => ({
+      ...oldValues,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handlePriceChange = (e) => {
-    const inputValue = e.target.value;
-    setSearchPrice(inputValue);
+  const searchFormClickHandler = (e) => {
+    e.preventDefault();
 
-    const filteredItems = lightsState.lights.filter((light) =>
-        light.price == inputValue
+    const { name, price, lightType } = formState.formValues;
+    const priceToNum = Number(price);
+
+    const filteredItems = lightsState.lights.filter(
+      (light) =>
+        light.name.toLowerCase().includes(name.toLowerCase()) &&
+        (price ? light.price === priceToNum : true) &&
+        (lightType == 'integratedLed' ? light.kelvins : lightType == 'bulbType' ? light.bulbType : true)
     );
-
+  
     filteredLightsState.setFilteredLights(filteredItems);
   };
 
   return (
-    <form>
+    <form onSubmit={searchFormClickHandler} className="marketplace-search-form">
       <input
         type="text"
+        name="name"
         placeholder="Name"
-        value={searchName}
-        onChange={handleNameChange}
+        value={formState.formValues.name}
+        onChange={changeHandler}
       />
       <input
         type="number"
+        name="price"
         placeholder="Price"
-        value={searchPrice}
-        onChange={handlePriceChange}
+        value={formState.formValues.price}
+        onChange={changeHandler}
       />
+      <select
+        name="lightType"
+        value={formState.formValues.integratedLed}
+        onChange={changeHandler}
+      >
+        <option value="defaultValue">--- Type of Light ---</option>
+        <option value="integratedLed">Integrated LED</option>
+        <option value="bulbType">Bulb Type</option>
+      </select>
+      <button>Filter</button>
     </form>
   );
 }
