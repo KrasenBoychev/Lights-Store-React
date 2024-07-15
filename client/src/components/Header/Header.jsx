@@ -18,9 +18,6 @@ export default function Header({ navValues }) {
     <div className="header_section">
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          {/* <div className="logo"><a href="index.html">
-               <img src="images/logo-copy.png" />
-               </a></div> */}
           <button
             className="navbar-toggler"
             type="button"
