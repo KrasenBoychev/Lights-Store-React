@@ -1,18 +1,20 @@
+/* eslint-disable react/prop-types */
+import { Link } from 'react-router-dom';
+
 export default function OurLights() {
   return (
     <div className="furnitures_section layout_padding">
       <div className="container">
          <h1 className="our_text">Our Lights</h1>
-         {/* <p className="ipsum_text">There are many variations of passages of Lorem Ipsum </p> */}
          <div className="furnitures_section2 layout_padding">
             <div className="row">
                <div className="col-md-6">
                   <div className="container_main">
                      <img src="images/LED-ceiling-lights.jpg" alt="Avatar" className="image" />
                      <div className="overlay">
-                        <a href="#" className="icon" title="User Profile">
+                        <Link to={'/catalog'} className="icon" title="User Profile" state={'integratedLed'}>
                         <i className="fa fa-search"></i>
-                        </a>
+                        </Link>
                      </div>
                   </div>
                   <h3 className="temper_text">Integrated LED Lights</h3>
@@ -22,9 +24,9 @@ export default function OurLights() {
                   <div className="container_main">
                      <img src="images/ceiling-lights-home.jpg" alt="Avatar" className="image" />
                      <div className="overlay">
-                        <a href="#" className="icon" title="User Profile">
+                        <Link to={'/catalog'} className="icon" title="User Profile" state={'bulbType'}>
                         <i className="fa fa-search"></i>
-                        </a>
+                        </Link>
                      </div>
                   </div>
                   <h3 className="temper_text">Lights with bulbs</h3>

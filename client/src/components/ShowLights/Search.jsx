@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 export default function Search(props) {
-  const { lightsState, filteredLightsState, formState } = props;
+  const { lightsState, filteredLightsState, searchFormProps } = props;
 
   const changeHandler = async (e) => {
-    formState.setFormValues((oldValues) => ({
+    searchFormProps.setSearchFormValues((oldValues) => ({
       ...oldValues,
       [e.target.name]: e.target.value,
     }));
@@ -12,7 +12,7 @@ export default function Search(props) {
   const searchFormClickHandler = (e) => {
     e.preventDefault();
 
-    const { name, price, lightType } = formState.formValues;
+    const { name, price, lightType } = searchFormProps.seacrhFormValues;
     const priceToNum = Number(price);
 
     const filteredItems = lightsState.lights.filter(
@@ -31,19 +31,19 @@ export default function Search(props) {
         type="text"
         name="name"
         placeholder="Name"
-        value={formState.formValues.name}
+        value={searchFormProps.seacrhFormValues.name}
         onChange={changeHandler}
       />
       <input
         type="number"
         name="price"
         placeholder="Price"
-        value={formState.formValues.price}
+        value={searchFormProps.seacrhFormValues.price}
         onChange={changeHandler}
       />
       <select
         name="lightType"
-        value={formState.formValues.integratedLed}
+        value={searchFormProps.seacrhFormValues.lightType}
         onChange={changeHandler}
       >
         <option value="defaultValue">--- Type of Light ---</option>

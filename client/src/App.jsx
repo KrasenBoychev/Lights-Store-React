@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react';
 import { catalogFunc, marketplaceFunc, profileFunc } from './utils/fetchData';
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
-import Services from './components/Home/Services';
+import Services from './components/Home/Services/Services';
 import OurLights from './components/Home/OurLights';
 import Comments from './components/Home/Comments';
 import About from './components/About/About';
@@ -21,7 +21,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [userNav, setUserNav] = useState(false);
-  
+
   return (
     <>
       <ScrollTop />
