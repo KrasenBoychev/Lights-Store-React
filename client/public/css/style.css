@@ -294,12 +294,13 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/bakcground-led-lights.png);
+    background-image: url(../images/background-home.jpg);
     height: auto;
     padding-bottom: 50px;
     background-size: 100%;
     background-repeat: no-repeat;
 }
+
 .icon_1{
     width: 100%;
     float: left;
@@ -307,14 +308,15 @@ button {
 }
 
 .carousel-background{
-    background-color: orange;
+    background-color: #ffb607;
     border-radius: 5px;
 }
 
 .furniture_text{
     width: 100%;
     float: left;
-    font-size: 100px;
+    font-size: 80px;
+    letter-spacing: 2px;
     color: #ffffff;
     text-align: center;
     text-transform: uppercase;
@@ -322,9 +324,12 @@ button {
 .there_text {
     width: 50%;
     margin: 0 auto;
+    padding-bottom: 20px;
     font-size: 16px;
+    letter-spacing: 1px;
     color: #ffffff;
     text-align: center;
+    text-transform: uppercase;
 }
 .contact_bt_main{
     width: 17%;
@@ -334,22 +339,23 @@ button {
 .contact_bt {
     width: 100%;
     float: left;
-    margin-top: 360px;
+    margin-top: 250px;
 }
 .contact_bt a{
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #ffffff;
-    background-color: #ffb607;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #000;
     text-align: center;
     padding: 10px 0px;
     border-radius: 5px;
     text-transform: uppercase;
 }
 .contact_bt a:hover{
-    color: #ffffff;
-    background-color: #000;
+    background-color: #ffb607;
 }
 
 .fa-angle-right:before {
