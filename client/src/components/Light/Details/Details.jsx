@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { deleteRecord } from '../../../../api/data';
 import Spinner from '../../Spinner';
@@ -9,10 +9,12 @@ export default function Details() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currPage = location.pathname.split('/')[1];
   const { light } = location.state;
-  const [height, width, depth] = light.dimensions.split('/');
 
+  const currPage = location.pathname.split('/')[1];
+ 
+  const [height, width, depth] = light.dimensions.split('/');
+  
   const [spinner, setSpinner] = useState(false);
   
   const [boughtItem, setBoughtItem] = useState(false);

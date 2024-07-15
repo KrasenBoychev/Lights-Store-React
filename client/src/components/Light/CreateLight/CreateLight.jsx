@@ -131,6 +131,9 @@ export default function CreateLight() {
         data.minHeight = formValues.minHeight;
         data.maxHeight = formValues.maxHeight;
       }
+    } else {
+      data.minHeight = '';
+      data.maxHeight = '';
     }
 
     if (integratedLed == null) {
@@ -144,6 +147,9 @@ export default function CreateLight() {
       data.kelvins = formValues.kelvins;
       data.lumens = formValues.lumens;
       data.watt = formValues.watt;
+
+      data.bulbType = '';
+      data.bulbsRequired = '';
     } else {
       if (formValues.bulbType == '' || formValues.bulbsRequired == '') {
         alert('Bulb Type Light info is required!');
@@ -151,6 +157,10 @@ export default function CreateLight() {
       }
       data.bulbType = formValues.bulbType;
       data.bulbsRequired = formValues.bulbsRequired;
+
+      data.kelvins = '';
+      data.lumens = '';
+      data.watt = '';
     }
 
     if (formValues.notes != '') {
@@ -173,7 +183,7 @@ export default function CreateLight() {
         data.downloadURL = downloadURL;
       }
 
-      if (currPage == 'createLight') {
+      if (currPage == 'createlight') {
         await createRecord(data);
       } else if (currPage == 'edit') {
         await editRecord(light._id, data);
@@ -187,8 +197,8 @@ export default function CreateLight() {
       setSpinner(false);
     }
 
-    if (currPage == 'createLight') {
-      navigate('/profile');
+    if (currPage == 'createlight') {
+        navigate('/profile');
     } else if (currPage == 'edit') {
       let editedLight;
       try {

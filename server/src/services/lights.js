@@ -14,7 +14,9 @@ async function getCustomersLights() {
 
 async function getMarketplaceLights(userId) {
   if (userId) {
-    return Light.find({ ownerId: { $nin: ['668cfe59f18d95a1f2f52a13', userId] }});
+    return Light.find({
+      ownerId: { $nin: ['668cfe59f18d95a1f2f52a13', userId] },
+    });
   } else {
     return Light.find({ ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } });
   }
@@ -52,9 +54,9 @@ async function create(data, ownerId) {
     record.notes = data.notes;
   }
 
-  data.ownerId = ownerId;
+  record.ownerId = ownerId;
 
-  await record.save();
+  await record.update();
 
   return record;
 }
@@ -76,24 +78,14 @@ async function update(id, data, userId) {
   record.quantities = data.quantities;
   record.dimensions = data.dimensions;
   record.imageURL = data.downloadURL;
-
-  if (data.minHeight) {
-    record.minHeight = data.minHeight;
-    record.maxHeight = data.maxHeight;
-  }
-
-  if (data.kelvins) {
-    record.kelvins = data.kelvins;
-    record.lumens = data.lumens;
-    record.watt = data.watt;
-  } else {
-    record.bulbType = data.bulbType;
-    record.bulbsRequired = data.bulbsRequired;
-  }
-
-  if (data.notes) {
-    record.notes = data.notes;
-  }
+  record.minHeight = data.minHeight;
+  record.maxHeight = data.maxHeight;
+  record.kelvins = data.kelvins;
+  record.lumens = data.lumens;
+  record.watt = data.watt;
+  record.bulbType = data.bulbType;
+  record.bulbsRequired = data.bulbsRequired;
+  record.notes = data.notes;
 
   await record.save();
 
@@ -122,5 +114,5 @@ module.exports = {
   deleteById,
   getByOwnerId,
   getCustomersLights,
-  getMarketplaceLights
+  getMarketplaceLights,
 };
