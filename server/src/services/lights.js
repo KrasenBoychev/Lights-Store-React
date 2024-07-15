@@ -23,7 +23,7 @@ async function getMarketplaceLights(userId) {
 }
 
 async function getLightById(id) {
-  return Light.findById(id).lean();
+    return Light.findById(id).lean();
 }
 
 async function create(data, ownerId) {

@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const validator = require('validator');
 
 const {
   getAll,
@@ -69,12 +70,19 @@ catalogRouter.post(
 );
 
 catalogRouter.get('/:id', async (req, res) => {
+
+  if(!validator.isMongoId(req.params.id)){
+    res.send('invalid id ');
+    return;
+  }
+
   const record = await getLightById(req.params.id);
 
   if (!record) {
     res.status(404).json({ code: 404, message: 'Item not found' });
     return;
   }
+
   res.json(record);
 });
 
