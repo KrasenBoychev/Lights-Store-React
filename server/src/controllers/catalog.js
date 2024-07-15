@@ -3,7 +3,7 @@ const { Router } = require('express');
 const {
   getAll,
   create,
-  getById,
+  getLightById,
   getByOwnerId,
   getCustomersLights,
   getMarketplaceLights,
@@ -69,7 +69,7 @@ catalogRouter.post(
 );
 
 catalogRouter.get('/:id', async (req, res) => {
-  const record = await getById(req.params.id);
+  const record = await getLightById(req.params.id);
 
   if (!record) {
     res.status(404).json({ code: 404, message: 'Item not found' });

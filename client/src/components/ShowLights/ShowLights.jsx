@@ -35,22 +35,17 @@ export default function ShowLights(props) {
 
   return (
     <div className="catalog_section">
-      <h1>
-          {currPage == 'profile' 
-              ? 'My Lights'
-              : 'Welcome to ' + currPage
-        }
-      </h1>
+      <h1>{currPage == 'profile' ? 'My Lights' : 'Welcome to ' + currPage}</h1>
 
       {currPage == 'profile' ? (
         <CreateLightParagraph />
+      ) : currPage == 'marketplace' ? (
+        <Search
+          lightsState={{ lights, setLights }}
+          filteredLightsState={{ filteredLights, setFilteredLights }}
+        />
       ) : (
-        currPage == 'marketplace' 
-          ? (
-            <Search lightsState={{lights, setLights}} filteredLightsState={{filteredLights, setFilteredLights}}/>
-          ) : (
-            ''
-          )
+        ''
       )}
 
       <div className="items-container">
@@ -58,13 +53,6 @@ export default function ShowLights(props) {
           <Spinner />
         ) : filteredLights.length > 0 ? (
           filteredLights.map((light) => {
-            if (currPage == 'catalog') {
-              light.showDate = false;
-              light.showNotes = false;
-            } else {
-              light.showDate = true;
-              light.showNotes = true;
-            }
             return <CatalogLight key={light._id} light={light} />;
           })
         ) : (

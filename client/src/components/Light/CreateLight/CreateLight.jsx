@@ -185,8 +185,10 @@ export default function CreateLight() {
 
       if (currPage == 'createlight') {
         await createRecord(data);
+        navigate('/profile');
       } else if (currPage == 'edit') {
         await editRecord(light._id, data);
+        navigate('/profile/'+ light._id);
       } else {
         return;
       }
@@ -197,24 +199,11 @@ export default function CreateLight() {
       setSpinner(false);
     }
 
-    if (currPage == 'createlight') {
-        navigate('/profile');
-    } else if (currPage == 'edit') {
-      let editedLight;
-      try {
-        setSpinner(true);
-        editedLight = await getLightById(light._id);
-      } catch(error) {
-        alert(error.message);
-        return;
-      } finally {
-        setSpinner(false);
-      }
-      
-      editedLight.showNotes = true;
-      editedLight.showDate = true;
-      navigate('/profile/'+ light._id, {state: {light: editedLight}});
-    }
+    // if (currPage == 'createlight') {
+    //     navigate('/profile');
+    // } else if (currPage == 'edit') {
+    //     navigate('/profile/'+ light._id);
+    // }
 
   };
   return (

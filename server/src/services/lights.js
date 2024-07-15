@@ -22,7 +22,7 @@ async function getMarketplaceLights(userId) {
   }
 }
 
-async function getById(id) {
+async function getLightById(id) {
   return Light.findById(id).lean();
 }
 
@@ -56,7 +56,7 @@ async function create(data, ownerId) {
 
   record.ownerId = ownerId;
 
-  await record.update();
+  await record.save();
 
   return record;
 }
@@ -108,7 +108,7 @@ async function deleteById(id, userId) {
 
 module.exports = {
   getAll,
-  getById,
+  getLightById,
   create,
   update,
   deleteById,
