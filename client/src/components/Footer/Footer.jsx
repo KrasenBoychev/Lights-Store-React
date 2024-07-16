@@ -42,7 +42,7 @@ export default function Footer() {
             <h1 className="customer_text">Your Opinion</h1>
             <ul className="footer_lorem_text1">
               <li>
-                <Link to={'/comment'}>Comment Form</Link>
+                <Link to={'/comment'}>Leave us a comment</Link>
               </li>
             </ul>
           </div>

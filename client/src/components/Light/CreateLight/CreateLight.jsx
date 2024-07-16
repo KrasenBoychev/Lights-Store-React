@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { createRecord, editRecord, getLightById } from '../../../../api/data';
+import { createRecord, editRecord } from '../../../../api/data';
 import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';

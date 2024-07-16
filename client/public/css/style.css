@@ -847,7 +847,7 @@ a:hover {
 .contact_section {
     width: 100%;
     float: left;
-    background-image: url(../images/contact-bg.png);
+    background: #ffb607;
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -865,7 +865,7 @@ a:hover {
     text-transform: uppercase;
 }
 
-.email-bt {
+.name-bt {
     color: #989696;
     width: 100%;
     height: 55px;
@@ -875,7 +875,7 @@ a:hover {
     border: 0px;
     border-radius: 5px;
 }
-input.email-bt::placeholder {
+input.name-bt::placeholder {
     color: #989696;
 }
 .massage-bt {
@@ -891,6 +891,22 @@ input.email-bt::placeholder {
 textarea#comment::placeholder {
     color: #989696;
 }
+
+.image-bt {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    padding: 20px;
+    font-size: 18px;
+    color: #989696;
+    background-color: #fff;
+}
+
+.image-bt input {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
 .send_bt {
     width: 100%;
     float: left;
