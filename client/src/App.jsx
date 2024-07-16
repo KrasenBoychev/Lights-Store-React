@@ -5,16 +5,16 @@ import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services/Services';
 import OurLights from './components/Home/OurLights';
-import Comments from './components/Home/Comments';
+import Comments from './components/Home/Comments/Comments';
 import About from './components/About/About';
 import ShowLights from './components/ShowLights/ShowLights';
 import Details from './components/Light/Details/Details';
 import CreateLight from './components/Light/CreateLight/CreateLight';
 import Login from './components/LoginAndRegister/Login';
 import Register from './components/LoginAndRegister/Register';
-import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
 import Copyright from './components/Footer/Copyright';
+import CommentForm from './components/Home/Comments/CommentForm';
 import NotFound from './components/Not Found/NotFound';
 import ScrollTop from './ScrollTop';
 import { Toaster } from 'react-hot-toast';
@@ -50,6 +50,7 @@ function App() {
         <Route path="/profile" element={<ShowLights getDataFunc={profileFunc} />} />
         <Route path="/profile/:lightId" element={<Details />} />
         <Route path="/edit/:lightId" element={<CreateLight />} />
+        <Route path="/comment" element={<CommentForm />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

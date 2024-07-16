@@ -474,6 +474,10 @@ button {
     float: left; 
 }
 
+.image_1 img {
+    border-radius: 5px;
+}
+
 .about_text {
     width: 100%;
     float: left;
@@ -858,8 +862,9 @@ a:hover {
     float: left;
     font-size: 36px;
     color: #ffffff;
-
+    text-transform: uppercase;
 }
+
 .email-bt {
     color: #989696;
     width: 100%;
@@ -891,25 +896,31 @@ textarea#comment::placeholder {
     float: left;
     margin-top: 50px;
 }
-.send_bt a{
+.send_bt button{
     width: 30%;
     float: left;
     font-size: 20px;
-    color: #989696;
+    color: #fff;
+    background-color: #000;
     text-align: center;
     border: 2px solid #ffffff;
     padding: 10px 0px;
     font-weight: bold;
 }
-.send_bt a:hover{
-    color: #989696;
-    background-color: #ffffff;
+.send_bt button:hover{
+    color: #ffb607;
+    background-color: #fff;
 }
 .image_9 {
     width: 100%;
     float: left;
     padding-top: 83px;
 }
+
+.image_9 img {
+    border-radius: 5px;
+}
+
 .input-group {
     width: 45%;
     float: right;
@@ -931,6 +942,7 @@ textarea#comment::placeholder {
 }
 .input-group-text {
     padding: 0px;
+    padding-left: 10px;
     margin-bottom: 0;
     font-size: 18px;
     font-weight: bold;
@@ -944,20 +956,22 @@ textarea#comment::placeholder {
 .input-group-text a{
     color: #ffffff;
 }
+
+.input-group-text a:hover {
+    color: #ffb607;
+}
+
 .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
     position: relative;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     width: 1%;
     margin-bottom: 0px;
+    padding: 1px 5px;
+    color: #fff;
     background: transparent !important;
     border-bottom: 1px solid #ffff;
 }
-
-
-
-
-
 
 .footer_section{
     width: 100%;
@@ -984,6 +998,7 @@ textarea#comment::placeholder {
     float: left;
     font-size: 16px;
     color: #fefefe;
+    margin-top: 0px;
     margin-left: 0px;
 }
 
