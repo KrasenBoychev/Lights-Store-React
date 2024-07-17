@@ -51,7 +51,7 @@ export default function ShowLights(props) {
 
   return (
     <div className="catalog_section">
-      <h1>{currPage == 'profile' ? 'My Lights' : 'Welcome to ' + currPage}</h1>
+      <h1>{currPage == 'profile' ? 'My Lights' : currPage == 'marketplace' ? 'Welcome to ' + currPage : 'Our range of lights'}</h1>
 
       {currPage == 'profile' ? (
         <CreateLightParagraph />
