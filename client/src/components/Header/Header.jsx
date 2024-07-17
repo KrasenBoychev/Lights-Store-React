@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../../api/api';
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../../api/api";
 
 export default function Header({ navValues }) {
   const navigate = useNavigate();
@@ -9,8 +9,8 @@ export default function Header({ navValues }) {
     try {
       await logout();
       navValues.setUserNav(false);
-      navigate('/');
-    } catch(error) {
+      navigate("/");
+    } catch (error) {
       alert(error.message);
     }
   }
@@ -43,7 +43,7 @@ export default function Header({ navValues }) {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/catalog">
-                      Catalog
+                  Catalog
                 </Link>
               </li>
               <li className="nav-item">
@@ -56,8 +56,8 @@ export default function Header({ navValues }) {
               <h1 className="call_text">Call Us : +01 1234567890</h1>
             </form>
             <div className="search_icon">
-              {/* <li><a href="#"><img src="images/search-icon.png" /></a></li> */}
-              {navValues.userNav || Object.entries(sessionStorage).length > 0 ? (
+              {navValues.userNav ||
+              Object.entries(sessionStorage).length > 0 ? (
                 <ul>
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
@@ -65,7 +65,11 @@ export default function Header({ navValues }) {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/logout" onClick={ logoutFunc }>
+                    <Link
+                      className="nav-link"
+                      to="/logout"
+                      onClick={logoutFunc}
+                    >
                       Logout
                     </Link>
                   </li>
