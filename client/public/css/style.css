@@ -486,13 +486,14 @@ button {
     text-transform: uppercase;
     font-weight: 500;
 }
+
 .lorem_text {
     width: 100%;
     float: left;
     font-size: 16px;
     color: #ffffff;
     margin-left: 0px;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 .read_bt1 {
     width: 30%;

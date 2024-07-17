@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function About() {
   return (
     <div className="about_section layout_padding">
@@ -20,7 +22,7 @@ export default function About() {
               make your home, office or commercial place looks amazing!
             </p>
             <div className="read_bt1">
-              <a href="#">Lights</a>
+              <Link to={'/catalog'}>Lights</Link>
             </div>
           </div>
           <div className="col-md-6">
