@@ -12,7 +12,7 @@ import Details from './components/Light/Details/Details';
 import CreateLight from './components/Light/CreateLight/CreateLight';
 import Login from './components/LoginAndRegister/Login';
 import Register from './components/LoginAndRegister/Register';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Footer/FooterSection/Footer';
 import Copyright from './components/Footer/Copyright';
 import CommentForm from './components/Home/Comments/CommentForm';
 import NotFound from './components/Not Found/NotFound';
