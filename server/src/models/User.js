@@ -14,6 +14,10 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    cart: {
+        type: Array,
+        default: []
+    }
 });
 const User = model('users', UserSchema);
 User.createIndexes();
