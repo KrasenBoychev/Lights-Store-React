@@ -1,4 +1,5 @@
 const { Light } = require('../models/Light');
+const { User } = require('../models/User');
 
 async function getAll() {
   return Light.find().lean();
@@ -106,6 +107,20 @@ async function deleteById(id, userId) {
   await Light.findByIdAndDelete(id);
 }
 
+async function addLightToCart(lightId, userId) {
+  const user = await User.findById(userId);
+
+  if (!user) {
+    throw new ReferenceError('Record not found ' + userId);
+  }
+
+  user.cart.push(lightId);
+
+  await user.save();
+
+  return user;
+}
+
 module.exports = {
   getAll,
   getLightById,
@@ -115,4 +130,5 @@ module.exports = {
   getByOwnerId,
   getCustomersLights,
   getMarketplaceLights,
+  addLightToCart
 };

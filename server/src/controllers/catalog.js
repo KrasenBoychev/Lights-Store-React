@@ -10,6 +10,7 @@ const {
   getMarketplaceLights,
   update,
   deleteById,
+  addLightToCart
 } = require('../services/lights');
 const { isUser } = require('../middlewares/guards');
 const { body, validationResult } = require('express-validator');
@@ -122,6 +123,23 @@ catalogRouter.delete('/:id', isUser(), async (req, res) => {
     }
   }
 });
+
+catalogRouter.put(
+  '/cart/:lightId',
+  isUser(),
+  async (req, res) => {
+    try {
+      
+      const lightId = req.params.lightId;
+      const result = await addLightToCart(lightId, req.user._id);
+
+      res.json(result);
+    } catch (err) {
+      const parsed = parseError(err);
+      res.status(400).json({ code: 400, message: parsed.message });
+    }
+  }
+);
 
 module.exports = {
   catalogRouter,

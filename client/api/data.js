@@ -7,7 +7,6 @@ export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
 
-// Implement application-specific requests
 export async function getLights() {
     return await api.get(host + '/data/catalog');
 }
@@ -51,4 +50,8 @@ export async function getComments() {
 
 export async function createComment(data) {
     return await api.post(host + '/comments', data);
+}
+
+export async function addToCart(lightId) {
+    return await api.put(host + '/data/catalog/cart/' + lightId);
 }

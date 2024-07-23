@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { deleteRecord, getLightById } from '../../../../api/data';
+import { addToCart, deleteRecord, getLightById } from '../../../../api/data';
 import Spinner from '../../Spinner';
 import './Details.css';
+
 
 export default function Details() {
   const [light, setLight] = useState({});
@@ -55,7 +56,14 @@ export default function Details() {
   }
   
   const [boughtItem, setBoughtItem] = useState(false);
-  const buyClickHandler = () => {
+  const buyClickHandler = async () => {
+
+    try {
+      await addToCart(light._id);
+    } catch(error) {
+      alert(error.message);
+    }
+
     setBoughtItem(true);
   };
 
