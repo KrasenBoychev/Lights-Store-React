@@ -55,3 +55,7 @@ export async function createComment(data) {
 export async function addToCart(lightId) {
     return await api.put(host + '/data/catalog/cart/' + lightId);
 }
+
+export async function getCart(userId) {
+    return await api.get(host + '/data/catalog/cart/' + userId);
+}

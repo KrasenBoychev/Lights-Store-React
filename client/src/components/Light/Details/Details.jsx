@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { addToCart, deleteRecord, getLightById } from '../../../../api/data';
+import { addToCart, deleteRecord, getCart, getLightById } from '../../../../api/data';
 import Spinner from '../../Spinner';
 import './Details.css';
 
@@ -56,6 +56,16 @@ export default function Details() {
   }
   
   const [boughtItem, setBoughtItem] = useState(false);
+
+  useEffect(() => {
+    (async function checkIfBought() {
+      const userCart = await getCart('669fd89cc6cf02f3a66f1bae');
+      if (userCart.includes(light._id)) {
+        setBoughtItem(true);
+      }
+    })(); 
+  }, [light]);
+  
   const buyClickHandler = async () => {
 
     try {

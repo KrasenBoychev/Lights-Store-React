@@ -107,6 +107,10 @@ async function deleteById(id, userId) {
   await Light.findByIdAndDelete(id);
 }
 
+async function getUserCart(userId) {
+  return User.findById(userId).lean();
+}
+
 async function addLightToCart(lightId, userId) {
   const user = await User.findById(userId);
 
@@ -130,5 +134,6 @@ module.exports = {
   getByOwnerId,
   getCustomersLights,
   getMarketplaceLights,
-  addLightToCart
+  addLightToCart,
+  getUserCart
 };

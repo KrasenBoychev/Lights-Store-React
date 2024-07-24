@@ -2,14 +2,13 @@ const { Router } = require('express');
 const validator = require('validator');
 
 const {
-  getAll,
   create,
   getLightById,
   getByOwnerId,
-  getCustomersLights,
   getMarketplaceLights,
   update,
   deleteById,
+  getUserCart,
   addLightToCart
 } = require('../services/lights');
 const { isUser } = require('../middlewares/guards');
@@ -123,6 +122,20 @@ catalogRouter.delete('/:id', isUser(), async (req, res) => {
     }
   }
 });
+
+catalogRouter.get(
+  '/cart/:userId',
+  isUser(),
+  async (req, res) => {
+    const user = await getUserCart(req.params.userId);
+    if (!user) {
+      res.status(404).json({ code: 404, message: 'User Cart not found' });
+      return;
+    }
+  
+    res.json(user.cart);
+  }
+);
 
 catalogRouter.put(
   '/cart/:lightId',
