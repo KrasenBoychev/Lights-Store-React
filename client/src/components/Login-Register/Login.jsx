@@ -12,13 +12,6 @@ export default function Login(props) {
     password: '',
   });
 
-  const changeHandler = async (e) => {
-    setFormValues((oldValues) => ({
-      ...oldValues,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
