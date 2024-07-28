@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { Fragment, useState } from 'react';
-import { catalogFunc, marketplaceFunc, profileFunc } from './utils/fetchData';
+import { Fragment } from 'react';
+import { getCatalogLights, getMarketplaceLights, getProfileLights } from '../api/data';
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services/Services';
@@ -43,12 +43,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route
             path="/catalog"
-            element={<ShowLights getDataFunc={catalogFunc} />}
+            element={<ShowLights getDataFunc={getCatalogLights} />}
           />
           <Route path="/catalog/:lightId" element={<Details />} />
           <Route
             path="/marketplace"
-            element={<ShowLights getDataFunc={marketplaceFunc} />}
+            element={<ShowLights getDataFunc={getMarketplaceLights} />}
           />
           <Route path="/marketplace/:lightId" element={<Details />} />
           <Route path="/createlight" element={<CreateLight />} />
@@ -59,7 +59,7 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<ShowLights getDataFunc={profileFunc} />}
+            element={<ShowLights getDataFunc={getProfileLights} />}
           />
           <Route path="/profile/:lightId" element={<Details />} />
           <Route path="/edit/:lightId" element={<CreateLight />} />
