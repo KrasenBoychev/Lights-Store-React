@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../../api/api";
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../api/api';
+import { useAuthContext } from '../../contexts/AuthContext';
 
-export default function Header({ navValues }) {
+export default function Header() {
+  const { isAuthenticated } = useAuthContext();
+
   const navigate = useNavigate();
 
   async function logoutFunc() {
     try {
       await logout();
-      navValues.setUserNav(false);
-      navigate("/");
+      isAuthenticated(false);
+      navigate('/');
     } catch (error) {
       alert(error.message);
     }
@@ -56,8 +59,7 @@ export default function Header({ navValues }) {
               <h1 className="call_text">Call Us : +01 1234567890</h1>
             </form>
             <div className="search_icon">
-              {navValues.userNav ||
-              Object.entries(sessionStorage).length > 0 ? (
+              {isAuthenticated ? (
                 <ul>
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
