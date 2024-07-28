@@ -1,85 +1,68 @@
 /* eslint-disable react/prop-types */
 import { useNavigate, Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { register } from '../../../api/api';
-import toast from 'react-hot-toast';
 import './LoginAndRegister.css';
+import { useRegister } from '../../hooks/useAuth';
+import { useForm } from '../../hooks/useForm';
+import { useState } from 'react';
 
-const initialValues = { email: '', password: ''};
+const initialValues = { email: '', password: '', rePass: '' };
 
-export default function Register(props) {
+export default function Register() {
+  const [error, setError] = useState({});
+  const register = useRegister();
   const navigate = useNavigate();
 
-  const {
-    register,
-    getValues,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const registerHandler = async ({ email, password, rePass }) => {
 
-  const onSubmit = async (data) => {
-    const { email, password } = data;
-
-    try {
-      await registerRequest(email, password);
-    } catch (error) {
-      toast(error.message);
+    if (password != rePass) {
+      setError({ rePass: 'Passwords should match!' });
       return;
     }
-    
-    props.setUserNav(true);
+
+    await register(email, password);
     navigate('/');
   };
+
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    registerHandler
+  );
 
   return (
     <div className="login_section">
       <div className="login-form">
-        <form method="post" onSubmit={handleSubmit(onSubmit)}>
+        <form method="post" onSubmit={submitHandler}>
           <h2>Register</h2>
           <div className="form-input">
             <input
               type="email"
+              id="email"
+              name="email"
               placeholder="Email"
-              {...register('email', {
-                required: 'Email Address is required',
-                pattern: {
-                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                  message: 'Invalid email address',
-                },
-              })}
-              aria-invalid={errors.email ? 'true' : 'false'}
+              value={values.email}
+              onChange={changeHandler}
             />
-            {errors.email && <p role="alert">{errors.email?.message}</p>}
           </div>
           <div className="form-input">
             <input
               type="password"
+              id="password"
+              name="password"
               placeholder="Password"
-              {...register('password', {
-                required: 'Password is required',
-                minLength: {
-                  value: 5,
-                  message: 'Password should be 5 characters at least',
-                },
-              })}
-              aria-invalid={errors.password ? 'true' : 'false'}
+              value={values.password}
+              onChange={changeHandler}
             />
-            {errors.password && <p role="alert">{errors.password?.message}</p>}
           </div>
           <div className="form-input">
             <input
               type="password"
+              id="rePass"
+              name="rePass"
               placeholder="Repeat Password"
-              {...register('rePass', {
-                required: 'Repeat Password is required',
-                validate: (value) => {
-                  const { password } = getValues();
-                  return password === value || 'Passwords do not match';
-                },
-              })}
-              aria-invalid={errors.rePass ? 'true' : 'false'}
+              value={values.rePass}
+              onChange={changeHandler}
             />
-            {errors.rePass && <p role="alert">{errors.rePass?.message}</p>}
+           {error.rePass && <span>Passwords should match!</span>}
           </div>
 
           <button type="submit">Register</button>
