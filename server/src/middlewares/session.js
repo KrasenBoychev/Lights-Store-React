@@ -2,11 +2,11 @@ const { verifyToken } = require('../services/jwt');
 
 function session() {
     return function(req, res, next) {
-        const token = req.headers['x-authorization'];
+        const accessToken = req.headers['X-Authorization'];
 
-        if (token) {
+        if (accessToken) {
             try {
-                const sessionData = verifyToken(token);
+                const sessionData = verifyToken(accessToken);
                 req.user = {
                     email: sessionData.email,
                     _id: sessionData._id

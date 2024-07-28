@@ -4,7 +4,7 @@ const { commentsRouter } = require('../controllers/comments');
 
 function configRoutes(app) {
   app.use('/users', userRouter);
-  app.use('/data/catalog', catalogRouter);
+  app.use('/data', catalogRouter);
   app.use('/comments', commentsRouter);
 }
 

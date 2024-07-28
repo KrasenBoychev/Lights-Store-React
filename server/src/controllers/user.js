@@ -14,6 +14,7 @@ userRouter.post('/login',
   async (req, res) => {
   try {
     const result = await login(req.body.email, req.body.password);
+    
     const accessToken = createToken(result);
     res.json({
       _id: result._id,
@@ -44,6 +45,7 @@ userRouter.post('/register',
       email: result.email,
       accessToken,
     });
+  
   } catch (err) {
       const parsed = parseError(err);
       console.log(parsed);

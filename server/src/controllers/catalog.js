@@ -17,18 +17,10 @@ const { parseError } = require('../util');
 
 const catalogRouter = Router();
 
-catalogRouter.get('/', async (req, res) => {
-  let data;
+catalogRouter.get('/catalog/:id', async (req, res) => {
+    const data = await getByOwnerId(req.params.id);
 
-  if (req.query.where) {
-    const ownerId = req.query.where.match(/_ownerId="(.+?)"/)?.[1];
-
-    if (ownerId) {
-      data = await getByOwnerId(ownerId);
-    }
-  }
-
-  res.json(data);
+    res.json(data);
 });
 
 catalogRouter.get('/marketplace/:id', async (req, res) => {
@@ -42,7 +34,7 @@ catalogRouter.get('/marketplace/:id', async (req, res) => {
 });
 
 catalogRouter.post(
-  '/',
+  '/light',
   isUser(),
   body('name')
     .trim(),
@@ -69,7 +61,7 @@ catalogRouter.post(
   }
 );
 
-catalogRouter.get('/:id', async (req, res) => {
+catalogRouter.get('/light/:id', async (req, res) => {
 
   if(!validator.isMongoId(req.params.id)){
     res.send('invalid id ');
@@ -87,7 +79,7 @@ catalogRouter.get('/:id', async (req, res) => {
 });
 
 catalogRouter.put(
-  '/:id',
+  '/light/:id',
   isUser(),
   async (req, res) => {
     try {
@@ -107,7 +99,7 @@ catalogRouter.put(
   }
 );
 
-catalogRouter.delete('/:id', isUser(), async (req, res) => {
+catalogRouter.delete('/light/:id', isUser(), async (req, res) => {
   try {
     await deleteById(req.params.id, req.user._id);
 
