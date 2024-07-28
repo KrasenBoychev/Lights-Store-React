@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { registerRequest } from '../../../api/api';
+import { register } from '../../../api/api';
 import toast from 'react-hot-toast';
 import './LoginAndRegister.css';
+
+const initialValues = { email: '', password: ''};
 
 export default function Register(props) {
   const navigate = useNavigate();

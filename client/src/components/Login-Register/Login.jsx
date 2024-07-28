@@ -1,34 +1,30 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { login } from '../../../api/api';
 import './LoginAndRegister.css';
 
-export default function Login(props) {
+import { useNavigate, Link } from 'react-router-dom';
+import { useLogin } from '../../hooks/useAuth';
+import { useForm } from '../../hooks/useForm';
+
+const initialValues = { email: '', password: '' };
+
+export default function Login() {
+  const login = useLogin();
   const navigate = useNavigate();
 
-  const [formValues, setFormValues] = useState({
-    email: '',
-    password: '',
-  });
-
-  const formSubmitHandler = async (e) => {
-    e.preventDefault();
-
-    const { email, password } = formValues;
-
-    const result = await login(email, password);
-
-    if (result) {
-      props.setUserNav(true);
+  const loginHandler = async ({ email, password }) => { 
+      await login(email, password);
       navigate('/');
-    }
   };
+
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    loginHandler
+  );
 
   return (
     <div className="login_section">
       <div className="login-form">
-        <form method="post" onSubmit={formSubmitHandler}>
+        <form method="post" onSubmit={submitHandler}>
           <h2>Login</h2>
           <div className="form-input">
             <input
@@ -36,7 +32,7 @@ export default function Login(props) {
               id="email"
               name="email"
               placeholder="Email"
-              value={formValues.email}
+              value={values.email}
               onChange={changeHandler}
             />
           </div>
@@ -46,7 +42,7 @@ export default function Login(props) {
               id="password"
               name="password"
               placeholder="Password"
-              value={formValues.password}
+              value={values.password}
               onChange={changeHandler}
             />
           </div>
