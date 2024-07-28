@@ -2,8 +2,7 @@
 import { Link } from 'react-router-dom';
 import './CatalogLight.css';
 
-export default function CatalogLight({ light }) {
-  const { imageURL, name, price, _id } = light;
+export default function CatalogLight({ imageURL, name, price, _id }) {
 
   return (
     <div className="item-wrapper">
