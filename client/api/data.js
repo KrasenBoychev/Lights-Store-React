@@ -25,10 +25,10 @@ export async function getProfileLights() {
 }
 
 export async function getMarketplaceLights() {
-    let ownerId = JSON.parse(localStorage.getItem('auth'))._id;
-    if (!ownerId) {
-        ownerId = 'noUser';
-    }
+    const ownerId = localStorage.getItem('auth') !== 'null'
+        ? JSON.parse(localStorage.getItem('auth'))._id 
+        : 'noUser';
+
     return await api.get(host + '/data/marketplace/' + ownerId);
 }
 

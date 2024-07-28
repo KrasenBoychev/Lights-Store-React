@@ -19,6 +19,7 @@ import NotFound from './components/Not Found/NotFound';
 import ScrollTop from './ScrollTop';
 import { Toaster } from 'react-hot-toast';
 import { AuthContextProvider } from './contexts/AuthContext';
+import Logout from './components/Logout.jsx/Logout';
 
 function App() {
 
@@ -52,18 +53,19 @@ function App() {
           />
           <Route path="/marketplace/:lightId" element={<Details />} />
           <Route path="/createlight" element={<CreateLight />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/register"
-            element={<Register />}
-          />
+          <Route path="/edit/:lightId" element={<CreateLight />} />
+          <Route path="/comment" element={<CommentForm />} />
           <Route
             path="/profile"
             element={<ShowLights getDataFunc={getProfileLights} />}
           />
           <Route path="/profile/:lightId" element={<Details />} />
-          <Route path="/edit/:lightId" element={<CreateLight />} />
-          <Route path="/comment" element={<CommentForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+          <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

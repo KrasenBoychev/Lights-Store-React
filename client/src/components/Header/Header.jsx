@@ -1,22 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../../api/api';
+import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 export default function Header() {
   const { isAuthenticated } = useAuthContext();
 
-  const navigate = useNavigate();
-
-  async function logoutFunc() {
-    try {
-      await logout();
-      isAuthenticated(false);
-      navigate('/');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
   return (
     <div className="header_section">
       <div className="container-fluid">
@@ -70,7 +58,6 @@ export default function Header() {
                     <Link
                       className="nav-link"
                       to="/logout"
-                      onClick={logoutFunc}
                     >
                       Logout
                     </Link>
