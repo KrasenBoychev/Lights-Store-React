@@ -1,10 +1,13 @@
+import toast from 'react-hot-toast';
+
 export const settings = {
     host: 'http://localhost:5000'
 };
 
-async function request(url, options) {
+async function request(url, options) { //signal
+
     try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, options); //signal
 
         if (response.ok == false) {
 			
@@ -24,9 +27,9 @@ async function request(url, options) {
         } catch (err) {
             return response;
         }
-    } catch (err) {
-        alert(err.message);
-        throw err;
+    } catch (error) {
+        toast.error(error.message);
+        throw new Error(error.message);
     }
 }
 
@@ -49,8 +52,8 @@ function getOptions(method = 'get', body) {
     return options;
 }
 
-export async function get(url) {
-    return await request(url, getOptions());
+export async function get(url) { //signal
+    return await request(url, getOptions()); //signal
 }
 
 export async function post(url, data) {
