@@ -2,7 +2,7 @@ const { verifyToken } = require('../services/jwt');
 
 function session() {
     return function(req, res, next) {
-        const accessToken = req.headers['X-Authorization'];
+        const accessToken = req.headers['x-authorization'];
 
         if (accessToken) {
             try {

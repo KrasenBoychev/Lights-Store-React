@@ -33,7 +33,7 @@ catalogRouter.get('/marketplace/:id', async (req, res) => {
   let userId = null;
 
   if (req.params.id !== 'noUser') {
-    userId = req.params.id
+    userId = req.params.id;
   }
 
   const data = await getMarketplaceLights(userId);
@@ -72,7 +72,7 @@ catalogRouter.post(
 catalogRouter.get('/light/:id', async (req, res) => {
 
   if(!validator.isMongoId(req.params.id)){
-    res.send('invalid id ');
+    res.send('invalid id');
     return;
   }
 
@@ -125,13 +125,13 @@ catalogRouter.delete('/light/:id', isUser(), async (req, res) => {
 
 catalogRouter.get(
   '/cart/:userId',
-  isUser(),
   async (req, res) => {
-    const user = await getUserCart(req.params.userId);
-    if (!user) {
-      res.status(404).json({ code: 404, message: 'User Cart not found' });
+    
+    if (req.params.userId === 'undefined') {
       return;
     }
+
+    const user = await getUserCart(req.params.userId);
   
     res.json(user.cart);
   }

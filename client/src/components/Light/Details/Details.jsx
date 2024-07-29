@@ -9,6 +9,7 @@ import {
 } from '../../../../api/data';
 import Spinner from '../../Spinner';
 import './Details.css';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 export default function Details() {
   const [light, setLight] = useState({});
@@ -17,6 +18,8 @@ export default function Details() {
   const navigate = useNavigate();
   const location = useLocation();
   const currPage = location.pathname.split('/')[1];
+
+  const { userId } = useAuthContext();
 
   const { lightId } = useParams();
 
@@ -27,23 +30,23 @@ export default function Details() {
         const light = await getLightById(lightId);
 
         if (currPage == 'catalog') {
-          if (light.ownerId != '668cfe59f18d95a1f2f52a13') {
-            navigate('/catalog');
-            throw new Error('Not Authorized');
-          }
+          // if (light.ownerId != '668cfe59f18d95a1f2f52a13') {
+          //   navigate('/catalog');
+          //   throw new Error('Not Authorized');
+          // }
         } else if (currPage == 'marketplace') {
-          if (
-            light.ownerId == '668cfe59f18d95a1f2f52a13' ||
-            light.ownerId == sessionStorage.userId
-          ) {
-            navigate('/marketplace');
-            throw new Error('Not Authorized');
-          }
+          // if (
+          //   light.ownerId == '668cfe59f18d95a1f2f52a13' ||
+          //   light.ownerId == sessionStorage.userId
+          // ) {
+          //   navigate('/marketplace');
+          //   throw new Error('Not Authorized');
+          // }
         } else if (currPage == 'profile') {
-          if (light.ownerId != sessionStorage.userId) {
-            navigate('/profile');
-            throw new Error('Not Authorized');
-          }
+          // if (light.ownerId != sessionStorage.userId) {
+          //   navigate('/profile');
+          //   throw new Error('Not Authorized');
+          // }
         }
 
         setLight(light);
@@ -68,7 +71,7 @@ export default function Details() {
     //const abortController = new AbortController();
 
     (async function checkIfBought() {
-      const userCart = await getCart('669fd89cc6cf02f3a66f1bae'); //{signal: abortController.signal}
+      const userCart = await getCart(userId); //{signal: abortController.signal}
 
       if (userCart.includes(light._id)) {
         setBoughtItem(true);
@@ -79,6 +82,12 @@ export default function Details() {
   }, [light]);
 
   const buyClickHandler = async () => {
+
+    if (!userId) {
+      navigate('/login');
+      return;
+    }
+
     try {
       await addToCart(light._id);
     } catch (error) {
