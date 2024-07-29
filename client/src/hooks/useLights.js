@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useLogout } from './useAuth';
 
 export function useAllLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
+
+  const navigate = useNavigate();
+  const logout = useLogout();
 
   const [seacrhFormValues, setSearchFormValues] = useState({
     name: '',
@@ -33,7 +39,8 @@ export function useAllLights(props) {
           setFilteredLights(allLights);
         }
       } catch (err) {
-        alert(err.message);
+        logout();
+        navigate('/');
       } finally {
         setSpinner(false);
       }

@@ -18,16 +18,24 @@ const { parseError } = require('../util');
 const catalogRouter = Router();
 
 catalogRouter.get('/catalog/:id', async (req, res) => {
-    const data = await getByOwnerId(req.params.id);
 
-    res.json(data);
+  if (req.params.id === 'noUser') {
+    res.status(404).json({ code: 404, message: 'Access denied - no user logged in' });
+    return;
+  }
+
+  const data = await getByOwnerId(req.params.id);
+
+  res.json(data);
 });
 
 catalogRouter.get('/marketplace/:id', async (req, res) => {
-  let userId = '';
-  if (req.params.id != 'noUser') {
-    userId = req.params.id;
+  let userId = null;
+
+  if (req.params.id !== 'noUser') {
+    userId = req.params.id
   }
+
   const data = await getMarketplaceLights(userId);
 
   res.json(data);

@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { getAccessToken } from '../src/utils/authUtils';
 
 export const settings = {
     host: 'http://localhost:5000'
@@ -8,6 +9,10 @@ async function request(url, options) { //signal
 
     try {
         const response = await fetch(url, options); //signal
+
+        if (response.status === 204) {
+            return;
+        }
 
         if (response.ok == false) {
 			
@@ -39,9 +44,9 @@ function getOptions(method = 'get', body) {
         headers: {}
     };
 
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = getAccessToken();
 
-    if (accessToken != null) {
+    if (accessToken) {
         options.headers['X-Authorization'] = accessToken;
     }
     // const token = sessionStorage.getItem('authToken');
