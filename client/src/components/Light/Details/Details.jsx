@@ -76,46 +76,39 @@ export default function Details() {
               <li>
                 Dimensions: H{height} x W{width} x D{depth} cm.
               </li>
-              {light.minHeight ? (
+
+              {light.minHeight && (
                 <li>
                   Adjustable height - Drop between {light.minHeight} to{' '}
                   {light.maxHeight} cm.s
                 </li>
-              ) : (
-                ''
               )}
-              {light.kelvins ? (
+
+              {light.kelvins && (
                 <>
                   <li>Integrated LED</li>
                   <li>{light.kelvins} Kelvins</li>
                   <li>{light.lumens} Lumens</li>
                   <li>{light.watt} Watts</li>
                 </>
-              ) : (
-                ''
               )}
-              {light.bulbType ? (
+
+              {light.bulbType && (
                 <>
                   <li>Bulb Type: {light.bulbType}</li>
                   <li>Bulbs Required: {light.bulbsRequired}</li>
                 </>
-              ) : (
-                ''
               )}
-              {currPage != 'catalog' ? (
-                light.notes ? (
+
+              {currPage != 'catalog' && light.notes && (
                   <li>Notes: {light.notes}</li>
-                ) : (
-                  ''
                 )
-              ) : (
-                ''
-              )}
-              {currPage != 'catalog' ? (
+              }
+
+              {currPage != 'catalog' && (
                 <li>Date of purchase: {light.date}</li>
-              ) : (
-                ''
               )}
+              
             </ul>
           </div>
 
