@@ -10,53 +10,13 @@ import {
 import Spinner from '../../Spinner';
 import './Details.css';
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useLightDetails, useBoughtLight } from '../../../hooks/useLightDetails';
 
 export default function Details() {
-  const [light, setLight] = useState({});
-  const [spinner, setSpinner] = useState(false);
-
   const navigate = useNavigate();
-  const location = useLocation();
-  const currPage = location.pathname.split('/')[1];
-
   const { userId } = useAuthContext();
 
-  const { lightId } = useParams();
-
-  useEffect(() => {
-    (async function getLight() {
-      try {
-        setSpinner(true);
-        const light = await getLightById(lightId);
-
-        if (currPage == 'catalog') {
-          // if (light.ownerId != '668cfe59f18d95a1f2f52a13') {
-          //   navigate('/catalog');
-          //   throw new Error('Not Authorized');
-          // }
-        } else if (currPage == 'marketplace') {
-          // if (
-          //   light.ownerId == '668cfe59f18d95a1f2f52a13' ||
-          //   light.ownerId == sessionStorage.userId
-          // ) {
-          //   navigate('/marketplace');
-          //   throw new Error('Not Authorized');
-          // }
-        } else if (currPage == 'profile') {
-          // if (light.ownerId != sessionStorage.userId) {
-          //   navigate('/profile');
-          //   throw new Error('Not Authorized');
-          // }
-        }
-
-        setLight(light);
-      } catch (error) {
-        alert(error.message);
-      } finally {
-        setSpinner(false);
-      }
-    })();
-  }, []);
+  const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
 
   let height;
   let width;
@@ -65,21 +25,7 @@ export default function Details() {
     [height, width, depth] = light.dimensions.split('/');
   }
 
-  const [boughtItem, setBoughtItem] = useState(false);
-
-  useEffect(() => {
-    //const abortController = new AbortController();
-
-    (async function checkIfBought() {
-      const userCart = await getCart(userId); //{signal: abortController.signal}
-
-      if (userCart.includes(light._id)) {
-        setBoughtItem(true);
-      }
-    })();
-
-    //return () => abortController.abort();
-  }, [light]);
+  const [boughtItem, setBoughtItem] = useBoughtLight(userId, light._id);
 
   const buyClickHandler = async () => {
 
