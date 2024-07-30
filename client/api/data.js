@@ -7,10 +7,6 @@ export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
 
-// export async function getLights() {
-//     return await api.get(host + '/data/catalog');
-// }
-
 export async function getLightById(id) {
     return await api.get(host + '/data/light/' + id);
 }
