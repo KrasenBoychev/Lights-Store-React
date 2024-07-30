@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
-import { getComments } from '../../../../api/data';
+import useComments from '../../../hooks/useComments';
 import CommentModel from './CommentModel';
 
 export default function Comments() {
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    (async function getCommentFunc() {
-      const commentsResult = await getComments();
-      setComments(commentsResult);
-    })();
-  }, []);
+  const [comments, setComments] = useComments();
 
   return (
     <div className="clients_section layout_padding">
@@ -33,11 +25,10 @@ export default function Comments() {
           <div className="carousel-inner">
             {comments.map((comment, index) => (
                index % 2 == 0
-               ? <CommentModel
+               && <CommentModel
                 key={comment._id}
                 allComments={{ comment, comments, index }}
               />
-              : ''
             ))}
           </div>
         </div>
