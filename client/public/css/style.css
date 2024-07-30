@@ -251,9 +251,13 @@ button {
     color: #ffb607;
     padding-top: 10px;
 }
-
-.search_icon{
+.nav-user {
+    width: 30%;
+}
+.nav-guest {
     width: 20%;
+}
+.search_icon{
     float: left;
 }
 .search_icon ul{
