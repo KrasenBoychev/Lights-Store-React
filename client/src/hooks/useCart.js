@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
-import { getCart, getCartLights } from '../../api/data';
+import { getCartLights } from '../../api/data';
 import { useAuthContext } from '../contexts/AuthContext';
 
 export default function useCart() {
   const [cart, setCart] = useState({});
   const [spinner, setSpinner] = useState(false);
 
-  const { userId } = useAuthContext();
+  const { userCart, changeAuthState } = useAuthContext();
 
   useEffect(() => {
     (async function getAllLights() {
       try {
         setSpinner(true);
+        const {lightsInCart} = await getCartLights(userCart);
 
-        const cartLightsId = await getCart(userId);
-        const lightsInCart = await getCartLights(cartLightsId);
+        if (lightsInCart.length != useCart.length) {
+          changeAuthState({userCart: lightsInCart});
+        }
 
         setCart(lightsInCart);
       } catch (err) {

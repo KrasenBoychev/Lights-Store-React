@@ -14,7 +14,7 @@ export default function Details() {
 
   const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
 
-  const [boughtItem, setBoughtItem] = useBoughtLight(userId, light._id);
+  const [boughtItem, setBoughtItem] = useBoughtLight(light._id);
 
   let height;
   let width;

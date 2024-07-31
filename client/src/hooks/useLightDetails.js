@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-
-import { addToCart, deleteRecord, getCart, getLightById } from '../../api/data';
+import {  useLocation, useParams } from 'react-router-dom';
+import { getLightById } from '../../api/data';
+import { useAuthContext } from '../contexts/AuthContext';
 
 export function useLightDetails() {
   const [spinner, setSpinner] = useState(false);
@@ -48,14 +48,14 @@ export function useLightDetails() {
   return [light, setLight, spinner, setSpinner, currPage];
 }
 
-export function useBoughtLight(userId, lightId) {
+export function useBoughtLight(lightId) {
   const [boughtItem, setBoughtItem] = useState(false);
 
+  const { userCart } = useAuthContext();
+
+  console.log(userCart);
   useEffect(() => {
-
-    (async function checkIfBought() {
-      const userCart = await getCart(userId);
-
+    (function checkIfBought() {
       if (userCart.includes(lightId)) {
         setBoughtItem(true);
       }
