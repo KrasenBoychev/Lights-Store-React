@@ -52,17 +52,14 @@ export function useBoughtLight(userId, lightId) {
   const [boughtItem, setBoughtItem] = useState(false);
 
   useEffect(() => {
-    //const abortController = new AbortController();
 
     (async function checkIfBought() {
-      const userCart = await getCart(userId); //{signal: abortController.signal}
+      const userCart = await getCart(userId);
 
       if (userCart.includes(lightId)) {
         setBoughtItem(true);
       }
     })();
-
-    //return () => abortController.abort();
   }, [lightId]);
 
   return [

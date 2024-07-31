@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 export default function Header() {
-  const { isAuthenticated, cartLights } = useAuthContext();
+  const { isAuthenticated, userCart } = useAuthContext();
 
   return (
     <div className="header_section">
@@ -59,7 +59,7 @@ export default function Header() {
                     <li className="nav-item">
                       <Link className="nav-link" to="/cart">
                         Cart
-                        <span>{cartLights}</span>
+                        <span>{userCart.length}</span>
                       </Link>
                     </li>
                     <li className="nav-item">
