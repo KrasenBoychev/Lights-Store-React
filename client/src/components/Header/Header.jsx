@@ -59,7 +59,7 @@ export default function Header() {
                     <li className="nav-item">
                       <Link className="nav-link" to="/cart">
                         Cart
-                        <span>{userCart.length}</span>
+                        <span>{userCart?.length}</span>
                       </Link>
                     </li>
                     <li className="nav-item">

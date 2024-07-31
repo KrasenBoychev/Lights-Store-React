@@ -1,9 +1,13 @@
+import { useAuthContext } from '../../contexts/AuthContext';
 import useCart from '../../hooks/useCart';
 import CatalogLight from '../Light/CatalogLight/CatalogLight';
 import Spinner from '../Spinner';
 
+
 export default function Cart() {
-    const [cart, setCart, spinner] = useCart();
+  const authdata = useAuthContext();
+
+  const [cart, setCart, spinner] = useCart(authdata);
 
   return (
     <div className="catalog_section">

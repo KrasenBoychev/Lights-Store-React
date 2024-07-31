@@ -9,7 +9,7 @@ export const AuthContext = createContext({
     email: '',
     accessToken: '',
     isAuthenticated: false,
-    userCart: [],
+    userCart: '',
     changeAuthState: (authState = {}) => null,
     logout: () => null,
 });
