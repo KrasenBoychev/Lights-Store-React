@@ -62,6 +62,7 @@ function App() {
           />
           <Route path="/profile/:lightId" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/:lightId" element={<Details />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/register"

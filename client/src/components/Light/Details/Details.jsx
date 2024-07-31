@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   addToCart,
-  deleteRecord,
   getCart,
   getLightById,
 } from '../../../../api/data';
 import Spinner from '../../Spinner';
+import ProfileButtons from './ProfileButtons';
 import './Details.css';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useLightDetails, useBoughtLight } from '../../../hooks/useLightDetails';
@@ -41,22 +40,6 @@ export default function Details() {
     }
 
     setBoughtItem(true);
-  };
-
-  const deleteClickHandler = async () => {
-    const confirm = window.confirm('Are you sure');
-
-    if (confirm) {
-      try {
-        setSpinner(true);
-        await deleteRecord(light._id);
-        navigate('/profile');
-      } catch (error) {
-        alert(error.message);
-      } finally {
-        setSpinner(false);
-      }
-    }
   };
 
   return (
@@ -114,18 +97,7 @@ export default function Details() {
 
           <div className="item-details-button">
             {currPage == 'profile' ? (
-              <>
-                <Link to={'/edit/' + light._id} state={{ light }}>
-                  <button>Edit</button>
-                </Link>
-                <button
-                  onClick={() => {
-                    deleteClickHandler();
-                  }}
-                >
-                  Delete
-                </button>
-              </>
+              <ProfileButtons props={{light, setSpinner, navigate}}/>
             ) : boughtItem ? (
               <p>Light added to your cart</p>
             ) : (
