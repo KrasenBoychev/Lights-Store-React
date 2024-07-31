@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import {
-  addToCart,
-  getCart,
-  getLightById,
-} from '../../../../api/data';
+import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
-import ProfileButtons from './ProfileButtons';
+import ProfileButtons from './Buttons/ProfileButtons';
+import BuyButton from './Buttons/BuyButton';
+import RemoveButton from './Buttons/RemoveButton';
 import './Details.css';
-import { useAuthContext } from '../../../contexts/AuthContext';
 import { useLightDetails, useBoughtLight } from '../../../hooks/useLightDetails';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 export default function Details() {
   const navigate = useNavigate();
@@ -17,30 +14,14 @@ export default function Details() {
 
   const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
 
+  const [boughtItem, setBoughtItem] = useBoughtLight(userId, light._id);
+
   let height;
   let width;
   let depth;
   if (light.dimensions) {
     [height, width, depth] = light.dimensions.split('/');
   }
-
-  const [boughtItem, setBoughtItem] = useBoughtLight(userId, light._id);
-
-  const buyClickHandler = async () => {
-
-    if (!userId) {
-      navigate('/login');
-      return;
-    }
-
-    try {
-      await addToCart(light._id);
-    } catch (error) {
-      alert(error.message);
-    }
-
-    setBoughtItem(true);
-  };
 
   return (
     <div className="details_section layout">
@@ -96,13 +77,20 @@ export default function Details() {
           </div>
 
           <div className="item-details-button">
-            {currPage == 'profile' ? (
-              <ProfileButtons props={{light, setSpinner, navigate}}/>
-            ) : boughtItem ? (
-              <p>Light added to your cart</p>
-            ) : (
-              <button onClick={buyClickHandler}>Buy</button>
-            )}
+            {currPage == 'profile' && <ProfileButtons props={{light, setSpinner, navigate}}/> }
+
+            {currPage == 'cart' && <RemoveButton props={{ light }} />}
+
+            {(currPage == 'catalog' || currPage == 'marketplace') 
+              && boughtItem
+              && <p>Light added to your cart</p>
+            }
+
+            {(currPage == 'catalog' || currPage == 'marketplace')
+              && !boughtItem 
+              && <BuyButton props={{light, userId, setBoughtItem, navigate}}/>
+            }
+            
           </div>
         </div>
       )}

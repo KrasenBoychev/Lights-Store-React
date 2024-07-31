@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-import { deleteRecord } from '../../../../api/data';
+import { deleteRecord } from '../../../../../api/data';
 
 export default function ProfileButtons({props}) {
   const {light, setSpinner, navigate} = props;

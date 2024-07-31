@@ -10,7 +10,8 @@ const {
   deleteById,
   getUserCart,
   addLightToCart,
-  getUserCartLights
+  getUserCartLights,
+  removeLightFromUserCart
 } = require('../services/lights');
 const { isUser } = require('../middlewares/guards');
 const { body, validationResult } = require('express-validator');
@@ -164,6 +165,22 @@ catalogRouter.get(
       const lightsId = req.params.lightsId;
       const ligthsIdArr = lightsId.split(',');
       const result = await getUserCartLights(ligthsIdArr);
+
+      res.json(result);
+    } catch (err) {
+      const parsed = parseError(err);
+      res.status(400).json({ code: 400, message: parsed.message });
+    }
+  }
+);
+
+catalogRouter.delete(
+  '/cart/:lightId',
+  isUser(),
+  async (req, res) => {
+    try {
+      const lightId = req.params.lightId;
+      const result = await removeLightFromUserCart(lightId);
 
       res.json(result);
     } catch (err) {

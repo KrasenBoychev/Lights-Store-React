@@ -130,6 +130,12 @@ async function getUserCartLights(lightsId) {
   return Light.find({ '_id': { $in : lightsId  } } ).lean();
 }
 
+async function removeLightFromUserCart(lightId) {
+  await User.updateMany({ },
+    { $pull: { cart: { $in: [ lightId ] } } }
+  );
+}
+
 module.exports = {
   getAll,
   getLightById,
@@ -141,5 +147,6 @@ module.exports = {
   getMarketplaceLights,
   addLightToCart,
   getUserCart,
-  getUserCartLights
+  getUserCartLights,
+  removeLightFromUserCart
 };

@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './CatalogLight.css';
+import RemoveButton from '../Details/Buttons/RemoveButton';
 
-export default function CatalogLight({ imageURL, name, price, _id }) {
+export default function CatalogLight(light) {
+  const location = useLocation();
+  const currPage = location.pathname.split('/')[1];
+
+  const { imageURL, name, price, _id } = light;
 
   return (
     <div className="item-wrapper">
@@ -16,6 +21,7 @@ export default function CatalogLight({ imageURL, name, price, _id }) {
       </div>
       <p className="item-name">{name}</p>
       <p className="item-price">{price.toFixed(2)}lv.</p>
+      {currPage == 'cart' && <RemoveButton props={{ light }}/>}
     </div>
   );
 }
