@@ -9,7 +9,8 @@ const {
   update,
   deleteById,
   getUserCart,
-  addLightToCart
+  addLightToCart,
+  getUserCartLights
 } = require('../services/lights');
 const { isUser } = require('../middlewares/guards');
 const { body, validationResult } = require('express-validator');
@@ -145,6 +146,24 @@ catalogRouter.put(
       
       const lightId = req.params.lightId;
       const result = await addLightToCart(lightId, req.user._id);
+
+      res.json(result);
+    } catch (err) {
+      const parsed = parseError(err);
+      res.status(400).json({ code: 400, message: parsed.message });
+    }
+  }
+);
+
+catalogRouter.get(
+  '/cart/lights/:lightsId',
+  isUser(),
+  async (req, res) => {
+    try {
+      
+      const lightsId = req.params.lightsId;
+      const ligthsIdArr = lightsId.split(',');
+      const result = await getUserCartLights(ligthsIdArr);
 
       res.json(result);
     } catch (err) {

@@ -1,3 +1,4 @@
+const { isObjectIdOrHexString } = require('mongoose');
 const { Light } = require('../models/Light');
 const { User } = require('../models/User');
 
@@ -125,6 +126,10 @@ async function addLightToCart(lightId, userId) {
   return user;
 }
 
+async function getUserCartLights(lightsId) {
+  return Light.find({ '_id': { $in : lightsId  } } ).lean();
+}
+
 module.exports = {
   getAll,
   getLightById,
@@ -135,5 +140,6 @@ module.exports = {
   getCustomersLights,
   getMarketplaceLights,
   addLightToCart,
-  getUserCart
+  getUserCart,
+  getUserCartLights
 };
