@@ -58,3 +58,8 @@ export async function addToCart(lightId) {
 export async function getCart(userId) { //signal
     return await api.get(host + '/data/cart/' + userId); //signal
 }
+
+export async function getCartLights(lightsId) { //signal
+    return await api.get(host + '/data/cart/lights/' + lightsId); //signal
+}
+

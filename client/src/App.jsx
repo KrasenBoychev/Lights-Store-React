@@ -10,6 +10,7 @@ import About from './components/About/About';
 import ShowLights from './components/ShowLights/ShowLights';
 import Details from './components/Light/Details/Details';
 import CreateLight from './components/Light/CreateLight/CreateLight';
+import Cart from './components/Cart/Cart';
 import Login from './components/Login-Register/Login';
 import Register from './components/Login-Register/Register';
 import Footer from './components/Footer/FooterSection/Footer';
@@ -60,6 +61,7 @@ function App() {
             element={<ShowLights getDataFunc={getProfileLights} />}
           />
           <Route path="/profile/:lightId" element={<Details />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/register"
