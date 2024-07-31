@@ -46,42 +46,47 @@ export default function Header() {
             <form className="form-inline my-2 my-lg-0">
               <h1 className="call_text">Call Us : +01 1234567890</h1>
             </form>
-            <div className={isAuthenticated ? 'search_icon nav-user' : 'search_icon nav-guest'}>
-              {isAuthenticated ? (
-                <ul>
-                 <li className="nav-item">
-                    <Link className="nav-link" to="/cart">
-                      Cart
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/profile">
-                      Profile
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link"
-                      to="/logout"
-                    >
-                      Logout
-                    </Link>
-                  </li>
-                </ul>
-              ) : (
-                <ul>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/login">
-                      Login
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/register">
-                      Register
-                    </Link>
-                  </li>
-                </ul>
-              )}
+            <div
+              className={
+                isAuthenticated
+                  ? 'search_icon nav-user'
+                  : 'search_icon nav-guest'
+              }
+            >
+              <ul className="navbar-nav mr-auto">
+                {isAuthenticated ? (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/cart">
+                        Cart
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/profile">
+                        Profile
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/logout">
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/login">
+                        Login
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/register">
+                        Register
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
           </div>
         </nav>
