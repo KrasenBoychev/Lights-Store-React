@@ -17,10 +17,22 @@
     border-radius: 5px;
 }
 
+.item-wrapper button {
+    margin-bottom: 8px;
+    color: #fabc26;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+
+.item-wrapper button:hover {
+    color: #000;
+}
+
 .item-name {
     font-weight: bold;
     font-size: 20px;
 }
+
 
 /* .item-wrapper img:hover .overlay {
     opacity: 1;
