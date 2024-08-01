@@ -31,7 +31,6 @@ async function request(url, options) { //signal
             return response;
         }
     } catch (error) {
-        toast.error(error.message);
         throw new Error(error.message);
     }
 }
