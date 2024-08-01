@@ -53,7 +53,6 @@ export function useBoughtLight(lightId) {
 
   const { userCart } = useAuthContext();
 
-  console.log(userCart);
   useEffect(() => {
     (function checkIfBought() {
       if (userCart.includes(lightId)) {

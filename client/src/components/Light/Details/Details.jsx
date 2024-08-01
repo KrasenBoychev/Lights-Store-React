@@ -6,11 +6,9 @@ import BuyButton from './Buttons/BuyButton';
 import RemoveButton from './Buttons/RemoveButton';
 import './Details.css';
 import { useLightDetails, useBoughtLight } from '../../../hooks/useLightDetails';
-import { useAuthContext } from '../../../contexts/AuthContext';
 
 export default function Details() {
   const navigate = useNavigate();
-  const { userId } = useAuthContext();
 
   const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
 
@@ -88,7 +86,7 @@ export default function Details() {
 
             {(currPage == 'catalog' || currPage == 'marketplace')
               && !boughtItem 
-              && <BuyButton props={{light, userId, setBoughtItem, navigate}}/>
+              && <BuyButton props={{light, setBoughtItem, navigate}}/>
             }
             
           </div>

@@ -5,9 +5,9 @@ import Spinner from '../Spinner';
 
 
 export default function Cart() {
-  const authdata = useAuthContext();
+  const authData = useAuthContext();
 
-  const [cart, setCart, spinner] = useCart(authdata);
+  const [cart, setCart, spinner] = useCart(authData);
 
   return (
     <div className="catalog_section">

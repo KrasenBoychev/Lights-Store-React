@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getCartLights } from '../../api/data';
 
 export default function useCart(authData) {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
@@ -11,11 +11,12 @@ export default function useCart(authData) {
         setSpinner(true);
 
         const lightsInCart = await getCartLights(authData.userCart);
-        const cartArr = lightsInCart.map((light) => light._id);
-        
+
         if (lightsInCart.length != authData.userCart.length) {
-          authData.userCart = cartArr;
-          authData.changeAuthState(authData);
+          // const cartArr = cart.map((light) => light._id);
+
+          // authData.userCart = cartArr;
+          //authData.changeAuthState((...authData) => authData);
         }
 
         setCart(lightsInCart);
@@ -25,7 +26,7 @@ export default function useCart(authData) {
         setSpinner(false);
       }
     })();
-  }, []);
+  }, [authData.userCart]);
 
   return [cart, setCart, spinner];
 }
