@@ -16,7 +16,6 @@ export default function Register() {
   const [errors, setErrors] = useState({});
 
   const registerHandler = async ({ email, password, rePass }) => {
-    
     const allErrors = validateRegisterForm(email, password, rePass);
 
     if (Object.entries(allErrors).length > 0) {
@@ -74,7 +73,7 @@ export default function Register() {
               value={values.rePass}
               onChange={changeHandler}
             />
-           {errors.rePass && <span>{errors.rePass}</span>}
+            {errors.rePass && <span>{errors.rePass}</span>}
           </div>
 
           <button type="submit">Register</button>
