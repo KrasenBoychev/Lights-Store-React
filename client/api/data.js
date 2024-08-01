@@ -17,7 +17,7 @@ export async function getCatalogLights() {
 
 export async function getProfileLights() {
     const ownerId = localStorage.getItem('auth') !== null
-        ? JSON.parse(localStorage.getItem('auth'))._id 
+        ? JSON.parse(localStorage.getItem('auth')).userId
         : 'noUser';
         
     return await api.get(host + '/data/catalog/' + ownerId);
@@ -25,7 +25,7 @@ export async function getProfileLights() {
 
 export async function getMarketplaceLights() {
     const ownerId = localStorage.getItem('auth') !== null
-        ? JSON.parse(localStorage.getItem('auth'))._id 
+        ? JSON.parse(localStorage.getItem('auth')).userId 
         : 'noUser';
 
     return await api.get(host + '/data/marketplace/' + ownerId);

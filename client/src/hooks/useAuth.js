@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { login, logout, register } from '../../api/api';
-import { getCart, getCartLights } from '../../api/data';
 import { useAuthContext } from '../contexts/AuthContext';
 
 export const useLogin = () => {

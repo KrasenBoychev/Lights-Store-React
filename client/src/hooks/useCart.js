@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getCartLights } from '../../api/data';
+import { useAuthContext } from '../contexts/AuthContext';
 
-export default function useCart(authData) {
+export default function useCart() {
   const [cart, setCart] = useState([]);
   const [spinner, setSpinner] = useState(false);
+
+  const authData = useAuthContext();
 
   useEffect(() => {
     (async function getAllLights() {
@@ -12,21 +15,21 @@ export default function useCart(authData) {
 
         const lightsInCart = await getCartLights(authData.userCart);
 
-        if (lightsInCart.length != authData.userCart.length) {
-          // const cartArr = cart.map((light) => light._id);
-
-          // authData.userCart = cartArr;
-          //authData.changeAuthState((...authData) => authData);
-        }
-
         setCart(lightsInCart);
+
+        if (lightsInCart.length != authData.userCart.length) {
+          const cartArr = lightsInCart.map((light) => light._id);
+          
+          authData.userCart.splice(0, authData.userCart.length, ...cartArr);
+          authData.changeAuthState(authData);
+        }
       } catch (err) {
         return;
       } finally {
         setSpinner(false);
       }
     })();
-  }, [authData.userCart]);
+  }, [authData]);
 
   return [cart, setCart, spinner];
 }

@@ -17,7 +17,7 @@ userRouter.post('/login',
     
     const accessToken = createToken(result);
     res.json({
-      _id: result._id,
+      userId: result._id,
       email: result.email,
       accessToken,
       userCart: result.cart
@@ -42,7 +42,7 @@ userRouter.post('/register',
     const result = await register(req.body.email, req.body.password);
     const accessToken = createToken(result);
     res.json({
-      _id: result._id,
+      userId: result._id,
       email: result.email,
       accessToken,
       userCart: result.cart
