@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { createComment } from '../../../../api/data';
-import { storage } from '../../../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
+import { uploadImage } from '../../../services/firebase/uploadImage';
 
 export default function CommentForm() {
   const navigate = useNavigate();
@@ -36,9 +34,7 @@ export default function CommentForm() {
 
     setSpinner(true);
 
-    const imageRef = ref(storage, `commentsImages/${imageURL.name + v4()}`);
-    await uploadBytes(imageRef, imageURL);
-    const downloadURL = await getDownloadURL(imageRef);
+    const downloadURL = uploadImage(imageURL);
 
     const data = { name, customerComment, downloadURL };
 

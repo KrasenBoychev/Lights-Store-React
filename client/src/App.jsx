@@ -17,7 +17,7 @@ import Footer from './components/Footer/FooterSection/Footer';
 import Copyright from './components/Footer/Copyright';
 import CommentForm from './components/Home/Comments/CommentForm';
 import NotFound from './components/Not Found/NotFound';
-import ScrollTop from './ScrollTop';
+import ScrollTop from './common/ScrollTop';
 import { Toaster } from 'react-hot-toast';
 import { AuthContextProvider } from './contexts/AuthContext';
 import Logout from './components/Logout.jsx/Logout';

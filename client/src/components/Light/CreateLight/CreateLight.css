@@ -31,16 +31,16 @@
 .create-wrapper > label input, 
 .create-wrapper p, 
 .create-wrapper div label,
-.create-wrapper > label textarea{
+.create-wrapper > label textarea {
     margin: auto; 
     display: block;
 }
 
-.create-wrapper button, .create-wrapper label, .create-wrapper div label{
+.create-wrapper button, .create-wrapper label, .create-wrapper div label {
     margin: 10px auto;
 }
 
-.create-wrapper p label, .create-wrapper div label input{
+.create-wrapper p label, .create-wrapper div label input {
     margin-left: 10px;
 }
 
@@ -72,5 +72,16 @@
 .create-wrapper button:hover {
     color: #fff;
     background-color: black;
+}
+
+.form-errors {
+    padding-left: 5px;
+    color: rgb(203, 5, 5);
+    text-transform: none;
+    font-weight: 500;
+}
+
+.adjustable {
+    padding-left: 25px;
 }
 

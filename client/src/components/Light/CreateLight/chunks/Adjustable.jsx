@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
-export default function Adjustable(props) {
-  const {minHeight, maxHeight} = props.values;
+export default function Adjustable({props}) {
+  const { minHeight, maxHeight } = props.values;
+  const changeHandler = props.changeHandler;
+  const errors = props.errors;
 
   return (
     <div>
       <label>
         Min(cm):
-        <input type="number" name="minHeight" value={minHeight} onChange={props.changeHandler}/>
+        <input type="number" name="minHeight" value={minHeight} onChange={changeHandler}/>
+        {errors.minHeight && <p className='form-errors adjustable'>{errors.minHeight}</p>}
       </label>
       <label>
         Max(cm):
         <input type="number" name="maxHeight" value={maxHeight} onChange={props.changeHandler}/>
+        {errors.maxHeight && <p className='form-errors adjustable'>{errors.maxHeight}</p>}
       </label>
     </div>
   );

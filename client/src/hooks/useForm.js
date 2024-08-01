@@ -6,7 +6,9 @@ export function useForm(initialValues, submitCallback, setErrors) {
     const changeHandler = async (e) => {
         setValues((state) => ({
           ...state,
-          [e.target.name]: e.target.value,
+          [e.target.name]: e.target.type === 'file'
+        ? e.target.files[0]
+        : e.target.value,
         }));
 
         setErrors({});
