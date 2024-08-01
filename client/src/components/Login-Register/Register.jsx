@@ -4,28 +4,38 @@ import './LoginAndRegister.css';
 import { useRegister } from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import validateRegisterForm from '../../formsValidation/validateRegister';
 
 const initialValues = { email: '', password: '', rePass: '' };
 
 export default function Register() {
-  const [error, setError] = useState({});
   const register = useRegister();
   const navigate = useNavigate();
 
-  const registerHandler = async ({ email, password, rePass }) => {
+  const [errors, setErrors] = useState({});
 
-    if (password != rePass) {
-      setError({ rePass: 'Passwords should match!' });
+  const registerHandler = async ({ email, password, rePass }) => {
+    
+    const allErrors = validateRegisterForm(email, password, rePass);
+
+    if (Object.entries(allErrors).length > 0) {
+      setErrors(allErrors);
       return;
     }
 
-    await register(email, password);
-    navigate('/');
+    try {
+      await register(email, password);
+      navigate('/');
+    } catch (error) {
+      return toast.error(error.message);
+    }
   };
 
   const { values, changeHandler, submitHandler } = useForm(
     initialValues,
-    registerHandler
+    registerHandler,
+    setErrors
   );
 
   return (
@@ -42,6 +52,7 @@ export default function Register() {
               value={values.email}
               onChange={changeHandler}
             />
+            {errors.email && <span>{errors.email}</span>}
           </div>
           <div className="form-input">
             <input
@@ -52,6 +63,7 @@ export default function Register() {
               value={values.password}
               onChange={changeHandler}
             />
+            {errors.password && <span>{errors.password}</span>}
           </div>
           <div className="form-input">
             <input
@@ -62,7 +74,7 @@ export default function Register() {
               value={values.rePass}
               onChange={changeHandler}
             />
-           {error.rePass && <span>Passwords should match!</span>}
+           {errors.rePass && <span>{errors.rePass}</span>}
           </div>
 
           <button type="submit">Register</button>
