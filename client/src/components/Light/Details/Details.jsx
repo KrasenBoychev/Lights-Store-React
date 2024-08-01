@@ -62,12 +62,11 @@ export default function Details() {
                 </>
               )}
 
-              {currPage != 'catalog' && light.notes && (
+              {light.notes && (
                   <li>Notes: {light.notes}</li>
-                )
-              }
+              )}
 
-              {currPage != 'catalog' && (
+              {light.date && (
                 <li>Date of purchase: {light.date}</li>
               )}
               
