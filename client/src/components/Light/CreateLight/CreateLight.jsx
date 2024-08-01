@@ -5,9 +5,9 @@ import { createRecord, editRecord } from '../../../../api/data';
 import { storage } from '../../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
-import Adjustable from './parts/Adjustable';
-import IntegratedLed from './parts/IntegratedLed';
-import BulbTypeLight from './parts/BulbTypeLight';
+import Adjustable from './chunks/Adjustable';
+import IntegratedLed from './chunks/IntegratedLed';
+import BulbTypeLight from './chunks/BulbTypeLight';
 import Spinner from '../../Spinner';
 import './CreateLight.css';
 
