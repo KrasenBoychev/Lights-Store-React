@@ -256,8 +256,8 @@ export default function CreateLight() {
                 />
                 No
               </label>
-              {errors.integratedLed && <p className='form-errors'>{errors.integratedLed}</p>}
             </p>
+            {errors.integratedLed && <p className='form-errors'>{errors.integratedLed}</p>}
 
             {integratedLed == null ? (
               ''
