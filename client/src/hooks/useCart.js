@@ -13,16 +13,21 @@ export default function useCart() {
       try {
         setSpinner(true);
 
-        const lightsInCart = await getCartLights(authData.userCart);
+        if (authData.userCart.length == 0) {
+          setCart([]);
 
-        setCart(lightsInCart);
+        } else {
+          const lightsInCart = await getCartLights(authData.userCart);
+          setCart(lightsInCart);
 
-        if (lightsInCart.length != authData.userCart.length) {
-          const cartArr = lightsInCart.map((light) => light._id);
-          
-          authData.userCart.splice(0, authData.userCart.length, ...cartArr);
-          authData.changeAuthState(authData);
+          if (lightsInCart.length != authData.userCart.length) {
+            const cartArr = lightsInCart.map((light) => light._id);
+            
+            authData.userCart.splice(0, authData.userCart.length, ...cartArr);
+            authData.changeAuthState(authData);
+          }
         }
+      
       } catch (err) {
         return;
       } finally {
