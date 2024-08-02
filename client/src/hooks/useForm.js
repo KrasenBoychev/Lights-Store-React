@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useForm(initialValues, submitCallback, setErrors) {
     const [values, setValues] = useState(initialValues);
-    //TODO: add support for checkbox
+
+    useEffect(() => {
+      setValues(initialValues);
+    }, [initialValues]);
+   
     const changeHandler = async (e) => {
         setValues((state) => ({
           ...state,

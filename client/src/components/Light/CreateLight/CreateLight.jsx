@@ -44,6 +44,14 @@ export default function CreateLight() {
     light = location.state.light;
   }
 
+  let initialValuesCreate = null;
+
+  if (currPage == 'createlight') {
+    initialValuesCreate = initialValues;
+  } else if (currPage == 'edit') {
+    initialValuesCreate = Object.assign(initialValues, light);
+  }
+
   const createSubmitHandler = async (data) => {
 
     const allErrors = validateCreateLightForm(data, light, adjustable, integratedLed);
@@ -64,7 +72,11 @@ export default function CreateLight() {
         navigate('/profile');
 
       } else if (currPage == 'edit') {
-        if (data.imageURL == '') {
+
+        if (data.imageURL.type == 'image/jpeg') {
+          const downloadURL = await uploadImage(data.imageURL);
+          data.downloadURL = downloadURL;
+        } else {
           data.downloadURL = data.imageURL;
         }
 
@@ -83,7 +95,7 @@ export default function CreateLight() {
   };
 
   const { values, changeHandler, submitHandler } = useForm(
-    initialValues,
+    initialValuesCreate,
     createSubmitHandler,
     setErrors
   );
