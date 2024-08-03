@@ -8,12 +8,12 @@ export default function Adjustable({props}) {
     <div>
       <label>
         Min(cm):
-        <input type="number" name="minHeight" value={minHeight} onChange={changeHandler}/>
+        <input type="number" name="minHeight" value={minHeight == null ? '' : minHeight} onChange={changeHandler}/>
         {errors.minHeight && <p className='form-errors adjustable'>{errors.minHeight}</p>}
       </label>
       <label>
         Max(cm):
-        <input type="number" name="maxHeight" value={maxHeight} onChange={props.changeHandler}/>
+        <input type="number" name="maxHeight" value={maxHeight == null ? '' : maxHeight} onChange={props.changeHandler}/>
         {errors.maxHeight && <p className='form-errors adjustable'>{errors.maxHeight}</p>}
       </label>
     </div>

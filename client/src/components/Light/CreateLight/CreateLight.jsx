@@ -1,34 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { editRecord } from '../../../../api/data';
+import { createRecord, editRecord } from '../../../../api/data';
 import Adjustable from './chunks/Adjustable';
 import IntegratedLed from './chunks/IntegratedLed';
 import BulbTypeLight from './chunks/BulbTypeLight';
 import Spinner from '../../Spinner';
 import './CreateLight.css';
-import { useCreateLight } from '../../../hooks/useCreateLight';
 import toast from 'react-hot-toast';
 import validateCreateLightForm from '../../../formsValidation/validateCreateLight';
 import { useForm } from '../../../hooks/useForm';
 import { uploadImage } from '../../../services/firebase/uploadImage';
-
-const initialValues = {
-  name: '',
-  price: '',
-  date: '',
-  quantities: '',
-  dimensions:'',
-  imageURL: '',
-  notes: '',
-  minHeight: '',
-  maxHeight: '',
-  kelvins: '',
-  lumens:'',
-  watt: '',
-  bulbType: '',
-  bulbsRequired: ''
-};
+import { useOneLight } from '../../../hooks/useOneLight';
 
 export default function CreateLight() {
   const [spinner, setSpinner] = useState(false);
@@ -36,21 +19,12 @@ export default function CreateLight() {
   const location = useLocation();
   const currPage = location.pathname.split('/')[1];
 
-  const createLightRequest = useCreateLight();
   const [errors, setErrors] = useState({});
 
-  let light = null;
-  if (location.state) {
-    light = location.state.light;
-  }
+  const [adjustable, setAdjustable] = useState(null);
+  const [integratedLed, setIntegratedLed] = useState(null);
 
-  let initialValuesCreate = null;
-
-  if (currPage == 'createlight') {
-    initialValuesCreate = initialValues;
-  } else if (currPage == 'edit') {
-    initialValuesCreate = Object.assign(initialValues, light);
-  }
+  const [light] = useOneLight(location, setAdjustable, setIntegratedLed);
 
   const createSubmitHandler = async (data) => {
 
@@ -68,7 +42,7 @@ export default function CreateLight() {
         const downloadURL = await uploadImage(data.imageURL);
         data.downloadURL = downloadURL;
 
-        await createLightRequest(data);
+        await createRecord(data);
         navigate('/profile');
 
       } else if (currPage == 'edit') {
@@ -95,22 +69,10 @@ export default function CreateLight() {
   };
 
   const { values, changeHandler, submitHandler } = useForm(
-    initialValuesCreate,
+    light,
     createSubmitHandler,
     setErrors
   );
-
-
-  //TODO: try to move the bottom code to external file(s)
-
-  let adjustableStateValue;
-  if (values.minHeight) {
-    adjustableStateValue = true;
-  } else {
-    adjustableStateValue = false;
-  }
-
-  const [adjustable, setAdjustable] = useState(adjustableStateValue);
 
   const adjustableOptionHandler = (e) => {
     const value = e.target.value;
@@ -121,17 +83,6 @@ export default function CreateLight() {
       setAdjustable(false);
     }
   };
-
-  let integratedLedStateValue;
-  if (values.kelvins) {
-    integratedLedStateValue = true;
-  } else if (values.bulbType) {
-    integratedLedStateValue = false;
-  } else {
-    integratedLedStateValue = null;
-  }
-  
-  const [integratedLed, setIntegratedLed] = useState(integratedLedStateValue);
 
   const integratedLedOptionHandler = (e) => {
     const value = e.target.value;
@@ -145,7 +96,7 @@ export default function CreateLight() {
 
   return (
     <div className="create_section">
-      <h1>Add your light</h1>
+      <h1>{currPage == 'createlight' ? 'Add your light' : 'Edit Light'}</h1>
       {spinner ? (
         <Spinner />
       ) : (
@@ -225,7 +176,7 @@ export default function CreateLight() {
                   type="radio"
                   name="adjustable"
                   value="yes"
-                  defaultChecked={adjustable}
+                  checked={adjustable}
                   onChange={adjustableOptionHandler}
                 />
                 Yes
@@ -235,7 +186,7 @@ export default function CreateLight() {
                   type="radio"
                   name="adjustable"
                   value="no"
-                  defaultChecked={!adjustable}
+                  checked={adjustable ? false : true}
                   onChange={adjustableOptionHandler}
                 />
                 No
@@ -253,7 +204,7 @@ export default function CreateLight() {
                   type="radio"
                   name="integrated"
                   value="yes"
-                  defaultChecked={integratedLed}
+                  checked={integratedLed}
                   onChange={integratedLedOptionHandler}
                 />
                 Yes
@@ -263,7 +214,7 @@ export default function CreateLight() {
                   type="radio"
                   name="integrated"
                   value="no"
-                  defaultChecked={integratedLed == null ? false : !integratedLed}
+                  checked={integratedLed == null ? false : !integratedLed}
                   onChange={integratedLedOptionHandler}
                 />
                 No
@@ -299,22 +250,3 @@ export default function CreateLight() {
     </div>
   );
 }
-
-
-
- // const [formValues, setFormValues] = useState({
-  //   name: light ? light.name ? light.name : '' : '',
-  //   price: light ? light.price ? light.price : '' : '',
-  //   date: light ? light.date ? light.date : '' : '',
-  //   quantities: light ? light.quantities ? light.quantities : '' : '',
-  //   dimensions: light ? light.dimensions ? light.dimensions : '' : '',
-  //   imageURL: '',
-  //   notes: light ? light.notes ? light.notes : '' : '',
-  //   minHeight: light ? light.minHeight ? light.minHeight : '' : '',
-  //   maxHeight: light ? light.maxHeight ? light.maxHeight : '' : '',
-  //   kelvins: light ? light.kelvins ? light.kelvins : '' : '',
-  //   lumens: light ? light.lumens ? light.lumens : '' : '',
-  //   watt: light ? light.watt ? light.watt : '' : '',
-  //   bulbType: light ? light.bulbType ? light.bulbType : '' : '',
-  //   bulbsRequired: light ? light.bulbsRequired ? light.bulbsRequired : '' : '',
-  // });

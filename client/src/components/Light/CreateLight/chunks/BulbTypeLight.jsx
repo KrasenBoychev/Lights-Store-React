@@ -11,7 +11,7 @@ export default function BulbTypeLight({props}) {
           type="text"
           name="bulbType"
           placeholder="e.x. E27"
-          value={bulbType}
+          value={bulbType == null ? '' : bulbType}
           onChange={changeHandler}
         />
         {errors.bulbType && <p className='form-errors'>{errors.bulbType}</p>}
@@ -22,7 +22,7 @@ export default function BulbTypeLight({props}) {
         <input
           type="number"
           name="bulbsRequired"
-          value={bulbsRequired}
+          value={bulbsRequired == null ? '' : bulbsRequired}
           onChange={changeHandler}
         />
         {errors.bulbsRequired && <p className='form-errors'>{errors.bulbsRequired}</p>}
