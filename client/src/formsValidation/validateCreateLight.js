@@ -44,11 +44,11 @@ export default function validateCreateLightForm(
   }
 
   if (adjustable == true) {
-    if (data.minHeight == '') {
+    if (data.minHeight == '' || data.minHeight == null) {
       allErrors.minHeight = 'Min field is required';
     }
 
-    if (data.maxHeight == '') {
+    if (data.maxHeight == '' || data.maxHeight == null) {
       allErrors.maxHeight = 'Max field is required';
     }
   } else {
@@ -59,26 +59,27 @@ export default function validateCreateLightForm(
   if (integratedLed == null) {
     allErrors.integratedLed = 'Integrated LED option is required';
   } else if (integratedLed == true) {
-    if (data.kelvins == '') {
+    if (data.kelvins == '' || data.kelvins == null) {
       allErrors.kelvins = 'Kelvins field is required';
     }
 
-    if (data.lumens == '') {
+    if (data.lumens == '' || data.lumens == null) {
       allErrors.lumens = 'Lumens field is required';
     }
 
-    if (data.watt == '') {
+    if (data.watt == '' || data.watt == null) {
       allErrors.watt = 'Watt field is required';
     }
 
     data.bulbType = '';
     data.bulbsRequired = '';
   } else {
-    if (data.bulbType == '') {
+
+    if (data.bulbType == '' || data.bulbType == null) {
       allErrors.bulbType = 'Bulb type field is required';
     }
 
-    if (data.bulbsRequired == '') {
+    if (data.bulbsRequired == '' || data.bulbsRequired == null) {
       allErrors.bulbsRequired = 'Number of bulbs field is required';
     }
 
