@@ -55,6 +55,10 @@ export function useBoughtLight(lightId) {
 
   useEffect(() => {
     (function checkIfBought() {
+      if (!userCart) {
+        return;
+      }
+
       if (userCart.includes(lightId)) {
         setBoughtItem(true);
       }
