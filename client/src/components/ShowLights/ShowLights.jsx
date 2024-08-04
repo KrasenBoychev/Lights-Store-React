@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
-import { useLocation } from 'react-router-dom';
-
 import './ShowLights.css';
 
 import CatalogLight from '../Light/CatalogLight/CatalogLight';
@@ -12,9 +10,6 @@ import Search from './Search';
 import { useAllLights } from '../../hooks/useLights';
 
 export default function ShowLights(props) {
-  const location = useLocation();
-  const currPage = location.pathname.split('/')[1];
-
   const [
     lights,
     setLights,
@@ -23,6 +18,7 @@ export default function ShowLights(props) {
     seacrhFormValues,
     setSearchFormValues,
     spinner,
+    currPage
   ] = useAllLights(props);
 
   return (

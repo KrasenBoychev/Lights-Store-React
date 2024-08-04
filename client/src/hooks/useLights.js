@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useLogout } from './useAuth';
 
@@ -7,6 +7,9 @@ export function useAllLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
+
+  const location = useLocation();
+  const currPage = location.pathname.split('/')[1];
 
   const navigate = useNavigate();
   const logout = useLogout();
@@ -55,5 +58,6 @@ export function useAllLights(props) {
     seacrhFormValues,
     setSearchFormValues,
     spinner,
+    currPage
   ];
 }
