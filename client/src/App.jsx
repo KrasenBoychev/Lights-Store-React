@@ -1,6 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { Fragment } from 'react';
-import { getCatalogLights, getMarketplaceLights, getProfileLights } from '../api/data';
+import {
+  getCatalogLights,
+  getMarketplaceLights,
+  getProfileLights,
+} from '../api/data';
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services/Services';
@@ -21,9 +25,10 @@ import ScrollTop from './common/ScrollTop';
 import { Toaster } from 'react-hot-toast';
 import { AuthContextProvider } from './contexts/AuthContext';
 import Logout from './components/Logout.jsx/Logout';
+import PrivateGuard from './common/PrivateGuard';
+import PublicGuard from './common/PublicGuard';
 
 function App() {
-
   return (
     <>
       <ScrollTop />
@@ -53,24 +58,29 @@ function App() {
             element={<ShowLights getDataFunc={getMarketplaceLights} />}
           />
           <Route path="/marketplace/:lightId" element={<Details />} />
-          <Route path="/createlight" element={<CreateLight />} />
-          <Route path="/edit/:lightId" element={<CreateLight />} />
           <Route path="/comment" element={<CommentForm />} />
-          <Route
-            path="/profile"
-            element={<ShowLights getDataFunc={getProfileLights} />}
-          />
-          <Route path="/profile/:lightId" element={<Details />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/cart/:lightId" element={<Details />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/register"
-            element={<Register />}
-          />
-          <Route path="/logout" element={<Logout />} />
+
+          <Route element={<PublicGuard />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+
+          <Route element={<PrivateGuard />}>
+            <Route path="/createlight" element={<CreateLight />} />
+            <Route path="/edit/:lightId" element={<CreateLight />} />
+            <Route
+              path="/profile"
+              element={<ShowLights getDataFunc={getProfileLights} />}
+            />
+            <Route path="/profile/:lightId" element={<Details />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:lightId" element={<Details />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
+
         <Footer />
         <Copyright />
       </AuthContextProvider>
