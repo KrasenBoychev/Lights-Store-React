@@ -82,3 +82,30 @@
     padding: 10px;
     margin: auto;
 }
+
+.delete-wrapper {
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(128,128,128,0.97);
+}
+
+.delete-question p{
+    padding: 20px;
+    width: 800px;
+    font-size: 35px;
+    letter-spacing: 2px;
+    line-height: normal;
+ }
+
+ .delete-buttons button{
+     width: 200px;
+     margin: 100px 50px;
+     padding: 10px;
+     letter-spacing: 2px;
+}
