@@ -5,7 +5,7 @@ export default function validateLoginForm(email, password) {
         allErrors.email = 'Email is a mandatory field';
       }
   
-      if (password.length < 3) {
+      if (password.length == 0) {
         allErrors.password = 'Password is a mandatory field';
       }
 
