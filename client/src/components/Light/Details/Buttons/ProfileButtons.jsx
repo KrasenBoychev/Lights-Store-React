@@ -2,33 +2,15 @@
 import { Link } from 'react-router-dom';
 import DeleteLight from './DeleteLight';
 import { useState } from 'react';
-//import { deleteRecord } from '../../../../../api/data';
 
 export default function ProfileButtons({props}) {
   const {light, setSpinner, navigate} = props;
 
   const [deletePopUp, setDeletePopUp] = useState(false);
 
-  const deleteClickHandler = () => {
+  const showPopUpHandler = () => {
     setDeletePopUp(true);
   };
-
-    
-  // const deleteClickHandler = async () => {
-  //   const confirm = window.confirm('Are you sure');
-
-  //   if (confirm) {
-  //     try {
-  //       setSpinner(true);
-  //       await deleteRecord(light._id);
-  //       navigate('/profile');
-  //     } catch (error) {
-  //       alert(error.message);
-  //     } finally {
-  //       setSpinner(false);
-  //     }
-  //   }
-  // };
 
   return (
     <>
@@ -37,13 +19,13 @@ export default function ProfileButtons({props}) {
       </Link>
       <button
         onClick={() => {
-          deleteClickHandler();
+          showPopUpHandler();
         }}
       > 
         Delete
       </button>
 
-      {deletePopUp && <DeleteLight />}
+      {deletePopUp && <DeleteLight props={{ light, setSpinner, navigate, setDeletePopUp }}/>}
     </>
   );
 }

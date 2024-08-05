@@ -1,4 +1,27 @@
-export default function DeleteLight() {
+/* eslint-disable react/prop-types */
+import toast from 'react-hot-toast';
+import { deleteRecord } from '../../../../../api/data';
+
+export default function DeleteLight({props}) {
+
+  const { light, setSpinner, navigate, setDeletePopUp } = props;
+
+  const deleteClickHandler = async () => {
+      try {
+        setSpinner(true);
+        await deleteRecord(light._id);
+        navigate('/profile');
+      } catch (error) {
+        toast(error.message);
+      } finally {
+        setSpinner(false);
+      }
+  };
+
+  const cancelClickHandler = () => {
+      setDeletePopUp(false);
+  };
+
   return (
       <div className="delete-wrapper">
         <div className="delete-question">
@@ -7,8 +30,8 @@ export default function DeleteLight() {
           </p>
         </div>
         <div className="delete-buttons">
-          <button>Yes, sure</button>
-          <button>Cancel</button>
+          <button onClick={() => deleteClickHandler()}>Yes, sure</button>
+          <button onClick={() => cancelClickHandler()}>Cancel</button>
         </div>
       </div>
   );
