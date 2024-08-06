@@ -59,7 +59,7 @@ export default function CreateLight() {
       } else if (currPage == 'edit') {
 
         if (data.imageURL.type == 'image/jpeg') {
-          const downloadURL = await uploadImage(data.imageURL);
+          const downloadURL = await uploadImage(data.imageURL, 'lightsImages');
           data.downloadURL = downloadURL;
         } else {
           data.downloadURL = data.imageURL;
