@@ -3,52 +3,54 @@ import { createComment } from '../../../../api/data';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
 import { uploadImage } from '../../../services/firebase/uploadImage';
+import { useForm } from '../../../hooks/useForm';
+import validateCommentForm from '../../../formsValidation/validateCommentForm';
+import toast from 'react-hot-toast';
+
+const initialValues = {
+  name: '',
+  customerComment: '',
+  imageURL: ''
+};
 
 export default function CommentForm() {
   const navigate = useNavigate();
   const [spinner, setSpinner] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const [commentFormValues, setCommentFormValues] = useState({
-    name: '',
-    customerComment: '',
-    imageURL: '',
-  });
+  const commentSubmitHandler = async (data) => {
 
-  const changeHandler = async (e) => {
-    setCommentFormValues((oldValues) => ({
-      ...oldValues,
-      [e.target.name]:
-        e.target.type === 'file' ? e.target.files[0] : e.target.value,
-    }));
-  };
+    const allErrors = validateCommentForm(data);
 
-  const commentSubmitHandler = async (e) => {
-    e.preventDefault();
-
-    const { name, customerComment, imageURL } = commentFormValues;
-
-    if (name == '' || customerComment == '' || imageURL == '') {
-      alert('All fields required!');
+    if (Object.entries(allErrors).length > 0) {
+      setErrors(allErrors);
       return;
     }
 
-    setSpinner(true);
-
-    const downloadURL = uploadImage(imageURL);
-
-    const data = { name, customerComment, downloadURL };
-
     try {
+      setSpinner(true);
+
+      const downloadURL = await uploadImage(data.imageURL);
+      data.downloadURL = downloadURL;
+
       await createComment(data);
+
+      navigate('/');
+
     } catch (error) {
-      alert(error.message);
-      return;
+      toast(error.message);
+
     } finally {
       setSpinner(false);
     }
-
-    navigate('/');
   };
+  
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    commentSubmitHandler,
+    setErrors
+  );
+
   return (
     <div className="contact_section layout_padding">
       {spinner ? (
@@ -58,24 +60,28 @@ export default function CommentForm() {
           <div className="col-md-6">
             <h1 className="contact_text">Your opinion matters</h1>
             <div className="mail_sectin">
-              <form onSubmit={commentSubmitHandler}>
+              <form onSubmit={submitHandler}>
+              
                 <input
                   type="text"
                   className="name-bt"
                   placeholder="Name"
                   name="name"
-                  value={commentFormValues.name}
+                  value={values.name}
                   onChange={changeHandler}
                 />
+                {errors.name && <p className='form-errors'>{errors.name}</p>}
+                
                 <textarea
                   className="massage-bt"
                   placeholder="Comment"
                   rows="5"
                   id="comment"
                   name="customerComment"
-                  value={setCommentFormValues.customerComment}
+                  value={values.customerComment}
                   onChange={changeHandler}
                 ></textarea>
+                {errors.customerComment && <p className='form-errors'>{errors.customerComment}</p>}
                 <label className="image-bt">
                   Your Image:
                   <input
@@ -85,6 +91,7 @@ export default function CommentForm() {
                     onChange={changeHandler}
                   />
                 </label>
+                {errors.imageURL && <p className='form-errors'>{errors.imageURL}</p>}
                 <div className="send_bt">
                   <button>SEND</button>
                 </div>
