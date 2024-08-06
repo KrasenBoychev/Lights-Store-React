@@ -194,7 +194,7 @@ export default function CreateLight() {
                   type="radio"
                   name="adjustable"
                   value="yes"
-                  checked={adjustable}
+                  checked={adjustable == null ? false : adjustable}
                   onChange={adjustableOptionHandler}
                 />
                 Yes
@@ -222,7 +222,7 @@ export default function CreateLight() {
                   type="radio"
                   name="integrated"
                   value="yes"
-                  checked={integratedLed}
+                  checked={integratedLed == null ? false : integratedLed}
                   onChange={integratedLedOptionHandler}
                 />
                 Yes
