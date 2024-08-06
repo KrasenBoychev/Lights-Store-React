@@ -27,3 +27,10 @@ npm run dev
 * Run Server
 ```
 npm cd server
+```
+```
+npm install
+```
+```
+npm start
+```
