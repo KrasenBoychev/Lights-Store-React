@@ -32,7 +32,7 @@ export default function CommentForm() {
     try {
       setSpinner(true);
 
-      const downloadURL = await uploadImage(data.imageURL);
+      const downloadURL = await uploadImage(data.imageURL, 'commentsImages');
       data.downloadURL = downloadURL;
 
       await createComment(data);

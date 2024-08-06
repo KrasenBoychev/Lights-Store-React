@@ -50,7 +50,7 @@ export default function CreateLight() {
 
       if (currPage == 'createlight') {
 
-        const downloadURL = await uploadImage(data.imageURL);
+        const downloadURL = await uploadImage(data.imageURL, 'lightsImages');
         data.downloadURL = downloadURL;
 
         await createRecord(data);
