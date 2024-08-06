@@ -69,9 +69,9 @@ export default function Details() {
                 </>
               )}
 
-              {light.notes && <li>Notes: {light.notes}</li>}
+              {currPage != 'catalog' && light.notes && <li>Notes: {light.notes}</li>}
 
-              {light.date && <li>Date of purchase: {light.date}</li>}
+              {currPage != 'catalog' && light.date && <li>Date of purchase: {light.date}</li>}
             </ul>
           </div>
 
