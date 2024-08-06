@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
+
+import { useForm } from '../../hooks/useForm';
+
 export default function Search(props) {
   const { lightsState, filteredLightsState, searchFormProps } = props;
 
-  const changeHandler = async (e) => {
-    searchFormProps.setSearchFormValues((oldValues) => ({
-      ...oldValues,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const searchFormClickHandler = (data) => {
 
-  const searchFormClickHandler = (e) => {
-    e.preventDefault();
-
-    const { name, price, lightType } = searchFormProps.seacrhFormValues;
+    const { name, price, lightType } = data;
     const priceToNum = Number(price);
 
     const filteredItems = lightsState.lights.filter(
@@ -29,25 +24,30 @@ export default function Search(props) {
     filteredLightsState.setFilteredLights(filteredItems);
   };
 
+  const { values, changeHandler, submitHandler } = useForm(
+    searchFormProps.seacrhFormValues,
+    searchFormClickHandler
+  );
+
   return (
-    <form onSubmit={searchFormClickHandler} className="marketplace-search-form">
+    <form onSubmit={submitHandler} className="marketplace-search-form">
       <input
         type="text"
         name="name"
         placeholder="Name"
-        value={searchFormProps.seacrhFormValues.name}
+        value={values.name}
         onChange={changeHandler}
       />
       <input
         type="number"
         name="price"
         placeholder="Price"
-        value={searchFormProps.seacrhFormValues.price}
+        value={values.price}
         onChange={changeHandler}
       />
       <select
         name="lightType"
-        value={searchFormProps.seacrhFormValues.lightType}
+        value={values.lightType}
         onChange={changeHandler}
       >
         <option value="defaultValue">--- Type of Light ---</option>

@@ -14,7 +14,9 @@ export function useForm(initialValues, submitCallback, setErrors) {
         e.target.type === 'file' ? e.target.files[0] : e.target.value,
     }));
 
-    setErrors({});
+    if (setErrors) {
+      setErrors({});
+    }
   };
 
   const submitHandler = (e) => {
