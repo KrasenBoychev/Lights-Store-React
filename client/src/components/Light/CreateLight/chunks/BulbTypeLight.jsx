@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function BulbTypeLight({props}) {
+export default function BulbTypeLight({ props }) {
   const { bulbType, bulbsRequired } = props.values;
   const changeHandler = props.changeHandler;
   const errors = props.errors;
@@ -14,7 +14,7 @@ export default function BulbTypeLight({props}) {
           value={bulbType == null ? '' : bulbType}
           onChange={changeHandler}
         />
-        {errors.bulbType && <p className='form-errors'>{errors.bulbType}</p>}
+        {errors.bulbType && <p className="form-errors">{errors.bulbType}</p>}
       </label>
 
       <label>
@@ -25,7 +25,9 @@ export default function BulbTypeLight({props}) {
           value={bulbsRequired == null ? '' : bulbsRequired}
           onChange={changeHandler}
         />
-        {errors.bulbsRequired && <p className='form-errors'>{errors.bulbsRequired}</p>}
+        {errors.bulbsRequired && (
+          <p className="form-errors">{errors.bulbsRequired}</p>
+        )}
       </label>
     </>
   );

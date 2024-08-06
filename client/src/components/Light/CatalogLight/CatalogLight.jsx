@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom';
+
 import './CatalogLight.css';
+
 import RemoveButton from '../Details/Buttons/RemoveButton';
 
 export default function CatalogLight(light) {
@@ -15,13 +17,13 @@ export default function CatalogLight(light) {
         <img src={imageURL} />
         <div className="overlay">
           <Link to={_id} className="icon" title="User Profile">
-              <i className="fa fa-search"></i>
+            <i className="fa fa-search"></i>
           </Link>
         </div>
       </div>
       <p className="item-name">{name}</p>
       <p className="item-price">{price.toFixed(2)}lv.</p>
-      {currPage == 'cart' && <RemoveButton props={{ light }}/>}
+      {currPage == 'cart' && <RemoveButton props={{ light }} />}
     </div>
   );
 }

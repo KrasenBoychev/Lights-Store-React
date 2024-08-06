@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { createRecord, editRecord } from '../../../../api/data';
+import toast from 'react-hot-toast';
+
+import { createRecord, editRecord } from '../../../../api/lights-api';
+import { uploadImage } from '../../../services/firebase/uploadImage';
+
+import { useForm } from '../../../hooks/useForm';
+import { useOneLight } from '../../../hooks/useOneLight';
+
+import './CreateLight.css';
+
+import validateCreateLightForm from '../../../formsValidation/validateCreateLight';
+
 import Adjustable from './chunks/Adjustable';
 import IntegratedLed from './chunks/IntegratedLed';
 import BulbTypeLight from './chunks/BulbTypeLight';
+
 import Spinner from '../../Spinner';
-import './CreateLight.css';
-import toast from 'react-hot-toast';
-import validateCreateLightForm from '../../../formsValidation/validateCreateLight';
-import { useForm } from '../../../hooks/useForm';
-import { uploadImage } from '../../../services/firebase/uploadImage';
-import { useOneLight } from '../../../hooks/useOneLight';
 
 export default function CreateLight() {
   const [spinner, setSpinner] = useState(false);
@@ -27,8 +33,12 @@ export default function CreateLight() {
   const [light] = useOneLight(location, setAdjustable, setIntegratedLed);
 
   const createSubmitHandler = async (data) => {
-
-    const allErrors = validateCreateLightForm(data, light, adjustable, integratedLed);
+    const allErrors = validateCreateLightForm(
+      data,
+      light,
+      adjustable,
+      integratedLed
+    );
 
     if (Object.entries(allErrors).length > 0) {
       setErrors(allErrors);
@@ -39,6 +49,7 @@ export default function CreateLight() {
       setSpinner(true);
 
       if (currPage == 'createlight') {
+
         const downloadURL = await uploadImage(data.imageURL);
         data.downloadURL = downloadURL;
 
@@ -55,7 +66,7 @@ export default function CreateLight() {
         }
 
         await editRecord(data._id, data);
-        navigate('/profile/'+ data._id);
+        navigate('/profile/' + data._id);
 
       } else {
         return;
@@ -63,6 +74,7 @@ export default function CreateLight() {
 
     } catch (error) {
       toast.error(error.message);
+
     } finally {
       setSpinner(false);
     }
@@ -110,7 +122,7 @@ export default function CreateLight() {
                 value={values.name}
                 onChange={changeHandler}
               />
-              {errors.name && <p className='form-errors'>{errors.name}</p>}
+              {errors.name && <p className="form-errors">{errors.name}</p>}
             </label>
 
             <label>
@@ -121,7 +133,7 @@ export default function CreateLight() {
                 value={values.price}
                 onChange={changeHandler}
               />
-               {errors.price && <p className='form-errors'>{errors.price}</p>}
+              {errors.price && <p className="form-errors">{errors.price}</p>}
             </label>
 
             <label>
@@ -132,7 +144,7 @@ export default function CreateLight() {
                 value={values.date}
                 onChange={changeHandler}
               />
-              {errors.date && <p className='form-errors'>{errors.date}</p>}
+              {errors.date && <p className="form-errors">{errors.date}</p>}
             </label>
 
             <label>
@@ -143,7 +155,9 @@ export default function CreateLight() {
                 value={values.quantities}
                 onChange={changeHandler}
               />
-               {errors.quantities && <p className='form-errors'>{errors.quantities}</p>}
+              {errors.quantities && (
+                <p className="form-errors">{errors.quantities}</p>
+              )}
             </label>
 
             <label>
@@ -155,18 +169,22 @@ export default function CreateLight() {
                 value={values.dimensions}
                 onChange={changeHandler}
               />
-               {errors.dimensions && <p className='form-errors'>{errors.dimensions}</p>}
+              {errors.dimensions && (
+                <p className="form-errors">{errors.dimensions}</p>
+              )}
             </label>
 
             <label>
               Upload Image:
               <input
-                type="file" 
-                name="imageURL" 
+                type="file"
+                name="imageURL"
                 accept="image/png, image/jpeg"
                 onChange={changeHandler}
               />
-               {errors.imageURL && <p className='form-errors'>{errors.imageURL}</p>}
+              {errors.imageURL && (
+                <p className="form-errors">{errors.imageURL}</p>
+              )}
             </label>
 
             <p>
@@ -193,9 +211,9 @@ export default function CreateLight() {
               </label>
             </p>
 
-            {adjustable && 
-              <Adjustable props={{values, errors, changeHandler}} />
-            }
+            {adjustable && (
+              <Adjustable props={{ values, errors, changeHandler }} />
+            )}
 
             <p>
               Is Integrated LED?
@@ -220,14 +238,16 @@ export default function CreateLight() {
                 No
               </label>
             </p>
-            {errors.integratedLed && <p className='form-errors'>{errors.integratedLed}</p>}
+            {errors.integratedLed && (
+              <p className="form-errors">{errors.integratedLed}</p>
+            )}
 
             {integratedLed == null ? (
               ''
             ) : integratedLed == true ? (
-              <IntegratedLed props={{values, errors, changeHandler}}/>
+              <IntegratedLed props={{ values, errors, changeHandler }} />
             ) : (
-              <BulbTypeLight props={{values, errors, changeHandler}}/>
+              <BulbTypeLight props={{ values, errors, changeHandler }} />
             )}
 
             <label>
@@ -239,11 +259,9 @@ export default function CreateLight() {
                 value={values.notes}
                 onChange={changeHandler}
               ></textarea>
-              {errors.notes && <p className='form-errors'>{errors.notes}</p>}
+              {errors.notes && <p className="form-errors">{errors.notes}</p>}
             </label>
-            <button type="submit">
-              Add
-            </button>
+            <button type="submit">Add</button>
           </div>
         </form>
       )}

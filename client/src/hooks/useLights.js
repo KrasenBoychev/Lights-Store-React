@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import { useLogout } from './useAuth';
 
@@ -41,9 +42,13 @@ export function useAllLights(props) {
         } else {
           setFilteredLights(allLights);
         }
-      } catch (err) {
+
+      } catch (error) {
+        toast(error.message);
+        
         logout();
         navigate('/');
+
       } finally {
         setSpinner(false);
       }
@@ -58,6 +63,6 @@ export function useAllLights(props) {
     seacrhFormValues,
     setSearchFormValues,
     spinner,
-    currPage
+    currPage,
   ];
 }

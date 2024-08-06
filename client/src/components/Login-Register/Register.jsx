@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './LoginAndRegister.css';
+import toast from 'react-hot-toast';
+
 import { useRegister } from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
+
 import validateRegisterForm from '../../formsValidation/validateRegister';
+
+import './LoginAndRegister.css';
 
 const initialValues = { email: '', password: '', rePass: '' };
 
@@ -26,6 +29,7 @@ export default function Register() {
     try {
       await register(email, password);
       navigate('/');
+      
     } catch (error) {
       return toast.error(error.message);
     }

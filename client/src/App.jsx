@@ -1,10 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { Fragment } from 'react';
+import { Toaster } from 'react-hot-toast';
+
 import {
   getCatalogLights,
   getMarketplaceLights,
   getProfileLights,
-} from '../api/data';
+} from '../api/lights-api';
+
+import { AuthContextProvider } from './contexts/AuthContext';
+
 import Header from './components/Header/Header';
 import Banner from './components/Home/Banner';
 import Services from './components/Home/Services/Services';
@@ -21,10 +26,9 @@ import Footer from './components/Footer/FooterSection/Footer';
 import Copyright from './components/Footer/Copyright';
 import CommentForm from './components/Home/Comments/CommentForm';
 import NotFound from './components/Not Found/NotFound';
-import ScrollTop from './common/ScrollTop';
-import { Toaster } from 'react-hot-toast';
-import { AuthContextProvider } from './contexts/AuthContext';
 import Logout from './components/Logout.jsx/Logout';
+
+import ScrollTop from './common/ScrollTop';
 import PrivateGuard from './common/PrivateGuard';
 import PublicGuard from './common/PublicGuard';
 
@@ -32,9 +36,12 @@ function App() {
   return (
     <>
       <ScrollTop />
+      
       <AuthContextProvider>
+
         <Header />
         <Toaster />
+
         <Routes>
           <Route
             path="/"
@@ -83,6 +90,7 @@ function App() {
 
         <Footer />
         <Copyright />
+
       </AuthContextProvider>
     </>
   );

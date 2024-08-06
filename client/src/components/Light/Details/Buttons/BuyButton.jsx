@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
-import { addToCart } from '../../../../../api/data';
+import toast from 'react-hot-toast';
+
+import { addToCart } from '../../../../../api/cart-api';
+
 import { useAuthContext } from '../../../../contexts/AuthContext';
 
-export default function BuyButton({props}) {
-  const {light, setBoughtItem, navigate} = props;
+export default function BuyButton({ props }) {
+  const { light, setBoughtItem, navigate } = props;
 
   const authData = useAuthContext();
 
@@ -19,11 +22,11 @@ export default function BuyButton({props}) {
       authData.userCart.push(light._id);
       authData.changeAuthState(authData);
 
-    } catch (error) {
-      alert(error.message);
-    }
+      setBoughtItem(true);
 
-    setBoughtItem(true);
+    } catch (error) {
+      toast(error.message);
+    }
   };
 
   return <button onClick={buyClickHandler}>Buy</button>;

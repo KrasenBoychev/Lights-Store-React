@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
+import { useAllLights } from '../../hooks/useLights';
+
 import './ShowLights.css';
 
 import CatalogLight from '../Light/CatalogLight/CatalogLight';
-import Spinner from '../Spinner';
 import CreateLightParagraph from './CreateLightParagraph';
 import Search from './Search';
-import { useAllLights } from '../../hooks/useLights';
+import Spinner from '../Spinner';
 
 export default function ShowLights(props) {
   const [
@@ -18,7 +19,7 @@ export default function ShowLights(props) {
     seacrhFormValues,
     setSearchFormValues,
     spinner,
-    currPage
+    currPage,
   ] = useAllLights(props);
 
   return (
@@ -33,12 +34,14 @@ export default function ShowLights(props) {
 
       {currPage == 'profile' ? (
         <CreateLightParagraph />
-      ) : currPage != 'profile' && (
-        <Search
-          lightsState={{ lights, setLights }}
-          filteredLightsState={{ filteredLights, setFilteredLights }}
-          searchFormProps={{ seacrhFormValues, setSearchFormValues }}
-        />
+      ) : (
+        currPage != 'profile' && (
+          <Search
+            lightsState={{ lights, setLights }}
+            filteredLightsState={{ filteredLights, setFilteredLights }}
+            searchFormProps={{ seacrhFormValues, setSearchFormValues }}
+          />
+        )
       )}
 
       <div className="items-container">

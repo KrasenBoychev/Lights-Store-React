@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function IntegratedLed({props}) {
+export default function IntegratedLed({ props }) {
   const { kelvins, lumens, watt } = props.values;
   const changeHandler = props.changeHandler;
   const errors = props.errors;
@@ -15,7 +15,7 @@ export default function IntegratedLed({props}) {
           value={kelvins == null ? '' : kelvins}
           onChange={changeHandler}
         />
-        {errors.kelvins && <p className='form-errors'>{errors.kelvins}</p>}
+        {errors.kelvins && <p className="form-errors">{errors.kelvins}</p>}
       </label>
 
       <label>
@@ -26,7 +26,7 @@ export default function IntegratedLed({props}) {
           value={lumens == null ? '' : lumens}
           onChange={changeHandler}
         />
-        {errors.lumens && <p className='form-errors'>{errors.lumens}</p>}
+        {errors.lumens && <p className="form-errors">{errors.lumens}</p>}
       </label>
 
       <label>
@@ -37,7 +37,7 @@ export default function IntegratedLed({props}) {
           value={watt == null ? '' : watt}
           onChange={changeHandler}
         />
-        {errors.watt && <p className='form-errors'>{errors.watt}</p>}
+        {errors.watt && <p className="form-errors">{errors.watt}</p>}
       </label>
     </>
   );

@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
-import DeleteLight from './DeleteLight';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function ProfileButtons({props}) {
-  const {light, setSpinner, navigate} = props;
+import DeleteLight from './DeleteLight';
+
+export default function ProfileButtons({ props }) {
+  const { light, setSpinner, navigate } = props;
 
   const [deletePopUp, setDeletePopUp] = useState(false);
 
@@ -21,11 +22,13 @@ export default function ProfileButtons({props}) {
         onClick={() => {
           showPopUpHandler();
         }}
-      > 
+      >
         Delete
       </button>
 
-      {deletePopUp && <DeleteLight props={{ light, setSpinner, navigate, setDeletePopUp }}/>}
+      {deletePopUp && (
+        <DeleteLight props={{ light, setSpinner, navigate, setDeletePopUp }} />
+      )}
     </>
   );
 }

@@ -19,9 +19,13 @@ export default function Search(props) {
       (light) =>
         light.name.toLowerCase().includes(name.toLowerCase()) &&
         (price ? light.price === priceToNum : true) &&
-        (lightType == 'integratedLed' ? light.kelvins : lightType == 'bulbType' ? light.bulbType : true)
+        (lightType == 'integratedLed'
+          ? light.kelvins
+          : lightType == 'bulbType'
+          ? light.bulbType
+          : true)
     );
-  
+
     filteredLightsState.setFilteredLights(filteredItems);
   };
 

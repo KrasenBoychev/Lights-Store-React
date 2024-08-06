@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { removeLightFromCart } from '../../../../../api/data';
-import Spinner from '../../../Spinner';
-import { useActionData, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../../../contexts/AuthContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+
+import { removeLightFromCart } from '../../../../../api/cart-api';
+
+import { useAuthContext } from '../../../../contexts/AuthContext';
+
+import Spinner from '../../../Spinner';
 
 export default function RemoveButton({props}) {
   const { light } = props;
@@ -18,8 +21,10 @@ export default function RemoveButton({props}) {
   const [spinner, setSpinner] = useState(false);
 
   const removeClickHandler = async () => {
-    setSpinner(true);
+
     try {
+        setSpinner(true);
+
         await removeLightFromCart(light._id);
 
         const lightIndex = authData.userCart.indexOf(light._id);
@@ -44,7 +49,8 @@ export default function RemoveButton({props}) {
             navigate('/cart');
         }
     } catch(error) {
-        alert(error.message);
+        toast(error.message);
+
     } finally {
         setSpinner(false);
     }

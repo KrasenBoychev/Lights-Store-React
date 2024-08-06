@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import './LoginAndRegister.css';
-
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
 import { useLogin } from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
+
 import validateLoginForm from '../../formsValidation/validateLogin';
-import toast from 'react-hot-toast';
-import { useState } from 'react';
+
+import './LoginAndRegister.css';
 
 const initialValues = { email: '', password: '' };
 
@@ -17,22 +19,20 @@ export default function Login() {
   const [errors, setErrors] = useState({});
 
   const loginHandler = async ({ email, password }) => {
-
     const allErrors = validateLoginForm(email, password);
 
     if (Object.entries(allErrors).length > 0) {
       setErrors(allErrors);
       return;
-    } 
+    }
 
     try {
       await login(email, password);
       navigate('/');
-    
+
     } catch (error) {
       return toast.error(error.message);
     }
-     
   };
 
   const { values, changeHandler, submitHandler } = useForm(

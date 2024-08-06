@@ -18,8 +18,8 @@ export default function About() {
               project to the installation. Our range of lights offer some of the
               most popular styles such as modern, traditional, industrial and
               vintage. You will find different combinations of colours and
-              designs as we always try to offer unusual style which will
-              make your home, office or commercial place looks amazing!
+              designs as we always try to offer unusual style which will make
+              your home, office or commercial place looks amazing!
             </p>
             <div className="read_bt1">
               <Link to={'/catalog'}>Lights</Link>

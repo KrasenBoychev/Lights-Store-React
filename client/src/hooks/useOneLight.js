@@ -20,23 +20,22 @@ export const useOneLight = (location, setAdjustable, setIntegratedLed) => {
 
   useEffect(() => {
     if (location.state) {
-        const getLight = location.state.light;
-        setLight(getLight);
+      const getLight = location.state.light;
+      setLight(getLight);
 
-        if (getLight.minHeight) {
-          setAdjustable(true);
-        } else {
-          setAdjustable(false);
-        }
-
-        if (getLight.kelvins) {
-          setIntegratedLed(true);
-        } else{
-          setIntegratedLed(false);
-        }
-      
+      if (getLight.minHeight) {
+        setAdjustable(true);
+      } else {
+        setAdjustable(false);
       }
+
+      if (getLight.kelvins) {
+        setIntegratedLed(true);
+      } else {
+        setIntegratedLed(false);
+      }
+    }
   }, [location.state, setAdjustable, setIntegratedLed]);
-   
+
   return [light];
 };

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import {  useLocation, useParams } from 'react-router-dom';
-import { getLightById } from '../../api/data';
+
+import { getLightById } from '../../api/lights-api';
+
 import { useAuthContext } from '../contexts/AuthContext';
 
 export function useLightDetails() {
@@ -15,26 +17,6 @@ export function useLightDetails() {
       try {
         setSpinner(true);
         const getlight = await getLightById(lightId);
-
-        if (currPage == 'catalog') {
-          // if (light.ownerId != '668cfe59f18d95a1f2f52a13') {
-          //   navigate('/catalog');
-          //   throw new Error('Not Authorized');
-          // }
-        } else if (currPage == 'marketplace') {
-          // if (
-          //   light.ownerId == '668cfe59f18d95a1f2f52a13' ||
-          //   light.ownerId == sessionStorage.userId
-          // ) {
-          //   navigate('/marketplace');
-          //   throw new Error('Not Authorized');
-          // }
-        } else if (currPage == 'profile') {
-          // if (light.ownerId != sessionStorage.userId) {
-          //   navigate('/profile');
-          //   throw new Error('Not Authorized');
-          // }
-        }
 
         setLight(getlight);
       } catch (error) {

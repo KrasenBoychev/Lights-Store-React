@@ -1,33 +1,32 @@
 import { useEffect, useState } from 'react';
 
 export function useForm(initialValues, submitCallback, setErrors) {
-    const [values, setValues] = useState(initialValues);
+  const [values, setValues] = useState(initialValues);
 
-    useEffect(() => {
-      setValues(initialValues);
-    }, [initialValues]);
-   
-    const changeHandler = async (e) => {
-        setValues((state) => ({
-          ...state,
-          [e.target.name]: e.target.type === 'file'
-        ? e.target.files[0]
-        : e.target.value,
-        }));
+  useEffect(() => {
+    setValues(initialValues);
+  }, [initialValues]);
 
-        setErrors({});
-      };
+  const changeHandler = async (e) => {
+    setValues((state) => ({
+      ...state,
+      [e.target.name]:
+        e.target.type === 'file' ? e.target.files[0] : e.target.value,
+    }));
 
-      const submitHandler = (e) => {
-        e.preventDefault();
-        submitCallback(values);
+    setErrors({});
+  };
 
-       // setValues(initialValues);
-      };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    submitCallback(values);
 
-      return {
-        values,
-        changeHandler,
-        submitHandler,
-    };
+    // setValues(initialValues);
+  };
+
+  return {
+    values,
+    changeHandler,
+    submitHandler,
+  };
 }

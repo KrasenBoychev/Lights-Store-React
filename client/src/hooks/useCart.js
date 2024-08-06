@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getCartLights } from '../../api/data';
+
+import { getCartLights } from '../../api/cart-api';
+
 import { useAuthContext } from '../contexts/AuthContext';
 
 export default function useCart() {

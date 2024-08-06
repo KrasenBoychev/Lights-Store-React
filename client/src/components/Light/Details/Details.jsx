@@ -1,11 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../../Spinner';
+
+import {
+  useLightDetails,
+  useBoughtLight,
+} from '../../../hooks/useLightDetails';
+
+import './Details.css';
+
 import ProfileButtons from './Buttons/ProfileButtons';
 import BuyButton from './Buttons/BuyButton';
 import RemoveButton from './Buttons/RemoveButton';
-import './Details.css';
-import { useLightDetails, useBoughtLight } from '../../../hooks/useLightDetails';
+
+import Spinner from '../../Spinner';
 
 export default function Details() {
   const navigate = useNavigate();
@@ -62,32 +69,26 @@ export default function Details() {
                 </>
               )}
 
-              {light.notes && (
-                  <li>Notes: {light.notes}</li>
-              )}
+              {light.notes && <li>Notes: {light.notes}</li>}
 
-              {light.date && (
-                <li>Date of purchase: {light.date}</li>
-              )}
-              
+              {light.date && <li>Date of purchase: {light.date}</li>}
             </ul>
           </div>
 
           <div className="item-details-button">
-            {currPage == 'profile' && <ProfileButtons props={{light, setSpinner, navigate}}/> }
+            {currPage == 'profile' && (
+              <ProfileButtons props={{ light, setSpinner, navigate }} />
+            )}
 
             {currPage == 'cart' && <RemoveButton props={{ light }} />}
 
-            {(currPage == 'catalog' || currPage == 'marketplace') 
-              && boughtItem
-              && <p>Light added to your cart</p>
-            }
+            {(currPage == 'catalog' || currPage == 'marketplace') &&
+              boughtItem && <p>Light added to your cart</p>}
 
-            {(currPage == 'catalog' || currPage == 'marketplace')
-              && !boughtItem 
-              && <BuyButton props={{light, setBoughtItem, navigate}}/>
-            }
-            
+            {(currPage == 'catalog' || currPage == 'marketplace') &&
+              !boughtItem && (
+                <BuyButton props={{ light, setBoughtItem, navigate }} />
+              )}
           </div>
         </div>
       )}

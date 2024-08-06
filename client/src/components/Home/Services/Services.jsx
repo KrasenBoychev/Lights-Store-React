@@ -16,14 +16,14 @@ export default function Services() {
     delivery: {
       img: 'images/icon-3.png',
       heading: 'Delivery',
-      description: 'Free Home Delivery for orders over 100lv.'
+      description: 'Free Home Delivery for orders over 100lv.',
     },
     installation: {
       img: 'images/icon-4.png',
       heading: 'Installation',
-      description: 'Our Qualified Electricians can install your lights'
-    }
- };
+      description: 'Our Qualified Electricians can install your lights',
+    },
+  };
 
   return (
     <div className="services_section layout_padding">
@@ -32,7 +32,7 @@ export default function Services() {
         <div className="services_section2 layout_padding">
           <div className="row">
             {Object.entries(servicesInfo).map((service) => {
-               return <ServicesModel key={service[0]} service={service[1]}/>;
+              return <ServicesModel key={service[0]} service={service[1]} />;
             })}
           </div>
         </div>

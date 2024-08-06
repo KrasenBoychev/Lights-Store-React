@@ -20,11 +20,10 @@ export default function FooterModel({ element }) {
               </li>
             ))
           : Object.entries(element.links).map((details) => (
-            <li key={details[0]}>
+              <li key={details[0]}>
                 <Link to={'/' + details[0]}>{details[1]}</Link>
-            </li>
-          ))
-        }
+              </li>
+            ))}
       </ul>
     </div>
   );

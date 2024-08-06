@@ -1,42 +1,43 @@
 /* eslint-disable no-unused-vars */
-import { login, logout, register } from '../../api/api';
+import { login, logout, register } from '../../api/requester';
+
 import { useAuthContext } from '../contexts/AuthContext';
 
 export const useLogin = () => {
-    const { changeAuthState } = useAuthContext();
+  const { changeAuthState } = useAuthContext();
 
-    const loginHandler = async (email, password) => {
-        const { password: _, ...authData } = await login(email, password);
+  const loginHandler = async (email, password) => {
+    const { password: _, ...authData } = await login(email, password);
 
-        changeAuthState(authData);
+    changeAuthState(authData);
 
-        return authData;
-    };
+    return authData;
+  };
 
-    return loginHandler;
+  return loginHandler;
 };
 
 export const useRegister = () => {
-    const { changeAuthState } = useAuthContext();
+  const { changeAuthState } = useAuthContext();
 
-    const registerHandler = async (email, password) => {
-        const { password: _, ...authData } = await register(email, password);
+  const registerHandler = async (email, password) => {
+    const { password: _, ...authData } = await register(email, password);
 
-        changeAuthState(authData);
+    changeAuthState(authData);
 
-        return authData;
-    };
+    return authData;
+  };
 
-    return registerHandler;
+  return registerHandler;
 };
 
 export const useLogout = () => {
-    const { logout: localLogout } = useAuthContext();
+  const { logout: localLogout } = useAuthContext();
 
-    const logoutHandler = async () => {
-      await logout();
-      localLogout();
-    };
+  const logoutHandler = async () => {
+    await logout();
+    localLogout();
+  };
 
-    return logoutHandler;
+  return logoutHandler;
 };

@@ -1,4 +1,5 @@
 import useComments from '../../../hooks/useComments';
+
 import CommentModel from './CommentModel';
 
 export default function Comments() {
@@ -23,13 +24,15 @@ export default function Comments() {
             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
           </ol>
           <div className="carousel-inner">
-            {comments.map((comment, index) => (
-               index % 2 == 0
-               && <CommentModel
-                key={comment._id}
-                allComments={{ comment, comments, index }}
-              />
-            ))}
+            {comments.map(
+              (comment, index) =>
+                index % 2 == 0 && (
+                  <CommentModel
+                    key={comment._id}
+                    allComments={{ comment, comments, index }}
+                  />
+                )
+            )}
           </div>
         </div>
       </div>
