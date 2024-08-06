@@ -28,7 +28,7 @@ export default function DeleteLight({ props }) {
   return (
     <div className="delete-wrapper">
       <div className="delete-question">
-        <p>Are you sure you want to delete lightName?</p>
+        <p>Are you sure you want to delete {light.name}?</p>
       </div>
       <div className="delete-buttons">
         <button onClick={() => deleteClickHandler()}>Yes, sure</button>
