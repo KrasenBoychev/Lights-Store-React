@@ -39,7 +39,7 @@ export default function validateCreateLightForm(
     }
   }
 
-  if (!light && data.imageURL == '') {
+  if (light.imageURL == '' && data.imageURL == '') {
     allErrors.imageURL = 'Image is required';
   }
 
