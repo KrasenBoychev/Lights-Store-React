@@ -1,8 +1,29 @@
-# React + Vite
+# Lights Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lights Store is a project built for SoftUni, React Exam. It is e-commerce website that offers new lights and registered users can offer their used lights. The project uses MongoDB for keeping all records.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Users can visit the Catalog and Marketplace pages, but if they want to place an order for a light, they have to register or login. Registered and logged in users can buy lights and sell their own lights - they will show up in their Profile page and the owner can edit or delete them.
+
+## Getting Started
+
+### Installing
+
+* Clone the repository or download all files.
+
+### Executing program
+* Run Client
+```
+npm cd client
+```
+```
+npm install
+```
+```
+npm run dev
+```
+
+* Run Server
+```
+npm cd server
