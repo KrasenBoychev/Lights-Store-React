@@ -11,7 +11,7 @@ export default function IntegratedLed({ props }) {
         <input
           type="number"
           name="kelvins"
-          placeholder="between 2700 and 6000"
+          placeholder="between 2700 and 6500"
           value={kelvins == null ? '' : kelvins}
           onChange={changeHandler}
         />

@@ -4,7 +4,7 @@ export default function validateCreateLightForm(
   adjustable,
   integratedLed
 ) {
-  
+
   const allErrors = {};
 
   if (data.name == '') {
@@ -87,8 +87,9 @@ export default function validateCreateLightForm(
     if (data.kelvins == '' || data.kelvins == null) {
       allErrors.kelvins = 'Kelvins field is required';
     } else {
-      if (Number(data.kelvins) <= 0) {
-        allErrors.kelvins = 'Kelvins field should be a positive number';
+
+      if ( Number(data.kelvins) < 2700 || Number(data.kelvins) > 6500) {
+        allErrors.kelvins = 'Kelvins field should be between 2700 and 6500';
       }
     }
 
