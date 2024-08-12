@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import { createRecord, editRecord } from '../../../../api/lights-api';
-import { uploadImage } from '../../../services/firebase/requester-firebase';
+import { deleteImage, uploadImage } from '../../../services/firebase/requester-firebase';
 
 import { useForm } from '../../../hooks/useForm';
 import { useOneLight } from '../../../hooks/useOneLight';
@@ -59,6 +59,8 @@ export default function CreateLight() {
       } else if (currPage == 'edit') {
 
         if (data.imageURL.type == 'image/jpeg') {
+          await deleteImage(light);
+
           const downloadURL = await uploadImage(data.imageURL, 'lightsImages');
           data.downloadURL = downloadURL;
         } else {
