@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 
 import { createComment } from '../../../../api/comments-api';
 import { useForm } from '../../../hooks/useForm';
-import { uploadImage } from '../../../services/firebase/uploadImage';
+import { uploadImage } from '../../../services/firebase/requester-firebase';
 
 import validateCommentForm from '../../../formsValidation/validateCommentForm';
 

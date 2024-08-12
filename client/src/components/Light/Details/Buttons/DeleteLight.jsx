@@ -2,6 +2,7 @@
 import toast from 'react-hot-toast';
 
 import { deleteRecord } from '../../../../../api/lights-api';
+import { deleteImage } from '../../../../services/firebase/requester-firebase';
 
 export default function DeleteLight({ props }) {
   const { light, setSpinner, navigate, setDeletePopUp } = props;
@@ -10,6 +11,9 @@ export default function DeleteLight({ props }) {
 
     try {
       setSpinner(true);
+
+      await deleteImage(light);
+
       await deleteRecord(light._id);
       navigate('/profile');
 

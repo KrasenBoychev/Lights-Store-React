@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import { createRecord, editRecord } from '../../../../api/lights-api';
-import { uploadImage } from '../../../services/firebase/uploadImage';
+import { uploadImage } from '../../../services/firebase/requester-firebase';
 
 import { useForm } from '../../../hooks/useForm';
 import { useOneLight } from '../../../hooks/useOneLight';
