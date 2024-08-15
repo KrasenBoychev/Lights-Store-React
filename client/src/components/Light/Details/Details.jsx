@@ -13,6 +13,7 @@ import BuyButton from './Buttons/BuyButton';
 import RemoveButton from './Buttons/RemoveButton';
 
 import Spinner from '../../Spinner';
+import { formatDate } from '../../../common/dateFormatter';
 
 export default function Details() {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ export default function Details() {
   const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
 
   const [boughtItem, setBoughtItem] = useBoughtLight(light._id);
+
+  const { date, month, year } = formatDate(light.date);
 
   return (
     <div className="details_section layout">
@@ -64,7 +67,7 @@ export default function Details() {
 
               {currPage != 'catalog' && light.notes && <li>Notes: {light.notes}</li>}
 
-              {currPage != 'catalog' && light.date && <li>Date of purchase: {light.date}</li>}
+              {currPage != 'catalog' && light.date && <li>Date of purchase: {date} {month} {year}</li>}
             </ul>
           </div>
 
