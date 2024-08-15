@@ -31,25 +31,26 @@ async function getLightById(id) {
 async function create(data, ownerId) {
   const record = new Light({
     name: data.name,
-    price: data.price,
+    price: Number(data.price).toFixed(2),
     date: data.date,
-    quantities: data.quantities,
-    dimensions: data.dimensions,
+    quantities: Math.floor(Number(data.quantities)),
     imageURL: data.downloadURL,
+    height: Number(data.height).toFixed(2),
+    width: Number(data.width).toFixed(2),
+    depth: Number(data.depth).toFixed(2)
   });
 
-  if (data.minHeight) {
-    record.minHeight = data.minHeight;
-    record.maxHeight = data.maxHeight;
+  if (data.maxHeight) {
+    record.maxHeight = Number(data.maxHeight).toFixed(2);
   }
 
   if (data.kelvins) {
-    record.kelvins = data.kelvins;
-    record.lumens = data.lumens;
-    record.watt = data.watt;
+    record.kelvins = Math.floor(Number(data.kelvins));
+    record.lumens = Math.floor(Number(data.lumens));
+    record.watt = Math.floor(Number(data.watt));
   } else {
     record.bulbType = data.bulbType;
-    record.bulbsRequired = data.bulbsRequired;
+    record.bulbsRequired = Math.floor(Number(data.bulbsRequired));
   }
 
   if (data.notes) {
@@ -75,18 +76,37 @@ async function update(id, data, userId) {
   }
 
   record.name = data.name;
-  record.price = data.price;
+  record.price = Number(data.price).toFixed(2);
   record.date = data.date;
-  record.quantities = data.quantities;
-  record.dimensions = data.dimensions;
+  record.quantities = Math.floor(Number(data.quantities));
   record.imageURL = data.downloadURL;
-  record.minHeight = data.minHeight;
-  record.maxHeight = data.maxHeight;
-  record.kelvins = data.kelvins;
-  record.lumens = data.lumens;
-  record.watt = data.watt;
+  record.height = Number(data.height).toFixed(2);
+  record.width = Number(data.width).toFixed(2);
+  record.depth = Number(data.depth).toFixed(2);
+
+  if (Number(data.maxHeight)) {
+    record.maxHeight = Number(data.maxHeight).toFixed(2);
+  } else {
+    record.maxHeight = data.maxHeight;
+  }
+
+  if (Number(data.kelvins)) {
+    record.kelvins = Math.floor(Number(data.kelvins));
+    record.lumens = Math.floor(Number(data.lumens));
+    record.watt = Math.floor(Number(data.watt));
+  } else {
+    record.kelvins = data.kelvins;
+    record.lumens = data.lumens;
+    record.watt = data.watt;
+  }
+
+  if (Number(data.bulbsRequired)) {
+    record.bulbsRequired = Math.floor(Number(data.bulbsRequired));
+  } else {
+    record.bulbsRequired = data.bulbsRequired;
+  }
+  
   record.bulbType = data.bulbType;
-  record.bulbsRequired = data.bulbsRequired;
   record.notes = data.notes;
 
   await record.save();
