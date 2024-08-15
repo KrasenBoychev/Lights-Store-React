@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 
-export const useOneLight = (location, setAdjustable, setIntegratedLed) => {
+export const useOneLight = (location, setAdjustable, setIntegratedLed, setBulbTypeState) => {
   const [light, setLight] = useState({
     name: '',
     price: '',
     date: '',
     quantities: '',
-    dimensions: '',
     imageURL: '',
     notes: '',
-    minHeight: '',
+    height: '',
     maxHeight: '',
+    width: '',
+    depth: '',
     kelvins: '',
     lumens: '',
     watt: '',
@@ -33,6 +34,8 @@ export const useOneLight = (location, setAdjustable, setIntegratedLed) => {
         setIntegratedLed(true);
       } else {
         setIntegratedLed(false);
+
+        setBulbTypeState(getLight.bulbType);
       }
     }
   }, [location.state, setAdjustable, setIntegratedLed]);

@@ -21,13 +21,6 @@ export default function Details() {
 
   const [boughtItem, setBoughtItem] = useBoughtLight(light._id);
 
-  let height;
-  let width;
-  let depth;
-  if (light.dimensions) {
-    [height, width, depth] = light.dimensions.split('/');
-  }
-
   return (
     <div className="details_section layout">
       {spinner ? (
@@ -43,12 +36,12 @@ export default function Details() {
             <p>{light.quantities} In Stock</p>
             <ul className="item-details-description">
               <li>
-                Dimensions: H{height} x W{width} x D{depth} cm.
+                Dimensions: {!light.maxHeight && `H${light.height} x `}W{light.width} x D{light.depth} cm.
               </li>
 
-              {light.minHeight && (
+              {light.maxHeight && (
                 <li>
-                  Adjustable height - Drop between {light.minHeight} to{' '}
+                  Adjustable height - Drop between {light.height} to{' '}
                   {light.maxHeight} cm.s
                 </li>
               )}

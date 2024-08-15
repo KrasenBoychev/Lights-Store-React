@@ -18,19 +18,20 @@ const LightSchema = new Schema({
         type: Number,
         required: true
     },
-    dimensions: {
-        type: String,
+    height: {
+        type: Number,
         required: true
-    },
-    imageURL: {
-        type: String,
-        required: true
-    },
-    minHeight: {
-        type: Number
     },
     maxHeight: {
         type: Number
+    },
+    width: {
+        type: Number,
+        required: true
+    },
+    depth: {
+        type: Number,
+        required: true
     },
     kelvins: {
         type: Number
@@ -49,6 +50,10 @@ const LightSchema = new Schema({
     },
     notes: {
         type: String
+    },
+    imageURL: {
+        type: String,
+        required: true
     },
     ownerId: {
         type: Types.ObjectId,
