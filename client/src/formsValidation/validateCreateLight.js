@@ -2,33 +2,86 @@ export default function validateCreateLightForm(
   data,
   light,
   adjustable,
-  integratedLed
+  integratedLed,
+  bulbTypeState
 ) {
 
   const allErrors = {};
 
-  if (data.name == '') {
-    allErrors.name = 'Name field is required';
+  name(data, allErrors);
+  price(data, allErrors);
+  quantities(data, allErrors);
+  date(data, allErrors);
+  dimensions(data, allErrors, adjustable);
+  image(data, allErrors, light);
+  isIntegratedLed(data, allErrors, integratedLed, bulbTypeState);
+  notes(data, allErrors);
+
+  if (Object.entries(allErrors).length == 0) {
+    data.price = Number(data.price).toFixed(2);
+    data.quantities = Math.floor(Number(data.quantities));
+    data.height = Number(data.height).toFixed(2);
+    data.width = Number(data.width).toFixed(2);
+    data.depth = Number(data.depth).toFixed(2);
+
+    if (!adjustable) {
+      data.maxHeight = '';
+    } else {
+      data.maxHeight = Number(data.maxHeight).toFixed(2);
+    }
+
+    if (integratedLed) {
+      data.kelvins = Math.floor(Number(data.kelvins));
+      data.lumens = Math.floor(Number(data.lumens));
+      data.watt = Math.floor(Number(data.watt));
+
+      data.bulbType = '';
+      data.bulbsRequired = '';
+    } else {
+      data.bulbType = bulbTypeState;
+      data.bulbsRequired = Math.floor(Number(data.bulbsRequired));
+
+      data.kelvins = '';
+      data.lumens = '';
+      data.watt = '';
+    }
   }
 
+  return allErrors;
+}
+
+
+function name(data, allErrors) {
+  if (data.name == '') {
+    allErrors.name = 'Name is required';
+  }
+}
+
+function price(data, allErrors) {
   if (data.price == '') {
-    allErrors.price = 'Price field is required';
+    allErrors.price = 'Price is required';
   } else {
     if (Number(data.price) <= 0) {
-      allErrors.price = 'Price field should be a positive number';
+      allErrors.price = 'Price should be a positive number';
     }
   }
+}
 
+function quantities(data, allErrors) {
   if (data.quantities == '') {
-    allErrors.quantities = 'Quantities field is required';
+    allErrors.quantities = 'Quantities is required';
   } else {
     if (Number(data.quantities) <= 0) {
-      allErrors.quantities = 'Quantities field should be a positive number';
+      allErrors.quantities = 'Quantities should be a positive number';
+    } else if (Number(data.quantities) % 1 != 0) {
+      allErrors.quantities = 'Quantities should be an integer';
     }
   }
+}
 
+function date(data, allErrors) {
   if (data.date == '') {
-    allErrors.date = 'Date field is required';
+    allErrors.date = 'Date is required';
   } else {
     const currDate = new Date();
     const dateProvided = new Date(data.date);
@@ -37,99 +90,116 @@ export default function validateCreateLightForm(
       allErrors.date = 'Date is not valid';
     }
   }
+}
 
-  if (data.dimensions == '') {
-    allErrors.dimensions = 'Dimensions field is required';
-  } else {
-    const result = data.dimensions.match(/^\d+\/\d+\/\d+$/);
-
-    if (!result) {
-      allErrors.dimensions = 'Dimensions is not valid';
-    } else {
-      const [h, w, d] = result[0].split('/');
-
-      if (Number(h) <= 0 || Number(w) <= 0 || Number(d) <= 0) {
-        allErrors.dimensions = 'Dimensions should consists of positive numbers';
-      }
-    }
+function dimensions(data, allErrors, adjustable) {
+  if (data.height == '') {
+    allErrors.height = 'Height is required';
+  } else if (Number(data.height) <= 0) {
+    allErrors.height = 'Height should be a positive number';
   }
 
-  if (light.imageURL == '' && data.imageURL == '') {
-    allErrors.imageURL = 'Image is required';
-  }
-
-  if (adjustable == true) {
-    if (data.minHeight == '' || data.minHeight == null) {
-      allErrors.minHeight = 'Min field is required';
-    } else {
-      if (Number(data.minHeight) <= 0) {
-        allErrors.minHeight = 'Min field should be a positive number';
-      }
-    }
-
+  if (adjustable) {
     if (data.maxHeight == '' || data.maxHeight == null) {
-      allErrors.maxHeight = 'Max field is required';
+      allErrors.maxHeight = 'Max height is required';
     } else if (Number(data.maxHeight) <= 0) {
-      allErrors.maxHeight = 'Max field should be a positive number';
+      allErrors.maxHeight = 'Max height should be a positive number';
     } else {
-      if (data.minHeight && data.maxHeight <= data.minHeight) {
+      if (Number(data.height) >= Number(data.maxHeight)) {
         allErrors.maxHeight = 'Max height should be greater than min height';
       }
     }
-  } else {
-    data.minHeight = '';
-    data.maxHeight = '';
   }
 
+  if (data.width == '') {
+    allErrors.width = 'Width is required';
+  } else if (Number(data.width) <= 0) {
+    allErrors.width = 'Width should be a positive number';
+  }
+
+  if (data.depth == '') {
+    allErrors.depth = 'Depth is required';
+  } else if (Number(data.depth) <= 0) {
+    allErrors.depth = 'Depth should be a positive number';
+  }
+}
+
+function image(data, allErrors, light) {
+  if (light.imageURL == '' && data.imageURL == '') {
+    allErrors.imageURL = 'Image is required';
+  }
+}
+
+function isIntegratedLed(data, allErrors, integratedLed, bulbTypeState) {
   if (integratedLed == null) {
     allErrors.integratedLed = 'Integrated LED option is required';
-  } else if (integratedLed == true) {
+  } 
+  
+  if (integratedLed) {
+    kelvins();
+    lumens();
+    watt();
+  } else {
+    bulbs();
+  }
+
+  function kelvins() {
     if (data.kelvins == '' || data.kelvins == null) {
-      allErrors.kelvins = 'Kelvins field is required';
+      allErrors.kelvins = 'Kelvins is required';
     } else {
 
       if ( Number(data.kelvins) < 2700 || Number(data.kelvins) > 6500) {
-        allErrors.kelvins = 'Kelvins field should be between 2700 and 6500';
+        allErrors.kelvins = 'Kelvins should be between 2700 and 6500';
+      } else if (Number(data.kelvins) % 1 != 0) {
+        allErrors.kelvins = 'Kelvins should be an integer';
       }
     }
+  }
 
+  function lumens() {
     if (data.lumens == '' || data.lumens == null) {
-      allErrors.lumens = 'Lumens field is required';
+      allErrors.lumens = 'Lumens is required';
     } else {
       if (Number(data.lumens) <= 0) {
-        allErrors.lumens = 'Lumens field should be a positive number';
+        allErrors.lumens = 'Lumens should be a positive number';
+      } else if (Number(data.lumens) % 1 != 0) {
+        allErrors.lumens = 'Lumens should be an integer';
       }
     }
+  }
 
+  function watt() {
     if (data.watt == '' || data.watt == null) {
-      allErrors.watt = 'Watt field is required';
+      allErrors.watt = 'Watt is required';
     } else {
       if (Number(data.watt) <= 0) {
-        allErrors.watt = 'Watt field should be a positive number';
+        allErrors.watt = 'Watt should be a positive number';
+      } else if (Number(data.watt) % 1 != 0) {
+        allErrors.watt = 'Watt should be an integer';
       }
     }
+  }
 
-    data.bulbType = '';
-    data.bulbsRequired = '';
-  } else {
-    if (data.bulbType == '' || data.bulbType == null) {
-      allErrors.bulbType = 'Bulb type field is required';
+  function bulbs() {
+    if (bulbTypeState == '' || bulbTypeState == null) {
+      allErrors.bulbType = 'Bulb type is required';
     }
 
     if (data.bulbsRequired == '' || data.bulbsRequired == null) {
-      allErrors.bulbsRequired = 'Number of bulbs field is required';
+      allErrors.bulbsRequired = 'Number of bulbs  is required';
     } else {
       if (Number(data.bulbsRequired) <= 0) {
         allErrors.bulbsRequired =
-          'Number of bulbs field should be a positive number';
+          'Number of bulbs should be a positive number';
+      } else if (Number(data.bulbsRequired) % 1 != 0) {
+        allErrors.bulbsRequired =
+        'Number of bulbs should be an integer';
       }
     }
-
-    data.kelvins = '';
-    data.lumens = '';
-    data.watt = '';
   }
+}
 
+function notes(data, allErrors) {
   if (!data.notes) {
     data.notes = '';
   }
@@ -139,6 +209,4 @@ export default function validateCreateLightForm(
       allErrors.notes = 'Notes should be maximum 30 symbols';
     }
   }
-
-  return allErrors;
 }
