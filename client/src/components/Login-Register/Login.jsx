@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import { useLogin } from '../../hooks/useAuth';
@@ -15,6 +15,7 @@ const initialValues = { email: '', password: '' };
 export default function Login() {
   const login = useLogin();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [errors, setErrors] = useState({});
 
@@ -28,8 +29,15 @@ export default function Login() {
 
     try {
       await login(email, password);
-      navigate('/');
 
+      if (location.state && location.state.length > 0) {
+        navigate(`${location.state}`);
+        console.log(location.state);
+        
+      } else {
+        navigate('/');
+      }
+      
     } catch (error) {
       return toast.error(error.message);
     }
