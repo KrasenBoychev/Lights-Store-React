@@ -38,8 +38,16 @@ export default function CommentForm() {
       await createComment(data);
 
       navigate('/');
+
     } catch (error) {
-      toast(error.message);
+      const errorList = JSON.parse(error.message);
+      
+      if (!Array.isArray(errorList)) {
+        setErrors(errorList);
+      } else {
+        toast.error(errorList[0]);
+      }
+
     } finally {
       setSpinner(false);
     }
