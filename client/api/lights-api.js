@@ -7,7 +7,7 @@ export async function getLightById(id) {
 }
 
 export async function getCatalogLights() {
-    return await api.get(host + '/data/catalog/' + '668cfe59f18d95a1f2f52a13');
+    return await api.get(host + '/data/catalog/' + api.adminId);
 }
 
 export async function getProfileLights() {
@@ -15,7 +15,7 @@ export async function getProfileLights() {
         ? JSON.parse(localStorage.getItem('auth')).userId
         : 'noUser';
         
-    return await api.get(host + '/data/catalog/' + ownerId);
+    return await api.get(host + '/data/profile/' + ownerId);
 }
 
 export async function getMarketplaceLights() {

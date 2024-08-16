@@ -4,6 +4,8 @@ export const settings = {
   host: 'http://localhost:5000',
 };
 
+export const adminId = '668cfe59f18d95a1f2f52a13';
+
 async function request(url, options) {
     
   try {
@@ -19,7 +21,12 @@ async function request(url, options) {
       }
 
       const error = await response.json();
-      throw new Error(error.message);
+      
+      if (typeof error.message === 'string') {
+        throw new Error(error.message);
+      } else {
+        throw new Error(JSON.stringify(error.message));
+      }
     }
 
     try {
