@@ -79,8 +79,14 @@ export default function CreateLight() {
       }
 
     } catch (error) {
-      toast.error(error.message);
-
+      const errorList = JSON.parse(error.message);
+      
+      if (!Array.isArray(errorList)) {
+        setErrors(errorList);
+      } else {
+        toast.error(errorList[0]);
+      }
+      
     } finally {
       setSpinner(false);
     }
