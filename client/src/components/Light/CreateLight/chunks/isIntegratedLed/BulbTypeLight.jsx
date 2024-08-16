@@ -1,3 +1,5 @@
+import { bulbTypes } from '../../../../../common/bulbTypes';
+
 /* eslint-disable react/prop-types */
 export default function BulbTypeLight({ props }) {
   const { bulbsRequired } = props.values;
@@ -12,10 +14,11 @@ export default function BulbTypeLight({ props }) {
            value={props.bulbTypeState}
            onChange={e => props.setBulbTypeState(e.target.value)}
         >
-          <option value="E27">E27</option>
-          <option value="E14">E14</option>
-          <option value="BC">BC</option>
-          <option value="G9">G9</option>
+           {bulbTypes.map((bulbTypeEl) => 
+                <option key={bulbTypeEl} value={bulbTypeEl}>
+                    {bulbTypeEl}
+                </option>
+            )}
         </select>
         {errors.bulbType && <p className="form-errors">{errors.bulbType}</p>}
       </label>
