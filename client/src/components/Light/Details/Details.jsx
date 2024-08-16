@@ -39,13 +39,13 @@ export default function Details() {
             <p>{light.quantities} In Stock</p>
             <ul className="item-details-description">
               <li>
-                Dimensions: {!light.maxHeight && `H${light.height} x `}W{light.width} x D{light.depth} cm.
+                Dimensions({!light.maxHeight && 'H/'}W/D): {!light.maxHeight && `${light.height} x `}{light.width} x {light.depth} cm.
               </li>
 
               {light.maxHeight && (
                 <li>
                   Adjustable height - Drop between {light.height} to{' '}
-                  {light.maxHeight} cm.s
+                  {light.maxHeight} cm.
                 </li>
               )}
 
