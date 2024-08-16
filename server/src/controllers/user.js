@@ -1,9 +1,12 @@
-const { login, register } = require('../services/user');
-const { createToken } = require('../services/jwt');
 const { Router } = require('express');
 const { body, validationResult } = require('express-validator');
+
+const { login, register } = require('../services/user');
+const { createToken } = require('../services/jwt');
+
+const { isGuest } = require('../middlewares/guards');
+
 const { parseError } = require('../util');
-const { isUser, isGuest } = require('../middlewares/guards');
 
 const userRouter = Router();
 
@@ -50,8 +53,7 @@ userRouter.post('/register',
   
   } catch (err) {
       const parsed = parseError(err);
-      console.log(parsed);
-      res.status(403).json({ code: 403, message: parsed.message });
+      res.status(403).json({ code: 403, message: parsed.errors });
   }
 });
 

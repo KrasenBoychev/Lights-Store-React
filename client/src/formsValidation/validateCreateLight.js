@@ -1,3 +1,5 @@
+import { bulbTypes } from '../common/bulbTypes';
+
 export default function validateCreateLightForm(
   data,
   light,
@@ -183,6 +185,8 @@ function isIntegratedLed(data, allErrors, integratedLed, bulbTypeState) {
   function bulbs() {
     if (bulbTypeState == '' || bulbTypeState == null) {
       allErrors.bulbType = 'Bulb type is required';
+    } else if (!bulbTypes.includes(bulbTypeState)) {
+      allErrors.bulbType = 'Bulb type is not valid, please select an option from the list above';
     }
 
     if (data.bulbsRequired == '' || data.bulbsRequired == null) {

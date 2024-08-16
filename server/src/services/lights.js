@@ -1,6 +1,5 @@
-const { isObjectIdOrHexString } = require('mongoose');
+//const { adminId } = require('../../../client/api/requester');
 const { Light } = require('../models/Light');
-const { User } = require('../models/User');
 
 async function getAll() {
   return Light.find().lean();
@@ -10,17 +9,13 @@ async function getByOwnerId(id) {
   return Light.find({ ownerId: id }).lean();
 }
 
-async function getCustomersLights() {
-  return Light.find({ ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } });
-}
-
-async function getMarketplaceLights(userId) {
+async function getMarketplaceLights(userId, adminId) {
   if (userId) {
     return Light.find({
-      ownerId: { $nin: ['668cfe59f18d95a1f2f52a13', userId] },
+      ownerId: { $nin: [adminId, userId] },
     });
   } else {
-    return Light.find({ ownerId: { $ne: '668cfe59f18d95a1f2f52a13' } });
+    return Light.find({ ownerId: { $ne: adminId } });
   }
 }
 
@@ -29,6 +24,12 @@ async function getLightById(id) {
 }
 
 async function create(data, ownerId) {
+  const existing = await Light.findOne({ name: data.name });
+
+  if (existing) {
+    throw new Error(`'${data.name}' name is already in use`);
+  }
+
   const record = new Light({
     name: data.name,
     price: Number(data.price).toFixed(2),
@@ -128,34 +129,6 @@ async function deleteById(id, userId) {
   await Light.findByIdAndDelete(id);
 }
 
-async function getUserCart(userId) {
-  return User.findById(userId).lean();
-}
-
-async function addLightToCart(lightId, userId) {
-  const user = await User.findById(userId);
-
-  if (!user) {
-    throw new ReferenceError('Record not found ' + userId);
-  }
-
-  user.cart.push(lightId);
-
-  await user.save();
-
-  return user;
-}
-
-async function getUserCartLights(lightsId) {
-  return Light.find({ '_id': { $in : lightsId  } } ).lean();
-}
-
-async function removeLightFromUserCart(lightId) {
-  await User.updateMany({ },
-    { $pull: { cart: { $in: [ lightId ] } } }
-  );
-}
-
 module.exports = {
   getAll,
   getLightById,
@@ -163,10 +136,5 @@ module.exports = {
   update,
   deleteById,
   getByOwnerId,
-  getCustomersLights,
-  getMarketplaceLights,
-  addLightToCart,
-  getUserCart,
-  getUserCartLights,
-  removeLightFromUserCart
+  getMarketplaceLights
 };

@@ -1,7 +1,6 @@
 const { Comment } = require('../models/Comment');
 
 async function getNewest() {
-  //return Comment.find().lean();
   return Comment.find().sort({$natural:-1}).limit(8);
 }
 

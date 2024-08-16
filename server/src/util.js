@@ -23,4 +23,14 @@ function parseError(err) {
     return err;
 }
 
-module.exports = { parseError };
+function errorMessage(valueProp, message, path) {
+    return {
+        type: 'field', 
+        value: valueProp, 
+        msg: message, 
+        path: path, 
+        location: 'body'
+    };
+}
+
+module.exports = { parseError, errorMessage };
