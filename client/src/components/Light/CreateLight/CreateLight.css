@@ -31,7 +31,8 @@
 .create-wrapper > label input, 
 .create-wrapper p, 
 .create-wrapper div label,
-.create-wrapper > label textarea {
+.create-wrapper > label textarea,
+.create-wrapper > label select {
     margin: auto; 
     display: block;
 }
@@ -50,12 +51,17 @@
 
 .create-wrapper > label input, 
 .create-wrapper p,
-.create-wrapper > label textarea {
+.create-wrapper > label textarea,
+.create-wrapper > label select {
     width: 300px;
 }
 
 .create-wrapper p {
     text-align: left;
+}
+
+.create-wrapper > label select {
+    height: 30px;
 }
 
 .create-wrapper button {
