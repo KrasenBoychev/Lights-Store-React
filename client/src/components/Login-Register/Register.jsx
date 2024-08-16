@@ -31,7 +31,13 @@ export default function Register() {
       navigate('/');
       
     } catch (error) {
-      return toast.error(error.message);
+      const errorList = JSON.parse(error.message);
+      
+      if (!Array.isArray(errorList)) {
+        setErrors(errorList);
+      } else {
+        toast.error(errorList[0]);
+      }
     }
   };
 
