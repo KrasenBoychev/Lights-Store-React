@@ -89,3 +89,7 @@
     padding-right: 10px;
     text-align: center;
 }
+
+.pagination {
+    margin: 20px;
+}
