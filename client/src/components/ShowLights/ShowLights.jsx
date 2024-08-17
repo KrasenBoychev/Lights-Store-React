@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
-import { useAllLights } from '../../hooks/useLights';
+import ReactPaginate from 'react-paginate';
+
+import { useAllLights, useSortAndPaginate } from '../../hooks/useLights';
 
 import './ShowLights.css';
 
@@ -11,7 +13,6 @@ import Search from './chunks/Search';
 import Spinner from '../Spinner';
 
 export default function ShowLights(props) {
-
   const [
     lights,
     setLights,
@@ -19,18 +20,16 @@ export default function ShowLights(props) {
     setFilteredLights,
     seacrhFormValues,
     setSearchFormValues,
-    sort, 
+    sort,
     setSort,
     spinner,
     currPage,
   ] = useAllLights(props);
 
-  const sortMethods = {
-    'nameAscending': { method: (a, b) => a.name.localeCompare(b.name) },
-    'nameDescending': { method: (a, b) => b.name.localeCompare(a.name) },
-    'priceAscending': { method: (a, b) => a.price - b.price },
-    'priceDescending': { method: (a, b) => b.price - a.price },
-  };
+  const [currentItems, pageCount, handlePageClick] = useSortAndPaginate(
+    filteredLights,
+    sort
+  );
 
   return (
     <div className="catalog_section">
@@ -50,7 +49,7 @@ export default function ShowLights(props) {
             lightsState={{ lights, setLights }}
             filteredLightsState={{ filteredLights, setFilteredLights }}
             searchFormProps={{ seacrhFormValues, setSearchFormValues }}
-            sortState={{sort, setSort}}
+            sortState={{ sort, setSort }}
           />
         )
       )}
@@ -59,13 +58,23 @@ export default function ShowLights(props) {
         {spinner ? (
           <Spinner />
         ) : filteredLights.length > 0 ? (
-          filteredLights.sort(sortMethods[sort].method).map((light) => {
+          currentItems.map((light) => {
             return <CatalogLight key={light._id} {...light} />;
           })
         ) : (
           <p>There are no lights available at the moment</p>
         )}
       </div>
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={2}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 }
