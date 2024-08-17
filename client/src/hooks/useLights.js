@@ -15,15 +15,7 @@ export function useAllLights(props) {
   const navigate = useNavigate();
   const logout = useLogout();
 
-  const [seacrhFormValues, setSearchFormValues] = useState({
-    name: '',
-    price: '',
-    lightType: location.state
-      ? location.state === 'integratedLed'
-        ? 'integratedLed'
-        : 'bulbType'
-      : '',
-  });
+  const [seacrhFormValues, setSearchFormValues] = useState({});
 
   useEffect(() => {
     (async function getAllLights() {
@@ -32,23 +24,32 @@ export function useAllLights(props) {
         const allLights = await props.getDataFunc();
         setLights(allLights);
 
-        if (seacrhFormValues.lightType != '') {
+        if (location.state) {
           const filteredItems = allLights.filter((light) =>
-            seacrhFormValues.lightType == 'integratedLed'
+            location.state === 'integratedLed'
               ? light.kelvins
               : light.bulbType
           );
           setFilteredLights(filteredItems);
+
         } else {
           setFilteredLights(allLights);
         }
 
+        setSearchFormValues({
+          name: '',
+          minPrice: '',
+          maxPrice: '',
+          lightType: location.state
+            ? location.state 
+            : ''
+        });
+
       } catch (error) {
         toast(error.message);
-        
+
         logout();
         navigate('/');
-
       } finally {
         setSpinner(false);
       }
