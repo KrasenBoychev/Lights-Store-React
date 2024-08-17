@@ -13,6 +13,8 @@ const {
   getByOwnerId,
   getMarketplaceLights,
   update,
+  decreaseQty,
+  increaseQty,
   deleteById
 } = require('../services/lights');
 
@@ -158,6 +160,38 @@ lightsRouter.put(
     }
   }
 );
+
+lightsRouter.post('/light/decreaseQty/:id', async (req, res) => {
+
+  if(!validator.isMongoId(req.params.id)){
+    res.send('invalid id');
+    return;
+  }
+
+  try {
+    const result = await decreaseQty(req.params.id);
+    res.json(result);
+
+  } catch(err) {
+    res.status(404).json({ code: 404, message: 'Light quantities could not be updated' });
+  }
+});
+
+lightsRouter.post('/light/increaseQty/:id', async (req, res) => {
+
+  if(!validator.isMongoId(req.params.id)){
+    res.send('invalid id');
+    return;
+  }
+
+  try {
+    const result = await increaseQty(req.params.id);
+    res.json(result);
+
+  } catch(err) {
+    res.status(404).json({ code: 404, message: 'Light quantities could not be updated' });
+  }
+});
 
 lightsRouter.delete('/light/:id', isUser(), async (req, res) => {
   try {
