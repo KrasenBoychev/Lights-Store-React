@@ -6,12 +6,12 @@ export async function addToCart(lightId) {
     return await api.put(host + '/cart/' + lightId);
 }
 
-export async function getCart(userId) { //signal
-    return await api.get(host + '/cart/' + userId); //signal
+export async function getCart(userId) { 
+    return await api.get(host + '/cart/' + userId); 
 }
 
-export async function getCartLights(lightsId) { //signal
-    return await api.get(host + '/cart/lights/' + lightsId); //signal
+export async function getCartLights(lightsId) {
+    return await api.get(host + '/cart/lights/' + lightsId);
 }
 
 export async function removeLightFromCart(lightId) {
