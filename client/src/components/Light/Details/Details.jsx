@@ -18,7 +18,8 @@ import { formatDate } from '../../../common/dateFormatter';
 export default function Details() {
   const navigate = useNavigate();
 
-  const [light, setLights, spinner, setSpinner, currPage] = useLightDetails();
+  // eslint-disable-next-line no-unused-vars
+  const [light, setLights, lightQuantities, setLightQuantities, spinner, setSpinner, currPage] = useLightDetails();
 
   const [boughtItem, setBoughtItem] = useBoughtLight(light._id);
 
@@ -36,7 +37,7 @@ export default function Details() {
           <div className="item-details-more-info">
             <p>{light.name}</p>
             <p>{light.price ? light.price.toFixed(2) : ''}lv.</p>
-            <p>{light.quantities} In Stock</p>
+            <p>{lightQuantities ? lightQuantities : 0} In Stock</p>
             <ul className="item-details-description">
               <li>
                 Dimensions({!light.maxHeight && 'H/'}W/D): {!light.maxHeight && `${light.height} x `}{light.width} x {light.depth} cm.
@@ -76,14 +77,14 @@ export default function Details() {
               <ProfileButtons props={{ light, setSpinner, navigate }} />
             )}
 
-            {currPage == 'cart' && <RemoveButton props={{ light }} />}
+            {currPage == 'cart' && <RemoveButton props={{ light, setLightQuantities }} />}
 
             {(currPage == 'catalog' || currPage == 'marketplace') &&
               boughtItem && <p>Light added to your cart</p>}
 
             {(currPage == 'catalog' || currPage == 'marketplace') &&
               !boughtItem && (
-                <BuyButton props={{ light, setBoughtItem, navigate }} />
+                <BuyButton props={{ light, setBoughtItem, setLightQuantities, navigate }} />
               )}
           </div>
         </div>
