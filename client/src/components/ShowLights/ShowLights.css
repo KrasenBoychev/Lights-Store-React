@@ -93,3 +93,16 @@
 .pagination {
     margin: 20px;
 }
+
+.page-item.active .page-link{
+    background-color: #fabc26;
+    border-color: #fabc26;
+}
+
+.page-link {
+    color: #fabc26;
+}
+
+.page-link:hover {
+    color: #000;
+}

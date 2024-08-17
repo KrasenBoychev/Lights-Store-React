@@ -9,8 +9,8 @@ export default function Sort({ props }) {
   return (
     <div className="sort-lights">
       <select name="sortLights" value={sort} onChange={changeHandler}>
-        <option value="nameAscending">A-Z</option>
-        <option value="nameDescending">Z-A</option>
+        <option value="nameAscending">A - Z</option>
+        <option value="nameDescending">Z - A</option>
         <option value="priceAscending">Price Up</option>
         <option value="priceDescending">Price Down</option>
       </select>
