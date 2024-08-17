@@ -9,7 +9,7 @@ export function useAllLights(props) {
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
   const [seacrhFormValues, setSearchFormValues] = useState({});
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('nameAscending');
 
   const navigate = useNavigate();
   const logout = useLogout();
@@ -44,8 +44,6 @@ export function useAllLights(props) {
             ? location.state 
             : ''
         });
-
-        setSort('nameAscending');
         
       } catch (error) {
         toast(error.message);
@@ -70,4 +68,34 @@ export function useAllLights(props) {
     spinner,
     currPage,
   ];
+}
+
+export function useSortAndPaginate(filteredLights, sort) {
+  const sortMethods = {
+    'nameAscending': { method: (a, b) => a.name.localeCompare(b.name) },
+    'nameDescending': { method: (a, b) => b.name.localeCompare(a.name) },
+    'priceAscending': { method: (a, b) => a.price - b.price },
+    'priceDescending': { method: (a, b) => b.price - a.price },
+  };
+
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const itemsPerPage = 4;
+
+  const items = filteredLights ? filteredLights.sort(sortMethods[sort].method) : '';
+
+  const endOffset = itemOffset + itemsPerPage;
+ 
+  const currentItems = items.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+  return [currentItems, pageCount, handlePageClick];
 }
