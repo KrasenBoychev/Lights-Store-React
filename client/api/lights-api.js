@@ -37,3 +37,11 @@ export async function editRecord(id, data) {
 export async function deleteRecord(id) {
     return await api.del(host + '/data/light/' + id);
 }
+
+export async function decreaseQuantities(lightId) {
+    return await api.post(host + '/data/light/decreaseQty/' + lightId);
+}
+
+export async function increaseQuantities(lightId) {
+    return await api.post(host + '/data/light/increaseQty/' + lightId);
+}
