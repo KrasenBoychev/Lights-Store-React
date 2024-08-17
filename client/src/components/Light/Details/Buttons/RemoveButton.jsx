@@ -4,13 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import { removeLightFromCart } from '../../../../../api/cart-api';
+import { increaseQuantities } from '../../../../../api/lights-api';
 
 import { useAuthContext } from '../../../../contexts/AuthContext';
 
 import Spinner from '../../../Spinner';
 
 export default function RemoveButton({props}) {
-  const { light } = props;
+  const { light, setLightQuantities } = props;
   const authData = useAuthContext();
 
   const navigate = useNavigate();
@@ -48,6 +49,9 @@ export default function RemoveButton({props}) {
         } else {
             navigate('/cart');
         }
+
+        await increaseQuantities(light._id);
+
     } catch(error) {
         toast(error.message);
 
