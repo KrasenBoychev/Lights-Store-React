@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 export function useLightDetails() {
   const [spinner, setSpinner] = useState(false);
   const [light, setLight] = useState({});
+  const [lightQuantities, setLightQuantities] = useState(0);
 
   const { lightId } = useParams();
   const location = useLocation();
@@ -45,7 +46,9 @@ export function useLightDetails() {
           navigate('/cart');
         }
 
+        setLightQuantities(getLight.quantities);
         setLight(getLight);
+      
       } catch (error) {
         alert(error.message);
       } finally {
@@ -54,7 +57,7 @@ export function useLightDetails() {
     })();
   }, [lightId]);
 
-  return [light, setLight, spinner, setSpinner, currPage];
+  return [light, setLight, lightQuantities, setLightQuantities, spinner, setSpinner, currPage];
 }
 
 export function useBoughtLight(lightId) {
