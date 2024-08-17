@@ -115,6 +115,18 @@ async function update(id, data, userId) {
   return record;
 }
 
+async function decreaseQty(lightId) {
+  const record = await Light.findOneAndUpdate({ _id: lightId }, { $inc: { quantities: -1 } });
+
+  return record;
+}
+
+async function increaseQty(lightId) {
+  const record = await Light.findOneAndUpdate({ _id: lightId }, { $inc: { quantities: 1 } });
+
+  return record;
+}
+
 async function deleteById(id, userId) {
   const record = await Light.findById(id);
 
@@ -136,5 +148,7 @@ module.exports = {
   update,
   deleteById,
   getByOwnerId,
-  getMarketplaceLights
+  getMarketplaceLights,
+  decreaseQty,
+  increaseQty
 };
