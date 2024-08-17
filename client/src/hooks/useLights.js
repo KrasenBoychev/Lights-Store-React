@@ -8,14 +8,14 @@ export function useAllLights(props) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
-
-  const location = useLocation();
-  const currPage = location.pathname.split('/')[1];
+  const [seacrhFormValues, setSearchFormValues] = useState({});
+  const [sort, setSort] = useState('');
 
   const navigate = useNavigate();
   const logout = useLogout();
 
-  const [seacrhFormValues, setSearchFormValues] = useState({});
+  const location = useLocation();
+  const currPage = location.pathname.split('/')[1];
 
   useEffect(() => {
     (async function getAllLights() {
@@ -45,6 +45,8 @@ export function useAllLights(props) {
             : ''
         });
 
+        setSort('nameAscending');
+        
       } catch (error) {
         toast(error.message);
 
@@ -63,6 +65,8 @@ export function useAllLights(props) {
     setFilteredLights,
     seacrhFormValues,
     setSearchFormValues,
+    sort, 
+    setSort,
     spinner,
     currPage,
   ];
