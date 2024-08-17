@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 export function useSearch(props) {
-    const { lightsState, filteredLightsState, searchFormProps } = props;
+    const { lightsState, filteredLightsState, searchFormProps, sortState } = props;
     const { seacrhFormValues, setSearchFormValues } = searchFormProps;
     const { name, minPrice, maxPrice, lightType } = seacrhFormValues;
 
@@ -32,5 +32,5 @@ export function useSearch(props) {
       }, [name, minPrice, maxPrice, lightType]);
 
 
-    return [name, minPrice, maxPrice, lightType, setSearchFormValues];
+    return [name, minPrice, maxPrice, lightType, setSearchFormValues, sortState];
 }
