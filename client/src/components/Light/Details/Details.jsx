@@ -79,13 +79,16 @@ export default function Details() {
 
             {currPage == 'cart' && <RemoveButton props={{ light, setLightQuantities }} />}
 
-            {(currPage == 'catalog' || currPage == 'marketplace') &&
-              boughtItem && <p>Light added to your cart</p>}
-
-            {(currPage == 'catalog' || currPage == 'marketplace') &&
-              !boughtItem && (
-                <BuyButton props={{ light, setBoughtItem, setLightQuantities, navigate }} />
-              )}
+            {(currPage == 'catalog' || currPage == 'marketplace')
+                && ( lightQuantities <= 0
+                    ? boughtItem 
+                        ? <p>Light added to your cart</p>
+                        : <p>Out of Stock</p>
+                    : boughtItem
+                        ? <p>Light added to your cart</p>
+                        : <BuyButton props={{ light, setBoughtItem, setLightQuantities, navigate }} />
+                   )
+            }
           </div>
         </div>
       )}
