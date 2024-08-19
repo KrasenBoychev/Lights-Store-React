@@ -1,6 +1,10 @@
+import { useAuthContext } from '../../../contexts/AuthContext';
+
 import FooterModel from './FooterModel';
 
 export default function Footer() {
+  const { isAuthenticated } = useAuthContext();
+
   const footerInfo = {
     help: {
       heading: 'Let us help you',
@@ -19,10 +23,16 @@ export default function Footer() {
     },
     account: {
       heading: 'Account',
-      links: {
-        login: 'Login',
-        register: 'Register',
-      },
+      links: isAuthenticated
+        ? {
+            cart: 'Cart',
+            profile: 'Profile',
+            logout: 'Logout'
+          }
+        : {
+            login: 'Login',
+            register: 'Register',
+          }
     },
     opinion: {
       heading: 'Your Opinion',
