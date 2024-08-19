@@ -6,7 +6,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 
 Users can visit the Catalog and Marketplace pages, but if they want to place an order for a light, they have to register or login. Registered and logged in users can buy lights and sell their own lights - they will show up in their Profile page and the owner can edit or delete them.
 
-![Alt text](images/logo.png)
+![Alt text](client/images/logo.png)
 
 ## Getting Started
 
