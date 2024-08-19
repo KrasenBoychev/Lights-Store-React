@@ -5,19 +5,19 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 ## Description
 
 * ### The website has the following main pages: Home, About, Catalog and Markeplace. 
-- #### The Home Page has a banner with a link to the Catalog Page, followed by information regarding the services that the company offers. 
+ - #### The Home Page has a banner with a link to the Catalog Page, followed by information regarding the services that the company offers. 
 ![Alt text](images-readme/home-services.png)
 
-- #### Then there are two links for Integrated LED and Bulb Type lights. The links lead to the Catalog Page and the lights are filtered automatically. 
+ - #### Then there are two links for Integrated LED and Bulb Type lights. The links lead to the Catalog Page and the lights are filtered automatically. 
 ![Alt text](images-readme/our-lights.png)
 
-- #### Next section is filled with the 8 newest comments left by users (guest and logged in). There is a slider that changes them every few seconds, but users can click the yellow buttons as well.
+ - #### Next section is filled with the 8 newest comments left by users (guest and logged in). There is a slider that changes them every few seconds, but users can click the yellow buttons as well.
 ![Alt text](images-readme/comments.png)
 
-- #### Last sections are Footer and Copyright. The Footer consists of contact details, links to the pages available in the Header and a link leading to the Leave us a comment Page.
+ - #### Last sections are Footer and Copyright. The Footer consists of contact details, links to the pages available in the Header and a link leading to the Leave us a comment Page.
 ![Alt text](images-readme/footer-copyright.png)
 
-- #### Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
+ - #### Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
 ![Alt text](images-readme/leave-us-comment.png)
 
 
