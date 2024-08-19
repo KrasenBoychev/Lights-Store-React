@@ -5,9 +5,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 ## Description
 
 * ### The website has the following main pages: Home, About, Catalog and Markeplace. 
-    - #### The Home Page has a banner with a link to the Catalog Page, followed by information regarding the services that the company offers. 
-![Alt text](images-readme/home-services.png)
-
+    - #### The Home Page has a banner with a link to the Catalog Page, followed by information regarding the services that the company offers. ![Alt text](images-readme/home-services.png)
     - #### Then there are two links for Integrated LED and Bulb Type lights. The links lead to the Catalog Page and the lights are filtered automatically. 
 ![Alt text](images-readme/our-lights.png)
 
