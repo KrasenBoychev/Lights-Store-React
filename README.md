@@ -20,6 +20,25 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 * #### The Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
 ![Alt text](images-readme/leave-us-comment.png)
 
+
+### Catalog Page shows all lights created by the Admin Account. Users(authenticated or guests) can click each light and see the detais. The page has search and sort options and uses pagination.
+![Alt text](images-readme/catalog.png)
+
+### Marketplace Page shows all lights created by all users. Users(authenticated or guests) can click each light and see the detais. The page has search and sort options and uses pagination.
+![Alt text](images-readme/marketplace.png)
+
+### Login page is available for not authenticated users and has has front-end and back-end validation for all fields.
+![Alt text](images-readme/login.png)
+
+* #### If the email or the password are not correct, a toaster notification shows.
+![Alt text](images-readme/login-wrong.png)
+
+### Register page is available for not authenticated users and has has front-end and back-end validation for all fields. 
+![Alt text](images-readme/register.png)
+
+* #### The email has to be unique, if there is another user with the same email, a toaster notification shows.
+ ![Alt text](images-readme/register-wrong.png)
+
 ## Getting Started
 
 ### Installing
