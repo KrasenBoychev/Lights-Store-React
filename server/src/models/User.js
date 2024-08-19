@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const UserSchema = new Schema({
     email: {
@@ -14,9 +14,9 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    cart: {
-        type: Array,
-        default: []
+    cart: { 
+        type: [ Types.ObjectId ], 
+        ref: 'Light' 
     }
 });
 const User = model('users', UserSchema);
