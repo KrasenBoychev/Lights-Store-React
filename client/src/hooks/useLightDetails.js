@@ -41,7 +41,8 @@ export function useLightDetails() {
           navigate('/profile');
         }
 
-        if (currPage == 'cart' && !userCart.includes(getLight._id)) {
+        const currLightId = getLight._id;
+        if (currPage == 'cart' && !userCart.find(light => light._id === currLightId)) {
           toast.error('Access Denied');
           navigate('/cart');
         }
@@ -60,7 +61,7 @@ export function useLightDetails() {
   return [light, setLight, lightQuantities, setLightQuantities, spinner, setSpinner, currPage];
 }
 
-export function useBoughtLight(lightId) {
+export function useBoughtLight(light) {
   const [boughtItem, setBoughtItem] = useState(false);
 
   const { userCart } = useAuthContext();
@@ -71,11 +72,13 @@ export function useBoughtLight(lightId) {
         return;
       }
 
-      if (userCart.includes(lightId)) {
+      const lightId = light._id;
+
+      if (userCart.find(light => light._id === lightId)) {
         setBoughtItem(true);
       }
     })();
-  }, [lightId]);
+  }, [light]);
 
   return [
     boughtItem, 
