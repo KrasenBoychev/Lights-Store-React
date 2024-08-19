@@ -14,7 +14,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 * #### Next section is filled with the 8 newest comments left by users (guest and logged in). There is a slider that changes them every few seconds, but users can click the yellow buttons as well.
 ![Alt text](images-readme/comments.png)
 
-* #### Last section is the Footer and the Copyright. The Footer consists of contact details, links to the pages in the Header and link following to the Leave us a comment Page.
+* #### Last sections are Footer and Copyright. The Footer consists of contact details, links to the pages available in the Header and a link leading to the Leave us a comment Page.
 ![Alt text](images-readme/footer-copyright.png)
 
 * #### The Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
