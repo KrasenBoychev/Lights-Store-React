@@ -21,7 +21,7 @@ export default function Details() {
   // eslint-disable-next-line no-unused-vars
   const [light, setLights, lightQuantities, setLightQuantities, spinner, setSpinner, currPage] = useLightDetails();
 
-  const [boughtItem, setBoughtItem] = useBoughtLight(light._id);
+  const [boughtItem, setBoughtItem] = useBoughtLight(light);
 
   const { date, month, year } = formatDate(light.date);
 
@@ -77,7 +77,7 @@ export default function Details() {
               <ProfileButtons props={{ light, setSpinner, navigate }} />
             )}
 
-            {currPage == 'cart' && <RemoveButton props={{ light, setLightQuantities }} />}
+            {currPage == 'cart' && <RemoveButton props={{ light }} />}
 
             {(currPage == 'catalog' || currPage == 'marketplace')
                 && ( lightQuantities <= 0
