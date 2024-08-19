@@ -11,7 +11,7 @@ import { useAuthContext } from '../../../../contexts/AuthContext';
 import Spinner from '../../../Spinner';
 
 export default function RemoveButton({props}) {
-  const { light, setLightQuantities } = props;
+  const { light } = props;
   const authData = useAuthContext();
 
   const navigate = useNavigate();
@@ -28,7 +28,8 @@ export default function RemoveButton({props}) {
 
         await removeLightFromCart(light._id);
 
-        const lightIndex = authData.userCart.indexOf(light._id);
+        const lightId = light._id;
+        const lightIndex = authData.userCart.findIndex(light => light._id === lightId);
 
         if (lightIndex !== -1) {
           authData.userCart.splice(lightIndex, 1);

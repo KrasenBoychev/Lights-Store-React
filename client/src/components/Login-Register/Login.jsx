@@ -32,7 +32,6 @@ export default function Login() {
 
       if (location.state && location.state.length > 0) {
         navigate(`${location.state}`);
-        console.log(location.state);
         
       } else {
         navigate('/');
