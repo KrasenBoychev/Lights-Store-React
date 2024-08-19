@@ -17,7 +17,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 * #### Last sections are Footer and Copyright. The Footer consists of contact details, links to the pages available in the Header and a link leading to the Leave us a comment Page.
 ![Alt text](images-readme/footer-copyright.png)
 
-* #### The Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
+* #### Leave us a comment Page can be filled in by authenticated or guest users and has front-end and back-end validation for all fields. 
 ![Alt text](images-readme/leave-us-comment.png)
 
 
@@ -27,7 +27,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 ### Marketplace Page shows all lights created by all users. Users(authenticated or guests) can click each light and see the detais. The page has search and sort options and uses pagination.
 ![Alt text](images-readme/marketplace.png)
 
-### Login Page is available for not authenticated users and has has front-end and back-end validation for all fields.
+### Login Page is available for not authenticated users and has front-end and back-end validation for all fields.
 ![Alt text](images-readme/login.png)
 
 * #### If the email or the password are not correct, a toaster notification shows.
@@ -45,17 +45,17 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 ### Cart Page shows all lights the user has added to their cart. The lights Ids are stored in MongoDB, which means that every time the user logges in, it shows the lights they added last time. The user has the option to see the details about the light. Also, they can remove the light by the link at the bottom of each light.
 ![Alt text](images-readme/cart.png)
 
-### Profile Page shows all lights created by the User. They can click each light and see the detais. The page uses pagination. It has the option to sell an old light by clicking the link 'Give ypur old light a new life'.
+### Profile Page shows all lights created by the user. They can click each light and see the detais. The page uses pagination. It has the option to sell an old light by clicking the link 'Give your old light a new life'.
 ![Alt text](images-readme/profile.png)
 
-### Create Light Page shows a form that has front-end and back-end validation for all fields. When the light is created, it goes to the the Profile Page.
+### Create Light Page shows a form that has front-end and back-end validation for all fields. When the light is created, it shows in the Profile Page.
 ![Alt text](images-readme/create-light-1.png)
 ![Alt text](images-readme/create-light-2.png)
 
-### Details Page for guest users shows information about the light and buy button - when clicked it shows the Login Page.
+### Details Page for guest users shows information about the light. When Buy button is clicked it leads to the Login Page.
 ![Alt text](images-readme/details-guest.png)
 
-### Details Page for authenticated users shows information about the light and Buy button - when light has 1 or more quantities.
+### Details Page for authenticated users shows information about the light. Buy button shows if light has 1 or more quantities.
 ![Alt text](images-readme/details-authenticated.png)
 
 * ####  When Buy button is clicked, it shows a message saying that light has been added to the Cart. Quantities and Cart change straight away. 
