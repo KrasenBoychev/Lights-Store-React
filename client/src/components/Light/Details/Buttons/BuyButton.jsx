@@ -24,7 +24,7 @@ export default function BuyButton({ props }) {
       
       await addToCart(light._id);
 
-      authData.userCart.push(light._id);
+      authData.userCart.push(light);
       authData.changeAuthState(authData);
 
       setBoughtItem(true);
