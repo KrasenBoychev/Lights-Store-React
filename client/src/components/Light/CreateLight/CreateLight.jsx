@@ -112,7 +112,7 @@ export default function CreateLight() {
               <Notes props={{ values, changeHandler, errors }} />
               <ImageLight props={{ changeHandler, errors }}/>
 
-              <button type="submit">Add</button>
+              <button type="submit">{currPage == 'createlight' ? 'Add' : 'Edit'}</button>
           </div>
         </form>
       )}
