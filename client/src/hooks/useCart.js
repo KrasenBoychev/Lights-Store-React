@@ -1,42 +1,24 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-import { getCartLights } from '../../api/cart-api';
-
+import { updateUserCart } from '../../api/cart-api';
 import { useAuthContext } from '../contexts/AuthContext';
 
-export default function useCart() {
-  const [cart, setCart] = useState([]);
-  const [spinner, setSpinner] = useState(false);
+export function useCart() {
+    const { userCart } = useAuthContext();
 
-  const authData = useAuthContext();
+    const [cart, setCart] = useState(userCart);
 
-  useEffect(() => {
-    (async function getAllLights() {
-      try {
-        setSpinner(true);
-
-        if (authData.userCart.length == 0) {
-          setCart([]);
-
-        } else {
-          const lightsInCart = await getCartLights(authData.userCart);
-          setCart(lightsInCart);
-
-          if (lightsInCart.length != authData.userCart.length) {
-            const cartArr = lightsInCart.map((light) => light._id);
+    useEffect(() => {
+        (async function updateCart() {
             
-            authData.userCart.splice(0, authData.userCart.length, ...cartArr);
-            authData.changeAuthState(authData);
-          }
-        }
-      
-      } catch (err) {
-        return;
-      } finally {
-        setSpinner(false);
-      }
-    })();
-  }, [authData]);
 
-  return [cart, setCart, spinner];
+            try {
+                const lightsIds = cart.map(light => light._id);
+                await updateUserCart(lightsIds);
+            } catch(error) {
+                toast(error.message);
+            }
+        })();
+    });
 }
