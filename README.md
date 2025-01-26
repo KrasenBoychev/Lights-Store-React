@@ -106,34 +106,34 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 
 * Run Client
 
-    - The client is deployed on Firebase, so you can click on the link:
+    - The client is deployed on Firebase, so you can open the following link in your browser:
 
-```
-https://light-store-b0435.web.app/
-```
+        ```
+        https://light-store-b0435.web.app/
+        ```
 
     - The client can be run on localhost by copying these commands to the terminal:
 
-```
-npm cd client
-```
-```
-npm install
-```
-```
-npm run dev
-```
+        ```
+        npm cd client
+        ```
+        ```
+        npm install
+        ```
+        ```
+        npm run dev
+        ```
 
 * Run Server
-```
-npm cd server
-```
-```
-npm install
-```
-```
-npm start
-```
+        ```
+        npm cd server
+        ```
+        ```
+        npm install
+        ```
+        ```
+        npm start
+        ```
 
 * Info about MongoDB
 
