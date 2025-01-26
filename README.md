@@ -133,7 +133,7 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
     ```
     ```
     npm start
-```
+    ```
 
 * Info about MongoDB
 
