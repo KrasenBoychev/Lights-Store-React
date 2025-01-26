@@ -125,15 +125,15 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
         ```
 
 * Run Server
-        ```
-        npm cd server
-        ```
-        ```
-        npm install
-        ```
-        ```
-        npm start
-        ```
+    ```
+    npm cd server
+    ```
+    ```
+    npm install
+    ```
+    ```
+    npm start
+```
 
 * Info about MongoDB
 
