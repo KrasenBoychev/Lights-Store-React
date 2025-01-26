@@ -7,8 +7,6 @@ function connectDatabase() {
   //     dbName: 'lights-store'
   //   })
 
-  //mongodb+srv://KrasenBoychev:<db_password>@cluster0.zovge.mongodb.net/
-
   mongoose
   .connect(`mongodb+srv://${mongodbCredentials}@cluster0.zovge.mongodb.net/`, {
     dbName: 'lights-store'

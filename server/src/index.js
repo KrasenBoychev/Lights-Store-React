@@ -6,15 +6,13 @@ const { configExpress } = require('./config/configExpress');
 const { configRoutes } = require('./config/configRoutes');
 const express = require('express');
 
-start();
-
-async function start() {
+(function start() {
     const app = express();
 
-    await connectDatabase();
+    connectDatabase();
     configExpress(app);
     configRoutes(app);
 
     app.listen(5000);
-}
+})();
 
