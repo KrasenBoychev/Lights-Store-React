@@ -106,13 +106,13 @@ Lights Store is a project built for SoftUni, React Exam. It is e-commerce websit
 
 * Run Client
 
-* ### The client is deployed on Firebase, so you can click on the link:
+    - The client is deployed on Firebase, so you can click on the link:
 
 ```
 https://light-store-b0435.web.app/
 ```
 
-* ### The client can be run on localhost by copying these commands to the terminal:
+    - The client can be run on localhost by copying these commands to the terminal:
 
 ```
 npm cd client
@@ -137,4 +137,4 @@ npm start
 
 * Info about MongoDB
 
-The database is stored on MongoDB Atlas Cluster, so in order to get access to the database, I have to confirm your IP address. If you want to get access, please send an email to krasenboychev11@gmail.com and introduce yourself.
+The database is stored on MongoDB Atlas Cluster, so in order to get access to the database, I have to confirm your IP address. If you want to get access, please send an email to krasenboychev11@gmail.com, write shortly why you need access and inculde your IP address.
