@@ -1,98 +1,116 @@
-/* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
-import { useAuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from "../../contexts/AuthContext";
+
+import "./header.css";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const { isAuthenticated, userCart } = useAuthContext();
+  const location = useLocation();
+
+  const [currLocation, setCurrLocation] = useState(null);
+
+  useEffect(() => {
+    setCurrLocation(location.pathname);
+  }, [location]);
 
   return (
-    <div className="header_section">
-      <div className="container-fluid">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/catalog">
-                  Catalog
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/marketplace">
-                  Marketplace
-                </Link>
-              </li>
-            </ul>
-            <form className="form-inline my-2 my-lg-0">
-              <h1 className="call_text">Call Us : +01 1234567890</h1>
-            </form>
-            <div
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link
+              to="/"
+              className={currLocation == "/" ? "header_active_link" : ""}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className={currLocation == "/about" ? "header_active_link" : ""}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/catalog"
+              className={currLocation == "/catalog" ? "header_active_link" : ""}
+            >
+              Catalog
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/marketplace"
               className={
-                isAuthenticated
-                  ? 'search_icon nav-user'
-                  : 'search_icon nav-guest'
+                currLocation == "/marketplace" ? "header_active_link" : ""
               }
             >
-              <ul className="navbar-nav mr-auto">
-                {isAuthenticated ? (
-                  <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/cart">
-                        Cart
-                        <span>{userCart?.length}</span>
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/profile">
-                        Profile
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/logout">
-                        Logout
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/login">
-                        Login
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/register">
-                        Register
-                      </Link>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
+              Marketplace
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <p>Call Us : +01 1234567890</p>
+        </ul>
+        <ul>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link
+                  to="/cart"
+                  className={
+                    currLocation == "/cart" ? "header_active_link" : ""
+                  }
+                >
+                  Cart
+                  <span>{userCart?.length}</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/profile"
+                  className={
+                    currLocation == "/profile" ? "header_active_link" : ""
+                  }
+                >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  className={
+                    currLocation == "/login" ? "header_active_link" : ""
+                  }
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className={
+                    currLocation == "/register" ? "header_active_link" : ""
+                  }
+                >
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+    </header>
   );
 }
