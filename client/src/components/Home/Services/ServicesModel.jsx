@@ -1,12 +1,13 @@
-/* eslint-disable react/prop-types */
+import './services.css';
+
 export default function ServicesModel({ service }) {
   return (
-    <div className="col-lg-3 col-sm-6">
-      <div className="icon_1">
-        <img src={service.img} />
+    <div className="service_model_container">
+      <div>
+        <img src={service.img} alt={service.img_alt}/>
       </div>
-      <h2 className="furnitures_text">{service.heading}</h2>
-      <p className="dummy_text">{service.description}</p>
+      <h3>{service.heading}</h3>
+      <p>{service.description}</p>
     </div>
   );
 }
