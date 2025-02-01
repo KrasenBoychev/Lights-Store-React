@@ -7,11 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+api-keys.js
 node_modules
 dist
 dist-ssr
 *.local
-api-keys
 
 # Editor directories and files
 .vscode/*
