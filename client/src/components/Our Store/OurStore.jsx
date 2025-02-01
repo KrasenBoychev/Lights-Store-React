@@ -2,7 +2,7 @@ import {
   APIProvider,
   Map,
 } from '@vis.gl/react-google-maps';
-import { GOOGLE_MAPS_API_KEY } from '../../../api/api-keys';
+import { GOOGLE_MAPS_API_KEY } from '../../../api-keys/api-keys';
 import './ourStore.css';
 
 export default function OurStore() {
