@@ -19,6 +19,7 @@ export default function Footer() {
         about: 'About Us',
         catalog: 'Catalog',
         marketplace: 'Marketplace',
+        'our-store': 'Our Store',
       },
     },
     account: {
