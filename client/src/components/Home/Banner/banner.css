@@ -1,0 +1,54 @@
+.banner_section {
+    width: 100%;
+    padding: 70px 100px;
+    color: var(--white);
+    text-align: center;
+    text-transform: uppercase;
+    background-image: url(./images/background-home.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+.banner_section div {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.banner_heading,
+.banner_description,
+.banner_catalog_link {
+    letter-spacing: 1.2px;
+    word-spacing: 1.2px;
+}
+
+.banner_heading,
+.banner_description {
+    padding: 30px 100px;
+}
+
+.banner_heading {
+    font-size: 2rem;
+    background-color: var(--orange);
+}
+
+.banner_description {
+    background-color: var(--black);
+    font-size: 1.2rem;
+}
+
+.banner_catalog_link {
+    padding: 15px 30px;
+    color: var(--white);
+    background-color: var(--orange);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.banner_catalog_link:hover {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--black);
+}
