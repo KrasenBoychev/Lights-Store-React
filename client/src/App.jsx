@@ -9,9 +9,9 @@ import {
 
 import { AuthContextProvider } from "./contexts/AuthContext";
 
-import Header from "./components/Header/Header";
+import Header from "./components/core/Header/Header";
 import Home from "./components/Home/Home";
-import About from "./components/About/About";
+import About from "./components/core/About/About";
 import ShowLights from "./components/ShowLights/ShowLights";
 import Details from "./components/Light/Details/Details";
 import CreateLight from "./components/Light/CreateLight/CreateLight";
@@ -21,7 +21,7 @@ import Register from "./components/Login-Register/Register";
 import Footer from "./components/Footer/FooterSection/Footer";
 import Copyright from "./components/Footer/Copyright";
 import CommentForm from "./components/Home/Comments/CommentForm";
-import NotFound from "./components/Not Found/NotFound";
+import NotFound from "./components/core/Not Found/NotFound";
 import Logout from "./components/Logout.jsx/Logout";
 import OurStore from "./components/Our Store/OurStore";
 
