@@ -1,0 +1,15 @@
+.comments_container {
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.comments_container h2 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+ul li {
+    list-style-type: circle;
+}
