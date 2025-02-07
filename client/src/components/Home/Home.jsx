@@ -11,7 +11,7 @@ export default function Home() {
       <Banner />
       <Services />
       <OurLights />
-      {/* <Comments /> */}
+      <Comments />
     </div>
   );
 }
