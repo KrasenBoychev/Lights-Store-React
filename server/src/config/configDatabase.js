@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { mongodbCredentials } = require('../credentials/mongodbCredentials');
+const { MONGODB_CREDENTIALS } = require('../credentials');
 
 function connectDatabase() {
   // mongoose
@@ -8,9 +8,12 @@ function connectDatabase() {
   //   })
 
   mongoose
-  .connect(`mongodb+srv://${mongodbCredentials}@cluster0.zovge.mongodb.net/`, {
-    dbName: 'lights-store'
-  })
+    .connect(
+      `mongodb+srv://${MONGODB_CREDENTIALS}@cluster0.zovge.mongodb.net/`,
+      {
+        dbName: 'lights-store',
+      }
+    )
 
     // eslint-disable-next-line no-unused-vars
     .then((res) => {
