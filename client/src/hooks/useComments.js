@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { getComments } from '../../api/comments-api';
+import { getComments } from "../../api/comments-api";
 
 export default function useComments() {
   const [comments, setComments] = useState([]);

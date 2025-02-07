@@ -1,41 +1,48 @@
-import useComments from '../../../hooks/useComments';
+import { useState, useEffect } from "react";
+import useComments from "../../../hooks/useComments";
 
-import CommentModel from './CommentModel';
+import CommentModel from "./CommentModel";
+import "./comments.css";
 
 export default function Comments() {
   const [comments, setComments] = useComments();
 
+  const [commentOneIndex, setCommentOneIndex] = useState(0);
+  const [commentTwoIndex, setCommentTwoIndex] = useState(1);
+  const [listItemsArr, setListItemsArr] = useState([]);
+
+  useEffect(() => {
+    const listItems = [];
+
+    for (let index = 0; index < 8; index += 2) {
+      listItems.push(
+        <li key={index} onClick={() => setNewComments(index, index + 1)}></li>
+      );
+    }
+
+    setListItemsArr(listItems);
+  }, []);
+
+  const setNewComments = (indexOne, indexTwo) => {
+    setCommentOneIndex(indexOne);
+    setCommentTwoIndex(indexTwo);
+  };
+
   return (
-    <div className="clients_section layout_padding">
-      <div className="container">
-        <div
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <ol className="carousel-indicators">
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          </ol>
-          <div className="carousel-inner">
-            {comments.map(
-              (comment, index) =>
-                index % 2 == 0 && (
-                  <CommentModel
-                    key={comment._id}
-                    allComments={{ comment, comments, index }}
-                  />
-                )
-            )}
-          </div>
-        </div>
-      </div>
+    <div className="comments_container">
+      <h2>What our customers say</h2>
+      <section>
+        {comments.length > 0 ? (
+          <CommentModel
+            renderTwoComments={{ comments, commentOneIndex, commentTwoIndex }}
+          />
+        ) : (
+          "No comments yet"
+        )}
+      </section>
+      <section>
+        <ul>{listItemsArr}</ul>
+      </section>
     </div>
   );
 }
