@@ -18,8 +18,7 @@ import CreateLight from "./components/Light/CreateLight/CreateLight";
 import Cart from "./components/Cart/Cart";
 import Login from "./components/Login-Register/Login";
 import Register from "./components/Login-Register/Register";
-import Footer from "./components/Footer/FooterSection/Footer";
-import Copyright from "./components/Footer/Copyright";
+import Footer from "./components/Footer/Footer";
 import CommentForm from "./components/Home/Comments/CommentForm";
 import NotFound from "./components/core/Not Found/NotFound";
 import Logout from "./components/Logout.jsx/Logout";
@@ -77,8 +76,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        {/* <Footer /> */}
-        {/* <Copyright /> */}
+        <Footer />
       </AuthContextProvider>
     </>
   );
