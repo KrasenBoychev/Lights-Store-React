@@ -1,6 +1,11 @@
 # Lights Store
 
-Lights Store is a project built for SoftUni, React Exam. It is e-commerce website that offers new lights and registered users can offer their used lights. The project uses MongoDB to store the records and Firebase to store the images.
+Lights Store is a project that simulates an e-commerce website, built for SoftUni, React Exam. The website offers brand new lights in the Catalog Page and used lights in the Markeplace Page. Registered and not registered users have an access to both pages and they can see the details about every single light. If an user wants to add a light to their Cart, they need to create an account or login. If an user has already had an account, they would also be able to see the lights they added to their Cart before. Authorized users have the option to sell their old lights by adding information about them and public them on the Marketplace Page. If they want to edit the information about the lights they published or just delete them, they have the option to do it.
+When an user clicks to see the details of a certain light, they can also see the current stock. If an user adds a light to their Cart, the stock changes straight away. A light can be added to their Cart only once, so the same user would not be able to add it a second time.
+
+When the project was created for the React Exam, the design was based on HTML template using JQUERY and BOOTSTRAP, but in order to show my knowledge regarding CSS, the project no longer uses the template and its libraries, so changes are underway. The desing is expected to be completed at the end of February 2025.
+
+The project uses its own server to process all requests, MongoDB to store the records and Firebase to store the images.
 
 ## Description
 
