@@ -2,10 +2,10 @@
 import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 
-import { addToCart } from '../../../../../api/cart-api';
-import { decreaseQuantities } from '../../../../../api/lights-api';
+import { addToCart } from '../../../../../../api/cart-api';
+import { decreaseQuantities } from '../../../../../../api/lights-api';
 
-import { useAuthContext } from '../../../../contexts/AuthContext';
+import { useAuthContext } from '../../../../../contexts/AuthContext';
 
 export default function BuyButton({ props }) {
   const { light, setBoughtItem, setLightQuantities, navigate } = props;

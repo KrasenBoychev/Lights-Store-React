@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './CatalogLight.css';
 
-import RemoveButton from '../Details/Buttons/RemoveButton';
+import RemoveButton from '../../../Lights/Single Light/Light Details/Buttons/RemoveButton';
 
 export default function CatalogLight(light) {
   const location = useLocation();

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import toast from 'react-hot-toast';
 
-import { deleteRecord } from '../../../../../api/lights-api';
-import { deleteImage } from '../../../../services/firebase/requester-firebase';
+import { deleteRecord } from '../../../../../../api/lights-api';
+import { deleteImage } from '../../../../../services/firebase/requester-firebase';
 
 export default function DeleteLight({ props }) {
   const { light, setSpinner, navigate, setDeletePopUp } = props;

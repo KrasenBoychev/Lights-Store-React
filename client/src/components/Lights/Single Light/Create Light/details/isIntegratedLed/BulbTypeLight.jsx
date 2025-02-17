@@ -1,4 +1,4 @@
-import { bulbTypes } from '../../../../../common/bulbTypes';
+import { bulbTypes } from '../../../../../../common/bulbTypes';
 
 /* eslint-disable react/prop-types */
 export default function BulbTypeLight({ props }) {

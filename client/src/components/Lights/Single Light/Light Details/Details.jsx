@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   useLightDetails,
   useBoughtLight,
-} from '../../../hooks/useLightDetails';
+} from '../../../../hooks/useLightDetails';
 
 import './Details.css';
 
@@ -12,8 +12,8 @@ import ProfileButtons from './Buttons/ProfileButtons';
 import BuyButton from './Buttons/BuyButton';
 import RemoveButton from './Buttons/RemoveButton';
 
-import Spinner from '../../Spinner';
-import { formatDate } from '../../../common/dateFormatter';
+import Spinner from '../../../core/Spinner';
+import { formatDate } from '../../../../common/dateFormatter';
 
 export default function Details() {
   const navigate = useNavigate();

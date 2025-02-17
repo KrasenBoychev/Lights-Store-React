@@ -1,18 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react/prop-types */
 import ReactPaginate from 'react-paginate';
-
 import { useAllLights, useSortAndPaginate } from '../../hooks/useLights';
 
-import './ShowLights.css';
+import CatalogLight from './Single Light/Catalog Light/CatalogLight';
+import CreateLightParagraph from './Single Light/Create Light/CreateLightParagraph';
+import Search from '../Lights/Filter Lights/Search';
+import Spinner from '../core/Spinner';
 
-import CatalogLight from '../Light/CatalogLight/CatalogLight';
-import CreateLightParagraph from './chunks/CreateLightParagraph';
-import Search from './chunks/Search';
-import Spinner from '../Spinner';
+import './lightsPage.css';
 
-export default function ShowLights(props) {
+export default function LightsPage(props) {
   const [
     lights,
     setLights,

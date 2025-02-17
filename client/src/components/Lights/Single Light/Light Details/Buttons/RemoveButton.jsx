@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-import { removeLightFromCart } from '../../../../../api/cart-api';
-import { increaseQuantities } from '../../../../../api/lights-api';
+import { removeLightFromCart } from '../../../../../../api/cart-api';
+import { increaseQuantities } from '../../../../../../api/lights-api';
 
-import { useAuthContext } from '../../../../contexts/AuthContext';
+import { useAuthContext } from '../../../../../contexts/AuthContext';
 
-import Spinner from '../../../Spinner';
+import Spinner from '../../../../core/Spinner';
 
 export default function RemoveButton({props}) {
   const { light } = props;

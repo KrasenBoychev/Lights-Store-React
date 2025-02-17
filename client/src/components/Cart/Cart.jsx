@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useCart } from '../../hooks/useCart';
 
-import CatalogLight from '../Light/CatalogLight/CatalogLight';
+import CatalogLight from '../Lights/Single Light/Catalog Light/CatalogLight';
 
 export default function Cart() {
   const { userCart } = useAuthContext();

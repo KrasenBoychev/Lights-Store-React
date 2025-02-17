@@ -3,23 +3,22 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-import { createRecord, editRecord } from '../../../../api/lights-api';
-import { deleteImage, uploadImage } from '../../../services/firebase/requester-firebase';
+import { createRecord, editRecord } from '../../../../../api/lights-api';
+import { deleteImage, uploadImage } from '../../../../services/firebase/requester-firebase';
 
-import { useForm } from '../../../hooks/useForm';
-import { useOneLight } from '../../../hooks/useOneLight';
+import { useForm } from '../../../../hooks/useForm';
+import { useOneLight } from '../../../../hooks/useOneLight';
+import validateCreateLightForm from '../../../../formsValidation/validateCreateLight';
+
+import MainFields from './details/mainFields/MainFields';
+import Dimensions from './details/dimensions/Dimensions';
+import IntegratedLed from './details/isIntegratedLed/IntegratedLed';
+import ImageLight from './details/image/ImageLight';
+
+import Spinner from '../../../core/Spinner';
+import Notes from './details/notes/Notes';
 
 import './CreateLight.css';
-
-import validateCreateLightForm from '../../../formsValidation/validateCreateLight';
-
-import MainFields from './chunks/mainFields/MainFields';
-import Dimensions from './chunks/dimensions/Dimensions';
-import IntegratedLed from './chunks/isIntegratedLed/IntegratedLed';
-import ImageLight from './chunks/image/ImageLight';
-
-import Spinner from '../../Spinner';
-import Notes from './chunks/notes/Notes';
 
 export default function CreateLight() {
   const [spinner, setSpinner] = useState(false);
