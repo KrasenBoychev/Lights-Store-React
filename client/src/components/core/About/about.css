@@ -1,0 +1,45 @@
+.about_container {
+    padding: 30px 60px;
+    background-color: var(--orange);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.about_text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.about_text h1 {
+    margin-bottom: 15px;
+}
+
+.about_text p {
+    text-align: justify;
+    line-height: 1.2rem;
+}
+
+.about_text div {
+    margin-top: 15px;
+}
+
+.about_text div a {
+    padding: 10px 20px;
+    color: var(--white);
+    background-color: var(--black);
+    border-radius: 5px;
+}
+
+.about_text div a:hover {
+    color: var(--orange);
+    background-color: var(--white);
+}
+
+.about_image img {
+    width: 500px;
+    height: 350px;
+    border-radius: 5px;
+}
