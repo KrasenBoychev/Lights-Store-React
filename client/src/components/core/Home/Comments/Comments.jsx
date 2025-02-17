@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useComments from "../../../hooks/useComments";
+import useComments from "../../../../hooks/useComments";
 
 import CommentModel from "./CommentModel";
 import "./comments.css";

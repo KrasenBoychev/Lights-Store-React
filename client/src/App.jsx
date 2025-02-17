@@ -10,7 +10,7 @@ import {
 import { AuthContextProvider } from "./contexts/AuthContext";
 
 import Header from "./components/core/Header/Header";
-import Home from "./components/Home/Home";
+import Home from "./components/core/Home/Home";
 import About from "./components/core/About/About";
 import ShowLights from "./components/ShowLights/ShowLights";
 import Details from "./components/Light/Details/Details";
@@ -18,8 +18,8 @@ import CreateLight from "./components/Light/CreateLight/CreateLight";
 import Cart from "./components/Cart/Cart";
 import Login from "./components/Login-Register/Login";
 import Register from "./components/Login-Register/Register";
-import Footer from "./components/Footer/Footer";
-import CommentForm from "./components/Home/Comments/CommentForm";
+import Footer from "./components/core/Footer/Footer";
+import CommentForm from "./components/core/Home/Comments/CommentForm";
 import NotFound from "./components/core/Not Found/NotFound";
 import Logout from "./components/Logout.jsx/Logout";
 import OurStore from "./components/Our Store/OurStore";

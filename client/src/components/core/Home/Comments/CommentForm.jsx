@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-import { createComment } from '../../../../api/comments-api';
-import { useForm } from '../../../hooks/useForm';
-import { uploadImage } from '../../../services/firebase/requester-firebase';
+import { createComment } from '../../../../../api/comments-api';
+import { useForm } from '../../../../hooks/useForm';
+import { uploadImage } from '../../../../services/firebase/requester-firebase';
 
-import validateCommentForm from '../../../formsValidation/validateCommentForm';
+import validateCommentForm from '../../../../formsValidation/validateCommentForm';
 
-import Spinner from '../../Spinner';
+import Spinner from '../../../Spinner';
 
 const initialValues = {
   name: '',

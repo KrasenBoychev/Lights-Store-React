@@ -33,7 +33,7 @@ export default function OurLights() {
         >
           <figure>
             <img
-              src="/src/components/Home/Our Lights/images/LED-ceiling-lights.jpg"
+              src="/src/components/core/Home/Our Lights/images/LED-ceiling-lights.jpg"
               alt="Integrated LED Lights"
             />
             <figcaption>
@@ -66,7 +66,7 @@ export default function OurLights() {
         >
           <figure>
             <img
-              src="/src/components/Home/Our Lights/images/ceiling-lights-home.jpg"
+              src="/src/components/core/Home/Our Lights/images/ceiling-lights-home.jpg"
               alt="Lights with bulbs"
             />
             <figcaption>
