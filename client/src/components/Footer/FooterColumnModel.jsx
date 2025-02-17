@@ -1,16 +1,16 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
+import './footer.css';
 
 export default function FooterColumnModel({ element }) {
   return (
     <div className="footer_column">
       <h3>{element.heading}</h3>
       <ul
-        // className={
-        //   element.list
-        //     ? 'let-us-help-icons footer_lorem_text'
-        //     : 'footer_lorem_text1'
-        // }
+        className={
+          element.list
+            ? 'let_us_help_details'
+            : 'footer_link'
+        }
       >
         {element.list
           ? Object.entries(element.list).map((details) => (
