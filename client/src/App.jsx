@@ -21,7 +21,7 @@ import Register from "./components/authentication/Register";
 import Footer from "./components/core/Footer/Footer";
 import CommentForm from "./components/core/Home/Comments/CommentForm";
 import NotFound from "./components/core/Not Found/NotFound";
-import Logout from "./components/Logout.jsx/Logout";
+import Logout from "./components/authentication/Logout";
 import OurStore from "./components/Our Store/OurStore";
 
 import ScrollTop from "./common/ScrollTop";

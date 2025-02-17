@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useCart } from '../../hooks/useCart';
 
@@ -5,8 +6,6 @@ import CatalogLight from '../Light/CatalogLight/CatalogLight';
 
 export default function Cart() {
   const { userCart } = useAuthContext();
-
-  useCart();
 
   return (
     <div className="catalog_section">
