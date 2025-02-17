@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../contexts/AuthContext';
 
-import FooterModel from './FooterColumnModel';
+import FooterColumnModel from './FooterColumnModel';
 import Copyright from './Copyright';
 
 import './footer.css';
@@ -50,7 +50,7 @@ export default function Footer() {
     <footer>
         <div className="footer_info">
           {Object.entries(footerInfo).map((eachElement) => (
-            <FooterModel key={eachElement[0]} element={eachElement[1]} />
+            <FooterColumnModel key={eachElement[0]} element={eachElement[1]} />
           ))}
         </div>
       <Copyright />
