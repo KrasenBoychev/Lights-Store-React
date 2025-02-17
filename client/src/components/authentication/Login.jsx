@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 
-import { useLogin } from '../../hooks/useAuth';
-import { useForm } from '../../hooks/useForm';
+import { useLogin } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
 
-import validateLoginForm from '../../formsValidation/validateLogin';
+import validateAuthenticationForm from "../../formsValidation/validateAuthenticationForm";
 
-import './LoginAndRegister.css';
+import "./authentication.css";
 
-const initialValues = { email: '', password: '' };
+const initialValues = { email: "", password: "" };
 
 export default function Login() {
   const login = useLogin();
@@ -20,7 +20,7 @@ export default function Login() {
   const [errors, setErrors] = useState({});
 
   const loginHandler = async ({ email, password }) => {
-    const allErrors = validateLoginForm(email, password);
+    const allErrors = validateAuthenticationForm(email, password);
 
     if (Object.entries(allErrors).length > 0) {
       setErrors(allErrors);
@@ -32,11 +32,9 @@ export default function Login() {
 
       if (location.state && location.state.length > 0) {
         navigate(`${location.state}`);
-        
       } else {
-        navigate('/');
+        navigate("/");
       }
-      
     } catch (error) {
       return toast.error(error.message);
     }
@@ -49,11 +47,15 @@ export default function Login() {
   );
 
   return (
-    <div className="login_section">
-      <div className="login-form">
-        <form method="post" onSubmit={submitHandler}>
+    <div className="authentication_form_container">
+      <div className="authentication_form_wrapper">
+        <form
+          method="post"
+          onSubmit={submitHandler}
+          className="authentication_form"
+        >
           <h2>Login</h2>
-          <div className="form-input">
+          <div>
             <input
               type="email"
               id="email"
@@ -64,7 +66,7 @@ export default function Login() {
             />
             {errors.email && <span>{errors.email}</span>}
           </div>
-          <div className="form-input">
+          <div>
             <input
               type="password"
               id="password"
@@ -80,7 +82,7 @@ export default function Login() {
         </form>
 
         <p>
-          Do not have an account? <Link to="/register">Register here</Link>.
+          Do not have an account? <Link to="/register">Register here</Link>
         </p>
       </div>
     </div>

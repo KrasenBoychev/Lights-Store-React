@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
-import { useRegister } from '../../hooks/useAuth';
-import { useForm } from '../../hooks/useForm';
+import { useRegister } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
 
-import validateRegisterForm from '../../formsValidation/validateRegister';
+import validateAuthenticationForm from "../../formsValidation/validateAuthenticationForm";
 
-import './LoginAndRegister.css';
+import "./authentication.css";
 
-const initialValues = { email: '', password: '', rePass: '' };
+const initialValues = { email: "", password: "", rePass: "" };
 
 export default function Register() {
   const register = useRegister();
@@ -19,7 +19,7 @@ export default function Register() {
   const [errors, setErrors] = useState({});
 
   const registerHandler = async ({ email, password, rePass }) => {
-    const allErrors = validateRegisterForm(email, password, rePass);
+    const allErrors = validateAuthenticationForm(email, password, rePass);
 
     if (Object.entries(allErrors).length > 0) {
       setErrors(allErrors);
@@ -28,11 +28,10 @@ export default function Register() {
 
     try {
       await register(email, password);
-      navigate('/');
-      
+      navigate("/");
     } catch (error) {
       const errorList = JSON.parse(error.message);
-      
+
       if (!Array.isArray(errorList)) {
         setErrors(errorList);
       } else {
@@ -48,11 +47,15 @@ export default function Register() {
   );
 
   return (
-    <div className="login_section">
-      <div className="login-form">
-        <form method="post" onSubmit={submitHandler}>
+    <div className="authentication_form_container">
+      <div className="authentication_form_wrapper">
+        <form
+          method="post"
+          onSubmit={submitHandler}
+          className="authentication_form"
+        >
           <h2>Register</h2>
-          <div className="form-input">
+          <div>
             <input
               type="email"
               id="email"
@@ -63,7 +66,7 @@ export default function Register() {
             />
             {errors.email && <span>{errors.email}</span>}
           </div>
-          <div className="form-input">
+          <div>
             <input
               type="password"
               id="password"
@@ -74,7 +77,7 @@ export default function Register() {
             />
             {errors.password && <span>{errors.password}</span>}
           </div>
-          <div className="form-input">
+          <div>
             <input
               type="password"
               id="rePass"
@@ -90,7 +93,7 @@ export default function Register() {
         </form>
 
         <p>
-          Have an account yet? <Link to="/login">Login here</Link>.
+          Have an account yet? <Link to="/login">Login here</Link>
         </p>
       </div>
     </div>
