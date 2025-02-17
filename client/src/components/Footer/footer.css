@@ -1,5 +1,5 @@
 footer {
-    padding: 30px 60px;
+    padding-top: 30px;
     color: var(--white);
     background-color: var(--black);
     display: flex;
@@ -8,11 +8,47 @@ footer {
 }
 
 .footer_info {
+    padding-left: 60px;
+    padding-right: 60px;
     display: flex;
     justify-content: space-between;
 }
 
-.footer_info_column {
+.footer_column {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+
+.footer_column ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.let_us_help_details {
+    gap: 10px;
+}
+
+.let_us_help_details li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer_link {
+    gap: 5px;
+}
+
+.footer_link li:hover {
+    cursor: pointer;
+    color: var(--orange);
+}
+
+.copyright_section {
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--orange);
+    background-color: var(--black);
+    border-top: 1px solid var(--white)
 }
