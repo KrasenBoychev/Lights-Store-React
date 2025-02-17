@@ -27,6 +27,7 @@ ul {
   --white: #ffffff;
   --black: #000;
   --orange: #fabc26;
+  --red_error: rgb(219, 5, 5);
 }
 
 main {
