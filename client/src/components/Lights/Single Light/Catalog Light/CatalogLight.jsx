@@ -12,8 +12,8 @@ export default function CatalogLight(light) {
   const { imageURL, name, price, _id } = light;
 
   return (
-    <div className="item-wrapper">
-      <div className="container_main">
+    <div className="single_light_container">
+      <div className="single_light_img">
         <img src={imageURL} />
         <div className="overlay">
           <Link to={_id} className="icon" title="User Profile">
