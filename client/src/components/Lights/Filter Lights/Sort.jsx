@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 export default function Sort({ props }) {
   const { sort, setSort } = props;
 
@@ -7,7 +6,7 @@ export default function Sort({ props }) {
   };
 
   return (
-    <div className="sort-lights">
+    <div className="sort_lights">
       <select name="sortLights" value={sort} onChange={changeHandler}>
         <option value="nameAscending">A - Z</option>
         <option value="nameDescending">Z - A</option>
