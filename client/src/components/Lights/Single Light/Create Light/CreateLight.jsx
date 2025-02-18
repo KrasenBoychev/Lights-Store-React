@@ -7,7 +7,7 @@ import { createRecord, editRecord } from '../../../../../api/lights-api';
 import { deleteImage, uploadImage } from '../../../../services/firebase/requester-firebase';
 
 import { useForm } from '../../../../hooks/useForm';
-import { useOneLight } from '../../../../hooks/useOneLight';
+import { useOneLight } from '../../../../hooks/lights/single light/useOneLight';
 import validateCreateLightForm from '../../../../formsValidation/validateCreateLight';
 
 import MainFields from './details/mainFields/MainFields';
