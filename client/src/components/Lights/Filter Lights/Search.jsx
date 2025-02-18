@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useSearch } from '../../../hooks/useSearch';
+import { useSearch } from "../../../hooks/lights/filter lights/useSearch";
 
-import Sort from './Sort';
+import Sort from "./Sort";
+import "./search.css";
 
 export default function Search(props) {
   const [name, minPrice, maxPrice, lightType, setSearchFormValues, sortState] =
@@ -10,7 +11,7 @@ export default function Search(props) {
   const changeHandler = (e) => {
     setSearchFormValues((state) => ({
       ...state,
-      [e.target.name]: e.target.value != 'defaultValue' ? e.target.value : '',
+      [e.target.name]: e.target.value != "defaultValue" ? e.target.value : "",
     }));
   };
 
@@ -18,49 +19,55 @@ export default function Search(props) {
     e.preventDefault();
 
     setSearchFormValues({
-      name: '',
-      minPrice: '',
-      maxPrice: '',
-      lightType: '',
+      name: "",
+      minPrice: "",
+      maxPrice: "",
+      lightType: "",
     });
   };
 
   return (
-    <div className='search'>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name ? name : ''}
-          onChange={changeHandler}
-        />
-        <input
-          type="number"
-          name="minPrice"
-          placeholder="Min Price"
-          value={minPrice ? minPrice : ''}
-          onChange={changeHandler}
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          placeholder="Max Price"
-          value={maxPrice ? maxPrice : ''}
-          onChange={changeHandler}
-        />
-        <select
-          name="lightType"
-          value={lightType ? lightType : ''}
-          onChange={changeHandler}
-        >
-          <option value="defaultValue">--- Type of Light ---</option>
-          <option value="integratedLed">Integrated LED</option>
-          <option value="bulbType">Bulb Type</option>
-        </select>
+    <aside className="lights_search_container">
+      <div className="lights_search_wrapper">
+        <Sort props={sortState} />
 
-        <button className='clear-fields' onClick={clearAllFields}>Clear</button>
+        <div className="lights_filter">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name ? name : ""}
+            onChange={changeHandler}
+          />
+          <input
+            type="number"
+            name="minPrice"
+            placeholder="Min Price"
+            value={minPrice ? minPrice : ""}
+            onChange={changeHandler}
+          />
+          <input
+            type="number"
+            name="maxPrice"
+            placeholder="Max Price"
+            value={maxPrice ? maxPrice : ""}
+            onChange={changeHandler}
+          />
+          <select
+            name="lightType"
+            value={lightType ? lightType : ""}
+            onChange={changeHandler}
+          >
+            <option value="defaultValue">--- Type of Light ---</option>
+            <option value="integratedLed">Integrated LED</option>
+            <option value="bulbType">Bulb Type</option>
+          </select>
 
-        <Sort props={sortState}/>
+          <button className="clear-fields" onClick={clearAllFields}>
+            Clear
+          </button>
+        </div>
       </div>
+    </aside>
   );
 }
