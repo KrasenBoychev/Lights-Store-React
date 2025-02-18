@@ -1,0 +1,46 @@
+.lights_search_container {
+    width: 200px;
+}
+
+.lights_search_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lights_filter, .sort_lights {
+    padding: 10px;
+    background-color: var(--orange);
+    border-radius: 5px;
+}
+
+.lights_filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lights_filter > *, .sort_lights select {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    color: var(--black);
+    border: none;
+    border-radius: 5px;
+}
+
+.lights_filter > * {
+    padding: 5px;
+}
+
+.lights_filter button {
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.lights_filter button:hover {
+    cursor: pointer;
+    color: var(--orange);
+    background-color: var(--white);
+}
