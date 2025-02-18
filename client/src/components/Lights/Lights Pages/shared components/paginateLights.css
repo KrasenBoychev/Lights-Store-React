@@ -1,0 +1,48 @@
+.lights_pagination_container {
+    padding-bottom: 30px;
+    display: flex;
+    align-self: center;
+}
+
+.pagination {
+    display: flex;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+}
+
+.page-item {
+    text-align: center;
+    display: flex;
+}
+
+.page-item:not(:last-child) {
+    border-right: 1px solid var(--black);
+}
+
+.page-item:not(:first-child):not(:last-child) {
+   width: 30px;
+}
+
+.page-item:first-child, .page-item:last-child {
+    color: var(--orange);
+    font-weight: 600;
+ }
+
+ .page-item.disabled {
+    color: var(--black);  
+ }
+
+.page-item.active {
+    color: var(--white);
+    background-color: var(--orange);
+}
+
+.page-link {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.page-link:not(.page-item.disabled a):hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
