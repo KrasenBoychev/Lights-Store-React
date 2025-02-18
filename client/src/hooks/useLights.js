@@ -3,8 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import { useLogout } from './useAuth';
+import { getCatalogLights } from '../../api/lights-api';
 
-export function useAllLights(props) {
+export function useAllLights({getLights}) {
   const [spinner, setSpinner] = useState(false);
   const [lights, setLights] = useState([]);
   const [filteredLights, setFilteredLights] = useState([]);
@@ -21,7 +22,7 @@ export function useAllLights(props) {
     (async function getAllLights() {
       try {
         setSpinner(true);
-        const allLights = await props.getDataFunc();
+        const allLights = await getLights();
         setLights(allLights);
 
         if (location.state) {
@@ -47,14 +48,13 @@ export function useAllLights(props) {
         
       } catch (error) {
         toast(error.message);
-
-        logout();
         navigate('/');
+        
       } finally {
         setSpinner(false);
       }
     })();
-  }, [props.getDataFunc]);
+  }, []);
 
   return [
     lights,
@@ -68,31 +68,4 @@ export function useAllLights(props) {
     spinner,
     currPage,
   ];
-}
-
-export function useSortAndPaginate(filteredLights, sort) {
-  const sortMethods = {
-    'nameAscending': { method: (a, b) => a.name.localeCompare(b.name) },
-    'nameDescending': { method: (a, b) => b.name.localeCompare(a.name) },
-    'priceAscending': { method: (a, b) => a.price - b.price },
-    'priceDescending': { method: (a, b) => b.price - a.price },
-  };
-
-  const [itemOffset, setItemOffset] = useState(0);
-
-  const itemsPerPage = 4;
-
-  const items = filteredLights ? filteredLights.sort(sortMethods[sort].method) : '';
-
-  const endOffset = itemOffset + itemsPerPage;
- 
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    setItemOffset(newOffset);
-  };
-
-  return [currentItems, pageCount, handlePageClick];
 }
