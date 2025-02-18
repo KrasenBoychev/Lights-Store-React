@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   useLightDetails,
   useBoughtLight,
-} from '../../../../hooks/useLightDetails';
+} from '../../../../hooks/lights/single light/useLightDetails';
 
 import './Details.css';
 
