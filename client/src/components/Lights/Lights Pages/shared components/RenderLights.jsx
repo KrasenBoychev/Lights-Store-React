@@ -9,9 +9,11 @@ export default function RenderLights({ props }) {
       {spinner ? (
         <Spinner />
       ) : filteredLights.length > 0 ? (
-        currentItems.map((light) => {
-          return <CatalogLight key={light._id} {...light} />;
-        })
+        <div className="all_lights_wrapper">
+          {currentItems.map((light) => {
+            return <CatalogLight key={light._id} {...light} />;
+          })}
+        </div>
       ) : (
         <p>
           There are no lights
