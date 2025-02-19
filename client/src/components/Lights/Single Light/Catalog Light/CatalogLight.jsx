@@ -1,29 +1,44 @@
-/* eslint-disable react/prop-types */
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
-import './CatalogLight.css';
-
-import RemoveButton from '../../../Lights/Single Light/Light Details/Buttons/RemoveButton';
+import OverlaySearchIcon from "../../../reusable components/OverlaySearchIcon";
+import RemoveButton from "../../../Lights/Single Light/Light Details/Buttons/RemoveButton";
+import "./CatalogLight.css";
 
 export default function CatalogLight(light) {
   const location = useLocation();
-  const currPage = location.pathname.split('/')[1];
+  const currPage = location.pathname.split("/")[1];
 
   const { imageURL, name, price, _id } = light;
 
+  const [catalogLightHovered, setCatalogLightHovered] = useState(false);
+
+  const catalogLightEnterHandler = () => {
+    setCatalogLightHovered(true);
+  };
+
+  const catalogLightLeaveHandler = () => {
+    setCatalogLightHovered(false);
+  };
+
   return (
-    <div className="single_light_container">
+    <div
+      className="single_light_container"
+      onMouseOver={catalogLightEnterHandler}
+      onMouseOut={catalogLightLeaveHandler}
+    >
       <div className="single_light_img">
         <img src={imageURL} />
-        <div className="overlay">
-          <Link to={_id} className="icon" title="User Profile">
-            <i className="fa fa-search"></i>
-          </Link>
-        </div>
+        <OverlaySearchIcon
+          props={{
+            currState: catalogLightHovered,
+            linkProps: { linkToPage: _id },
+          }}
+        />
       </div>
-      <p className="item-name">{name}</p>
-      <p className="item-price">{price.toFixed(2)}lv.</p>
-      {currPage == 'cart' && <RemoveButton props={{ light }} />}
+      <p className="single_light_name">{name}</p>
+      <p className="single_light_price">{price.toFixed(2)}lv.</p>
+      {currPage == "cart" && <RemoveButton props={{ light }} />}
     </div>
   );
 }
