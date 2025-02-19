@@ -68,7 +68,7 @@ export default function Header() {
                   }
                 >
                   Cart
-                  <span>{userCart?.length}</span>
+                  <span className="header_cart_items_num">{userCart?.length}</span>
                 </Link>
               </li>
               <li>
