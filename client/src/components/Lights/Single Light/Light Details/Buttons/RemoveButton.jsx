@@ -10,6 +10,8 @@ import { useAuthContext } from '../../../../../contexts/AuthContext';
 
 import Spinner from '../../../../core/Spinner';
 
+import "../../Catalog Light/CatalogLight.css"
+
 export default function RemoveButton({props}) {
   const { light } = props;
   const authData = useAuthContext();
@@ -65,7 +67,7 @@ export default function RemoveButton({props}) {
     <>
     {spinner 
         ? <Spinner />
-        :  <button onClick={removeClickHandler}>Remove</button>}
+        :  <button onClick={removeClickHandler} className="single_light_remove_btn">Remove</button>}
     </>
   );
 }
