@@ -1,0 +1,24 @@
+.div_overlay_search_icon_inactive {
+    display: none;
+}
+
+.div_overlay_search_icon_active {
+    display: block;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: calc(40%);
+    left: calc(50% - 30px);
+}
+
+.div_overlay_search_icon_active a {
+    width: 100%;
+    height: 100%;
+    padding: 25px 20px;
+    background-color: var(--orange);
+    border-radius: 50%;
+}
+
+.div_overlay_search_icon_active i {
+    color: var(--white);
+}
