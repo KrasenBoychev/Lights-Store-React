@@ -7,7 +7,13 @@ export default function Cart() {
   const { userCart } = useAuthContext();
 
   return (
-    <div className="lights_page_container">
+    <div
+      className={
+        userCart.length > 4
+          ? "lights_page_container cart_container_lights_left"
+          : "lights_page_container"
+      }
+    >
       <h1>Cart</h1>
       <RenderLights
         props={{
