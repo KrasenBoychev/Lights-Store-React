@@ -26,7 +26,7 @@ export default function Marketplace() {
   );
 
   return (
-    <div className="lights_page_container">
+    <div className="lights_page_container commercial_pages">
       <h1>Marketplace Lights</h1>
       <section className="lights_filter_wrapper">
         <Search
