@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 export default function Dimensions({ props }) {
   const { adjustable, setAdjustable, values, errors, changeHandler } = props;
 
   const adjustableOptionHandler = (e) => {
     const value = e.target.value;
 
-    if (value == 'yes') {
+    if (value == "yes") {
       setAdjustable(true);
     } else {
       setAdjustable(false);
@@ -13,9 +12,9 @@ export default function Dimensions({ props }) {
   };
 
   return (
-    <>
-      <p>
-        Is Adjustable?
+    <section>
+      <div className="create_light_form_row create_light_adjustable_height">
+        Can you adjust the height of the light?
         <label>
           <input
             type="radio"
@@ -36,55 +35,55 @@ export default function Dimensions({ props }) {
           />
           No
         </label>
-      </p>
+      </div>
 
-      <label>
-        {adjustable ? 'Min Height(cm):' : 'Height(cm):'}
-        <input
-          type="number"
-          name="height"
-          value={values.height}
-          onChange={changeHandler}
-        />
-        {errors.height && <p className="form-errors">{errors.height}</p>}
-      </label>
-
-      {adjustable && (
-        <label>
-          Max Height(cm):
+      <div className="create_light_form_row create_light_dimesions">
+        <label className={errors.height && "create_light_error"}>
+          {adjustable ? "Min Height:" : "Height:"}
           <input
             type="number"
-            name="maxHeight"
-            value={values.maxHeight == null ? '' : values.maxHeight}
-            onChange={props.changeHandler}
+            name="height"
+            value={values.height}
+            onChange={changeHandler}
           />
-          {errors.maxHeight && (
-            <p className="form-errors">{errors.maxHeight}</p>
-          )}
         </label>
-      )}
 
-      <label>
-        Width(cm):
-        <input
-          type="number"
-          name="width"
-          value={values.width}
-          onChange={changeHandler}
-        />
-        {errors.width && <p className="form-errors">{errors.width}</p>}
-      </label>
+        {adjustable && (
+          <label className={errors.maxHeight && "create_light_error"}>
+            Max Height:
+            <input
+              type="number"
+              name="maxHeight"
+              value={values.maxHeight == null ? "" : values.maxHeight}
+              onChange={props.changeHandler}
+            />
+          </label>
+        )}
 
-      <label>
-        Depth(cm):
-        <input
-          type="number"
-          name="depth"
-          value={values.depth}
-          onChange={changeHandler}
-        />
-        {errors.depth && <p className="form-errors">{errors.depth}</p>}
-      </label>
-    </>
+        <label className={errors.width && "create_light_error"}>
+          Width:
+          <input
+            type="number"
+            name="width"
+            value={values.width}
+            onChange={changeHandler}
+          />
+        </label>
+
+        <label className={errors.depth && "create_light_error"}>
+          Depth:
+          <input
+            type="number"
+            name="depth"
+            value={values.depth}
+            onChange={changeHandler}
+          />
+        </label>
+      </div>
+
+      <div className="create_light_form_row create_light_dimesions_unit_required">
+        <p>*all values must be in "cm"</p>
+      </div>
+    </section>
   );
 }

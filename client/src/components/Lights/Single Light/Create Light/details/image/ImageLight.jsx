@@ -1,16 +1,23 @@
 /* eslint-disable react/prop-types */
 export default function ImageLight({ props }) {
-    const { changeHandler, errors } = props;
+  const { changeHandler, errors } = props;
   return (
-    <label>
-      Upload Image:
-      <input
-        type="file"
-        name="imageURL"
-        accept="image/png, image/jpeg"
-        onChange={changeHandler}
-      />
-      {errors.imageURL && <p className="form-errors">{errors.imageURL}</p>}
-    </label>
+    <section>
+      <label
+        className={
+          errors.imageURL
+            ? "create_light_upload_img create_light_error"
+            : "create_light_upload_img"
+        }
+      >
+        Upload Image:
+        <input
+          type="file"
+          name="imageURL"
+          accept="image/png, image/jpeg"
+          onChange={changeHandler}
+        />
+      </label>
+    </section>
   );
 }

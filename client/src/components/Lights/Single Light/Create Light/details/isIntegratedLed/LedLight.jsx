@@ -5,40 +5,37 @@ export default function LedLight({ props }) {
   const errors = props.errors;
 
   return (
-    <>
-      <label>
+    <div className="create_light_form_row create_light_led_option">
+      <label className={errors.kelvins && "create_light_error"}>
         Kelvins:
         <input
           type="number"
           name="kelvins"
-          placeholder="between 2700 and 6500"
-          value={kelvins == null ? '' : kelvins}
+          placeholder="from 2700 to 6500"
+          value={kelvins == null ? "" : kelvins}
           onChange={changeHandler}
         />
-        {errors.kelvins && <p className="form-errors">{errors.kelvins}</p>}
       </label>
 
-      <label>
+      <label className={errors.lumens && "create_light_error"}>
         Lumens:
         <input
           type="number"
           name="lumens"
-          value={lumens == null ? '' : lumens}
+          value={lumens == null ? "" : lumens}
           onChange={changeHandler}
         />
-        {errors.lumens && <p className="form-errors">{errors.lumens}</p>}
       </label>
 
-      <label>
+      <label className={errors.watt && "create_light_error"}>
         Watt:
         <input
           type="number"
           name="watt"
-          value={watt == null ? '' : watt}
+          value={watt == null ? "" : watt}
           onChange={changeHandler}
         />
-        {errors.watt && <p className="form-errors">{errors.watt}</p>}
       </label>
-    </>
+    </div>
   );
 }

@@ -11,55 +11,77 @@ export default function MainFields({ props }) {
     month = todayDate.getMonth() + 1;
   }
   const todayDateFormatted = `${todayDate.getFullYear()}-${month}-${todayDate.getDate()}`;
-  
+
   return (
-    <>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={changeHandler}
-        />
-        {errors.name && <p className="form-errors">{errors.name}</p>}
-      </label>
+    <section>
+      <div className="create_light_form_row">
+        <label
+          className={
+            errors.name
+              ? "create_light_name create_light_error"
+              : "create_light_name"
+          }
+        >
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+          />
+        </label>
 
-      <label>
-        Sale Price:
-        <input
-          type="number"
-          name="price"
-          value={values.price}
-          onChange={changeHandler}
-        />
-        {errors.price && <p className="form-errors">{errors.price}</p>}
-      </label>
+        <label
+          className={
+            errors.date
+              ? "create_light_date create_light_error"
+              : "create_light_date"
+          }
+        >
+          Date of Purchase:
+          <input
+            type="date"
+            name="date"
+            max={todayDateFormatted}
+            value={values.date}
+            onChange={changeHandler}
+          />
+        </label>
+      </div>
 
-      <label>
-        Date of Purchase:
-        <input
-          type="date"
-          name="date"
-          max={todayDateFormatted}
-          value={values.date}
-          onChange={changeHandler}
-        />
-        {errors.date && <p className="form-errors">{errors.date}</p>}
-      </label>
+      <div className="create_light_form_row">
+        <label
+          className={
+            errors.price
+              ? "create_light_price create_light_error"
+              : "create_light_price"
+          }
+        >
+          Sale Price:
+          <input
+            type="number"
+            name="price"
+            value={values.price}
+            onChange={changeHandler}
+          />
+        </label>
 
-      <label>
-        Quantities:
-        <input
-          type="number"
-          name="quantities"
-          value={values.quantities}
-          onChange={changeHandler}
-        />
-        {errors.quantities && (
-          <p className="form-errors">{errors.quantities}</p>
-        )}
-      </label>
-    </>
+        <label
+          className={
+            errors.quantities
+              ? "create_light_qty create_light_error"
+              : "create_light_qty"
+          }
+        >
+          Quantities:
+          <input
+            type="number"
+            name="quantities"
+            value={values.quantities}
+            onChange={changeHandler}
+          />
+        </label>
+      </div>
+    </section>
   );
 }

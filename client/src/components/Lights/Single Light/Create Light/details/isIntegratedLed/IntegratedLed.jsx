@@ -1,24 +1,37 @@
 /* eslint-disable react/prop-types */
-import BulbTypeLight from './BulbTypeLight';
-import LedLight from './LedLight';
+import BulbTypeLight from "./BulbTypeLight";
+import LedLight from "./LedLight";
 
 export default function IsIntegratedLed({ props }) {
-  const { values, errors, changeHandler, integratedLed, setIntegratedLed, bulbTypeState, setBulbTypeState } =
-    props;
+  const {
+    values,
+    errors,
+    changeHandler,
+    integratedLed,
+    setIntegratedLed,
+    bulbTypeState,
+    setBulbTypeState,
+  } = props;
 
   const integratedLedOptionHandler = (e) => {
     const value = e.target.value;
 
-    if (value == 'yes') {
+    if (value == "yes") {
       setIntegratedLed(true);
     } else {
       setIntegratedLed(false);
     }
   };
   return (
-    <>
-      <p>
-        Is Integrated LED?
+    <section>
+      <div
+        className={
+          errors.integratedLed
+            ? "create_light_form_row create_light_integrated_led create_light_error"
+            : "create_light_form_row create_light_integrated_led"
+        }
+      >
+        Is it Integrated LED light?
         <label>
           <input
             type="radio"
@@ -39,18 +52,23 @@ export default function IsIntegratedLed({ props }) {
           />
           No
         </label>
-      </p>
-      {errors.integratedLed && (
-        <p className="form-errors">{errors.integratedLed}</p>
-      )}
+      </div>
 
       {integratedLed == null ? (
-        ''
+        ""
       ) : integratedLed == true ? (
         <LedLight props={{ values, errors, changeHandler }} />
       ) : (
-        <BulbTypeLight props={{ values, errors, changeHandler, bulbTypeState, setBulbTypeState }} />
+        <BulbTypeLight
+          props={{
+            values,
+            errors,
+            changeHandler,
+            bulbTypeState,
+            setBulbTypeState,
+          }}
+        />
       )}
-    </>
+    </section>
   );
 }
