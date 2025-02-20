@@ -1,89 +1,153 @@
-.create_section {
-    width: 100%;
-    float: left;
-    height: auto;
-    text-align: center;
+/* Create light paragraph */
+.create_light_paragraph_container {
+    margin: 5px auto;
+    display: flex;
 }
 
-.create_section h1 {
-    padding: 30px;
-    font-size: 40px;
-    color: #ffff;
-    background-color: #fabc26;
+.create_light_paragraph_container a {
+    padding: 10px 15px;
+    font-size: 0.8rem;
     text-transform: uppercase;
-}
-
-.create-wrapper {
-    width: 900px;
-    height: auto;
-    padding: 10px;
-    margin: 40px auto;
-    display: block;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: var(--white);
+    background-color: var(--black);
     border-radius: 5px;
-    color: black;
-    background-color: #fabc26;
 }
 
-.create-wrapper button, 
-.create-wrapper > label, 
-.create-wrapper > label input, 
-.create-wrapper p, 
-.create-wrapper div label,
-.create-wrapper > label textarea,
-.create-wrapper > label select {
-    margin: auto; 
-    display: block;
+.create_light_paragraph_container a:hover {
+    background-color: var(--orange);
 }
 
-.create-wrapper button, .create-wrapper label, .create-wrapper div label {
-    margin: 10px auto;
+/* Create light form */
+.create_light_form_wrapper {
+    flex-grow: 1;
+    padding-bottom: 30px;
+    align-content: center;
 }
 
-.create-wrapper p label, .create-wrapper div label input {
-    margin-left: 10px;
+.create_light_form {
+    width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: var(--orange);
+    box-shadow: 0 1px 3px var(--black);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.create-wrapper p label input {
-    margin-right: 5px;
+.create_light_form section {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.create-wrapper > label input, 
-.create-wrapper p,
-.create-wrapper > label textarea,
-.create-wrapper > label select {
-    width: 300px;
+.create_light_form_row {
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 
-.create-wrapper p {
-    text-align: left;
-}
-
-.create-wrapper > label select {
+.create_light_form label {
     height: 30px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
-.create-wrapper button {
-    margin: 20px auto;
-    width: 150px;
-    height: 70%;
-    font-weight: bold;
-    font-size: 25px;
+.create_light_form input,
+.create_light_form select,
+.create_light_form textarea {
+    flex-grow: 1;
+    min-height: 100%;
+    max-height: 100%;
+    padding: 5px;
+    border: 1.5px solid var(--black);
     border-radius: 5px;
-    background-color: #fff;
+}
+
+.create_light_name {
+    flex-grow: 2;
+}
+
+.create_light_date {
+    flex-grow: 1;
+}
+
+.create_light_date input,
+.create_light_bulb_option select {
+    text-align: center;
+}
+
+.create_light_price,
+.create_light_qty {
+    flex-grow: 1;
+}
+
+.create_light_adjustable_height,
+.create_light_integrated_led {
+    font-weight: 600;
+    align-self: center;
+}
+
+.create_light_dimesions label,
+.create_light_led_option label,
+.create_light_bulb_option label {
+    flex-grow: 1;
+    font-size: 0.85rem;
+}
+
+
+.create_light_dimesions input,
+.create_light_led_option input {
+    width: 100%;
+}
+
+.create_light_dimesions_unit_required p,
+.create_light_all_fields_alert {
+    font-size: 0.8rem;
+    color: var(--white);
+    display: flex;
+    flex-grow: 1;
+    justify-content: right;
+}
+
+.create_light_notes {
+    min-height: 70px;
+}
+
+.create_light_upload_img input {
+    border: none;
+}
+
+.create_light_form button {
+    margin: auto;
+    padding: 10px;
+    width: 40%;
+    font-size: 1rem;
     text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--black);
+    border-radius: 5px;
+    border: none;
 }
 
-.create-wrapper button:hover {
-    color: #fff;
-    background-color: black;
+.create_light_form button:hover {
+    cursor: pointer;
+    color: var(--orange);
+    background-color: var(--white);
 }
 
-.form-errors {
-    padding-left: 5px;
-    color: rgb(203, 5, 5);
-    text-transform: none;
-    font-weight: 500;
+.create_light_error {
+    color: var(--red_error);
 }
 
+.create_light_error input,
+.create_light_error select,
+.create_light_error textarea {
+    border-color: var(--red_error);
+}
