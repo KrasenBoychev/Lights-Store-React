@@ -99,7 +99,6 @@ export default function CreateLight() {
   const { values, changeHandler, submitHandler } = useForm(
     light,
     createSubmitHandler,
-    errors,
     setErrors
   );
 

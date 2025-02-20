@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function useForm(initialValues, submitCallback, setErrors) {
   const [values, setValues] = useState(initialValues);
@@ -11,7 +11,7 @@ export function useForm(initialValues, submitCallback, setErrors) {
     setValues((state) => ({
       ...state,
       [e.target.name]:
-        e.target.type === 'file' ? e.target.files[0] : e.target.value,
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
     }));
 
     if (setErrors) {
