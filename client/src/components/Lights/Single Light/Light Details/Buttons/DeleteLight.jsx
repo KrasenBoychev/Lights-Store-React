@@ -1,25 +1,22 @@
 /* eslint-disable react/prop-types */
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
-import { deleteRecord } from '../../../../../../api/lights-api';
-import { deleteImage } from '../../../../../services/firebase/requester-firebase';
+import { deleteRecord } from "../../../../../../api/lights-api";
+import { deleteImage } from "../../../../../services/firebase/requester-firebase";
 
 export default function DeleteLight({ props }) {
   const { light, setSpinner, navigate, setDeletePopUp } = props;
 
   const deleteClickHandler = async () => {
-
     try {
       setSpinner(true);
 
       await deleteImage(light);
 
       await deleteRecord(light._id);
-      navigate('/profile');
-
+      navigate("/profile");
     } catch (error) {
       toast(error.message);
-      
     } finally {
       setSpinner(false);
     }
@@ -30,13 +27,15 @@ export default function DeleteLight({ props }) {
   };
 
   return (
-    <div className="delete-wrapper">
-      <div className="delete-question">
-        <p>Are you sure you want to delete {light.name}?</p>
-      </div>
-      <div className="delete-buttons">
-        <button onClick={() => deleteClickHandler()}>Yes, sure</button>
-        <button onClick={() => cancelClickHandler()}>Cancel</button>
+    <div className="light_delete_msg_container">
+      <div className="light_delete_msg_wrapper">
+        <div className="light_delete_msg_question">
+          <p>Are you sure you want to delete "{light.name}"?</p>
+        </div>
+        <div className="light_delete_msg_buttons">
+          <button onClick={() => deleteClickHandler()}>Yes, sure</button>
+          <button onClick={() => cancelClickHandler()}>Cancel</button>
+        </div>
       </div>
     </div>
   );
