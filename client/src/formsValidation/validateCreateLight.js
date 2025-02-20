@@ -1,4 +1,4 @@
-import { bulbTypes } from '../common/bulbTypes';
+import { bulbTypes } from "../common/bulbTypes";
 
 export default function validateCreateLightForm(
   data,
@@ -7,7 +7,6 @@ export default function validateCreateLightForm(
   integratedLed,
   bulbTypeState
 ) {
-
   const allErrors = {};
 
   name(data, allErrors);
@@ -27,7 +26,7 @@ export default function validateCreateLightForm(
     data.depth = Number(data.depth).toFixed(2);
 
     if (!adjustable) {
-      data.maxHeight = '';
+      data.maxHeight = "";
     } else {
       data.maxHeight = Number(data.maxHeight).toFixed(2);
     }
@@ -37,107 +36,91 @@ export default function validateCreateLightForm(
       data.lumens = Math.floor(Number(data.lumens));
       data.watt = Math.floor(Number(data.watt));
 
-      data.bulbType = '';
-      data.bulbsRequired = '';
+      data.bulbType = "";
+      data.bulbsRequired = "";
     } else {
       data.bulbType = bulbTypeState;
       data.bulbsRequired = Math.floor(Number(data.bulbsRequired));
 
-      data.kelvins = '';
-      data.lumens = '';
-      data.watt = '';
+      data.kelvins = "";
+      data.lumens = "";
+      data.watt = "";
     }
   }
 
   return allErrors;
 }
 
-
 function name(data, allErrors) {
-  if (data.name == '') {
-    allErrors.name = 'Name is required';
+  if (data.name == "") {
+    allErrors.name = true;
   }
 }
 
 function price(data, allErrors) {
-  if (data.price == '') {
-    allErrors.price = 'Price is required';
-  } else {
-    if (Number(data.price) <= 0) {
-      allErrors.price = 'Price should be a positive number';
-    }
+  if (data.price == "" || Number(data.price) <= 0) {
+    allErrors.price = true;
   }
 }
 
 function quantities(data, allErrors) {
-  if (data.quantities == '') {
-    allErrors.quantities = 'Quantities is required';
-  } else {
-    if (Number(data.quantities) <= 0) {
-      allErrors.quantities = 'Quantities should be a positive number';
-    } else if (Number(data.quantities) % 1 != 0) {
-      allErrors.quantities = 'Quantities should be an integer';
-    }
+  if (
+    data.quantities == "" ||
+    Number(data.quantities) <= 0 ||
+    Number(data.quantities) % 1 != 0
+  ) {
+    allErrors.quantities = true;
   }
 }
 
 function date(data, allErrors) {
-  if (data.date == '') {
-    allErrors.date = 'Date is required';
+  if (data.date == "") {
+    allErrors.date = true;
   } else {
     const currDate = new Date();
     const dateProvided = new Date(data.date);
 
     if (currDate <= dateProvided) {
-      allErrors.date = 'Date is not valid';
+      allErrors.date = true;
     }
   }
 }
 
 function dimensions(data, allErrors, adjustable) {
-  if (data.height == '') {
-    allErrors.height = 'Height is required';
-  } else if (Number(data.height) <= 0) {
-    allErrors.height = 'Height should be a positive number';
+  if (data.height == "" || Number(data.height) <= 0) {
+    allErrors.height = true;
   }
 
   if (adjustable) {
-    if (data.maxHeight == '' || data.maxHeight == null) {
-      allErrors.maxHeight = 'Max height is required';
-    } else if (Number(data.maxHeight) <= 0) {
-      allErrors.maxHeight = 'Max height should be a positive number';
-    } else {
-      if (Number(data.height) >= Number(data.maxHeight)) {
-        allErrors.maxHeight = 'Max height should be greater than min height';
-      }
+    if (
+      data.maxHeight == "" ||
+      data.maxHeight == null ||
+      Number(data.maxHeight) <= 0 ||
+      Number(data.height) >= Number(data.maxHeight)
+    ) {
+      allErrors.maxHeight = true;
     }
   }
 
-  if (data.width == '') {
-    allErrors.width = 'Width is required';
-  } else if (Number(data.width) <= 0) {
-    allErrors.width = 'Width should be a positive number';
+  if (data.width == "" || Number(data.width) <= 0) {
+    allErrors.width = true;
   }
 
-  if (data.depth == '') {
-    allErrors.depth = 'Depth is required';
-  } else if (Number(data.depth) <= 0) {
-    allErrors.depth = 'Depth should be a positive number';
+  if (data.depth == "" || Number(data.depth) <= 0) {
+    allErrors.depth = true;
   }
 }
 
 function image(data, allErrors, light) {
-  if (light.imageURL == '' && data.imageURL == '') {
-    allErrors.imageURL = 'Image is required';
+  if (light.imageURL == "" && data.imageURL == "") {
+    allErrors.imageURL = true;
   }
 }
 
 function isIntegratedLed(data, allErrors, integratedLed, bulbTypeState) {
   if (integratedLed == null) {
-    allErrors.integratedLed = 'Integrated LED option is required';
-  } 
-  
-  if (integratedLed) {
+    allErrors.integratedLed = true;
+  } else if (integratedLed == true) {
     kelvins();
     lumens();
     watt();
@@ -146,71 +129,61 @@ function isIntegratedLed(data, allErrors, integratedLed, bulbTypeState) {
   }
 
   function kelvins() {
-    if (data.kelvins == '' || data.kelvins == null) {
-      allErrors.kelvins = 'Kelvins is required';
-    } else {
-
-      if ( Number(data.kelvins) < 2700 || Number(data.kelvins) > 6500) {
-        allErrors.kelvins = 'Kelvins should be between 2700 and 6500';
-      } else if (Number(data.kelvins) % 1 != 0) {
-        allErrors.kelvins = 'Kelvins should be an integer';
-      }
+    if (
+      data.kelvins == "" ||
+      data.kelvins == null ||
+      Number(data.kelvins) < 2700 ||
+      Number(data.kelvins) > 6500 ||
+      Number(data.kelvins) % 1 != 0
+    ) {
+      allErrors.kelvins = true;
     }
   }
 
   function lumens() {
-    if (data.lumens == '' || data.lumens == null) {
-      allErrors.lumens = 'Lumens is required';
-    } else {
-      if (Number(data.lumens) <= 0) {
-        allErrors.lumens = 'Lumens should be a positive number';
-      } else if (Number(data.lumens) % 1 != 0) {
-        allErrors.lumens = 'Lumens should be an integer';
-      }
+    if (
+      data.lumens == "" ||
+      data.lumens == null ||
+      Number(data.lumens) <= 0 ||
+      Number(data.lumens) % 1 != 0
+    ) {
+      allErrors.lumens = true;
     }
   }
 
   function watt() {
-    if (data.watt == '' || data.watt == null) {
-      allErrors.watt = 'Watt is required';
-    } else {
-      if (Number(data.watt) <= 0) {
-        allErrors.watt = 'Watt should be a positive number';
-      } else if (Number(data.watt) % 1 != 0) {
-        allErrors.watt = 'Watt should be an integer';
-      }
+    if (
+      data.watt == "" ||
+      data.watt == null ||
+      Number(data.watt) <= 0 ||
+      Number(data.watt) % 1 != 0
+    ) {
+      allErrors.watt = true;
     }
   }
 
   function bulbs() {
-    if (bulbTypeState == '' || bulbTypeState == null) {
-      allErrors.bulbType = 'Bulb type is required';
-    } else if (!bulbTypes.includes(bulbTypeState)) {
-      allErrors.bulbType = 'Bulb type is not valid, please select an option from the list above';
+    if (
+      bulbTypeState == "" ||
+      bulbTypeState == null ||
+      !bulbTypes.includes(bulbTypeState)
+    ) {
+      allErrors.bulbType = true;
     }
 
-    if (data.bulbsRequired == '' || data.bulbsRequired == null) {
-      allErrors.bulbsRequired = 'Number of bulbs  is required';
-    } else {
-      if (Number(data.bulbsRequired) <= 0) {
-        allErrors.bulbsRequired =
-          'Number of bulbs should be a positive number';
-      } else if (Number(data.bulbsRequired) % 1 != 0) {
-        allErrors.bulbsRequired =
-        'Number of bulbs should be an integer';
-      }
+    if (
+      data.bulbsRequired == "" ||
+      data.bulbsRequired == null ||
+      Number(data.bulbsRequired) <= 0 ||
+      Number(data.bulbsRequired) % 1 != 0
+    ) {
+      allErrors.bulbsRequired = true;
     }
   }
 }
 
 function notes(data, allErrors) {
   if (!data.notes) {
-    data.notes = '';
-  }
-
-  if (data.notes != '') {
-    if (data.notes.length > 30) {
-      allErrors.notes = 'Notes should be maximum 30 symbols';
-    }
+    allErrors.notes = true;
   }
 }
