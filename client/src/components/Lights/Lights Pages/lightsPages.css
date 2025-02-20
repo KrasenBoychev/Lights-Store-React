@@ -5,6 +5,10 @@
     gap: 20px;
 }
 
+.lights_page_container.commercial_pages {
+    justify-content: space-between;
+}
+
 .lights_page_container h1 {
     padding: 20px;
     text-align: center;
@@ -16,11 +20,13 @@
 .lights_filter_wrapper {
     padding: 30px;
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
 .all_lights_container {
     flex-grow: 1;
+    align-content: space-evenly
 }
 
 .all_lights_wrapper {
@@ -32,4 +38,8 @@
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
+}
+
+.cart_container_lights_left .all_lights_wrapper {
+    justify-content: left;
 }
