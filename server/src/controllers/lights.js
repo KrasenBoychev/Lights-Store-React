@@ -86,7 +86,7 @@ lightsRouter.post(
   body('watt').trim(),
   body('bulbtype').trim(),
   body('bulbsRequired').trim(),
-  body('notes').trim(),
+  body('notes').trim().notEmpty().withMessage('Notes is required'),
   async (req, res) => {
     try {
       const validation = validationResult(req);
