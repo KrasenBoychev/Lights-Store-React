@@ -1,111 +1,147 @@
-.details_section {
-    width: 100%;
-    float: left;
-    height: auto;
-    text-align: center;
-    background-color: #fabc26;
+.light_details_container {
+    position: relative;
+    flex-grow: 1;
+    padding: 30px 60px;
+    background-color: var(--orange);
+    justify-items: center;
 }
 
-.item-details {
-    width: 1000px;
-    min-height: 425px;
-    padding: 30px;
-    margin: 20px auto;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.light_details_wrapper {
+    width: 1050px;
+    padding: 15px;
+    background-color: var(--white);
+    box-shadow: 0 1px 3px var(--black);
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.item-details-img img{
-    float: left;
-    width: 50%;
-    height: 300px;
+.section_light_description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
-.item-details-more-info {
-    float: left;
-    width: 50%;
-    height: auto;
-    padding-left: 50px;
-    text-align: left;
-}
-
-.item-details-more-info p {
-    margin: 10px auto;
-}
-
-.item-details-more-info p:first-child {
-    margin-top: 0px;
-    font-weight: bold;
-    font-size: 30px;
-    color: #fabc26;
-}
-
-.item-details-more-info p:nth-child(2) {
-    font-weight: bold;
-}
-
-.item-details-description {
-    margin-left: 15px;
-}
-
-.item-details-description li{
-    list-style-type: circle;
-}
-
-.item-details-button {
-    float: left;
-    width: 100%;
-    height: 100px;
-    margin-top: 20px;
-}
-
-.item-details-button button, .item-details-button p {
-    width: 150px;
-    margin: auto 10px;
-    font-weight: bold;
-    font-size: 25px;
+.light_details_img img {
+    width: 500px;
+    height: 350px;
     border-radius: 5px;
-    color: #fff;
-    background-color: #fabc26;
+}
+
+.light_details_description {
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.light_details_description h4 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--orange);
+}
+
+.light_details_description p:first-of-type {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.light_details_description_list {
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.light_details_description_list li {
+    list-style-type: disc;
+}
+
+.light_details_notes {
+    padding: 5px;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+}
+
+.light_details_notes span {
+    font-weight: 600;
+}
+
+.light_details_buttons {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+}
+
+.light_details_buttons button,
+.light_details_buttons p {
     text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--orange);
+    border: none;
+    border-radius: 5px;
 }
 
-.item-details-button button:hover {
-    background-color: black;
+.light_details_buttons button {
+    width: 130px;
+    height: 50px;
 }
 
-.item-details-button p {
-    width: 400px;
-    padding: 10px;
-    margin: auto;
+.light_details_buttons button:hover {
+    cursor: pointer;
+    background-color: var(--black);
 }
 
-.delete-wrapper {
+.light_details_buttons p {
+    padding: 20px 40px;
+}
+
+.light_delete_msg_container {
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding: 100px 50px 50px 50px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(128,128,128,0.97);
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.97);
 }
 
-.delete-question p{
+.light_delete_msg_wrapper {
+    width: fit-content;
+    margin: auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.light_delete_msg_question p {
+    width: fit-content;
+    margin: auto;
     padding: 20px;
-    width: 800px;
-    font-size: 35px;
+    font-size: 1.5rem;
     letter-spacing: 2px;
     line-height: normal;
- }
+}
 
- .delete-buttons button{
-     width: 200px;
-     margin: 100px 50px;
-     padding: 10px;
-     letter-spacing: 2px;
+.light_delete_msg_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.light_delete_msg_buttons button{
+    width: 200px;
+    padding: 10px;
+    letter-spacing: 2px;
 }

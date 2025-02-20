@@ -6,7 +6,7 @@ import {
   useBoughtLight,
 } from "../../../../hooks/lights/single light/useLightDetails";
 
-import "./Details.css";
+import "./details.css";
 
 import ProfileButtons from "./Buttons/ProfileButtons";
 import BuyButton from "./Buttons/BuyButton";
