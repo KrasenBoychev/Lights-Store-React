@@ -8,7 +8,6 @@ function validateLight(req, validation) {
   maxHeightCheck();
   integratedLedCheck();
   bulbLightCheck();
-  notesCheck();
 
   function priceCheck() {
     const price = req.body.price;
@@ -152,18 +151,6 @@ function validateLight(req, validation) {
           checkIfInteger(bulbsRequired, 'bulbsRequired');
         }
       }
-    }
-  }
-
-  function notesCheck() {
-    if (req.body.notes.length > 30) {
-      validation.errors.push(
-        errorMessage(
-          req.body.notes,
-          'Notes should be maximum 30 symbols',
-          'notes'
-        )
-      );
     }
   }
 
