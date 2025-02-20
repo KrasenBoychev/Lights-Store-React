@@ -1,38 +1,46 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 
-import { createRecord, editRecord } from '../../../../../api/lights-api';
-import { deleteImage, uploadImage } from '../../../../services/firebase/requester-firebase';
+import { createRecord, editRecord } from "../../../../../api/lights-api";
+import {
+  deleteImage,
+  uploadImage,
+} from "../../../../services/firebase/requester-firebase";
 
-import { useForm } from '../../../../hooks/useForm';
-import { useOneLight } from '../../../../hooks/lights/single light/useOneLight';
-import validateCreateLightForm from '../../../../formsValidation/validateCreateLight';
+import { useForm } from "../../../../hooks/useForm";
+import { useOneLight } from "../../../../hooks/lights/single light/useOneLight";
+import validateCreateLightForm from "../../../../formsValidation/validateCreateLight";
 
-import MainFields from './details/mainFields/MainFields';
-import Dimensions from './details/dimensions/Dimensions';
-import IntegratedLed from './details/isIntegratedLed/IntegratedLed';
-import ImageLight from './details/image/ImageLight';
+import MainFields from "./details/mainFields/MainFields";
+import Dimensions from "./details/dimensions/Dimensions";
+import IntegratedLed from "./details/isIntegratedLed/IntegratedLed";
+import ImageLight from "./details/image/ImageLight";
 
-import Spinner from '../../../core/Spinner';
-import Notes from './details/notes/Notes';
+import Spinner from "../../../core/Spinner";
+import Notes from "./details/notes/Notes";
 
-import './CreateLight.css';
+import "./createLight.css";
 
 export default function CreateLight() {
   const [spinner, setSpinner] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const currPage = location.pathname.split('/')[1];
+  const currPage = location.pathname.split("/")[1];
 
   const [errors, setErrors] = useState({});
 
   const [adjustable, setAdjustable] = useState(null);
   const [integratedLed, setIntegratedLed] = useState(null);
-  const [bulbTypeState, setBulbTypeState] = useState('E27');
+  const [bulbTypeState, setBulbTypeState] = useState("E27");
 
-  const [light] = useOneLight(location, setAdjustable, setIntegratedLed, setBulbTypeState);
+  const [light] = useOneLight(
+    location,
+    setAdjustable,
+    setIntegratedLed,
+    setBulbTypeState
+  );
 
   const createSubmitHandler = async (data) => {
     const allErrors = validateCreateLightForm(
@@ -51,41 +59,38 @@ export default function CreateLight() {
     try {
       setSpinner(true);
 
-      if (currPage == 'createlight') {
-
-        const downloadURL = await uploadImage(data.imageURL, 'lightsImages');
+      if (currPage == "createlight") {
+        const downloadURL = await uploadImage(data.imageURL, "lightsImages");
         data.downloadURL = downloadURL;
 
         await createRecord(data);
-        navigate('/profile');
-
-      } else if (currPage == 'edit') {
-
-        if (data.imageURL.type == 'image/jpeg' || data.imageURL.type == 'image/png') {
+        navigate("/profile");
+      } else if (currPage == "edit") {
+        if (
+          data.imageURL.type == "image/jpeg" ||
+          data.imageURL.type == "image/png"
+        ) {
           await deleteImage(light);
 
-          const downloadURL = await uploadImage(data.imageURL, 'lightsImages');
+          const downloadURL = await uploadImage(data.imageURL, "lightsImages");
           data.downloadURL = downloadURL;
         } else {
           data.downloadURL = data.imageURL;
         }
 
         await editRecord(data._id, data);
-        navigate('/profile/' + data._id);
-
+        navigate("/profile/" + data._id);
       } else {
         return;
       }
-
     } catch (error) {
       const errorList = JSON.parse(error.message);
-      
+
       if (!Array.isArray(errorList)) {
         setErrors(errorList);
       } else {
         toast.error(errorList[0]);
       }
-      
     } finally {
       setSpinner(false);
     }
@@ -94,26 +99,49 @@ export default function CreateLight() {
   const { values, changeHandler, submitHandler } = useForm(
     light,
     createSubmitHandler,
+    errors,
     setErrors
   );
 
   return (
-    <div className="create_section">
-      <h1>{currPage == 'createlight' ? 'Add your light' : 'Edit Light'}</h1>
+    <div className="lights_page_container">
+      <h1>{currPage == "createlight" ? "Add your light" : "Edit Light"}</h1>
       {spinner ? (
         <Spinner />
       ) : (
-        <form onSubmit={submitHandler}>
-          <div className="create-wrapper">
-              <MainFields props={{ values, changeHandler, errors }} />
-              <Dimensions props={{ adjustable, setAdjustable, values, errors, changeHandler }}/>
-              <IntegratedLed props={{ values, errors, changeHandler, integratedLed, setIntegratedLed, bulbTypeState, setBulbTypeState }}/>
-              <Notes props={{ values, changeHandler, errors }} />
-              <ImageLight props={{ changeHandler, errors }}/>
+        <div className="create_light_form_wrapper">
+          <form onSubmit={submitHandler} className="create_light_form">
+            <MainFields props={{ values, changeHandler, errors }} />
+            <Dimensions
+              props={{
+                adjustable,
+                setAdjustable,
+                values,
+                errors,
+                changeHandler,
+              }}
+            />
+            <IntegratedLed
+              props={{
+                values,
+                errors,
+                changeHandler,
+                integratedLed,
+                setIntegratedLed,
+                bulbTypeState,
+                setBulbTypeState,
+              }}
+            />
+            <Notes props={{ values, changeHandler, errors }} />
+            <ImageLight props={{ changeHandler, errors }} />
 
-              <button type="submit">{currPage == 'createlight' ? 'Add' : 'Edit'}</button>
-          </div>
-        </form>
+            <p className="create_light_all_fields_alert">*all fields must be filled in</p>
+
+            <button type="submit">
+              {currPage == "createlight" ? "Add Light" : "Edit Light"}
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );
