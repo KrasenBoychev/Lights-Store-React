@@ -5,16 +5,16 @@ export default function validateCommentForm({
 }) {
   const allErrors = {};
 
-  if (name == '') {
-    allErrors.name = 'Name is a mandatory field';
+  if (name == "") {
+    allErrors.name = true;
   }
 
-  if (customerComment == '') {
-    allErrors.customerComment = 'Comment is a mandatory field';
+  if (customerComment == "") {
+    allErrors.customerComment = true;
   }
 
-  if (imageURL == '') {
-    allErrors.imageURL = 'Image is required';
+  if (imageURL == "") {
+    allErrors.imageURL = true;
   }
 
   return allErrors;
