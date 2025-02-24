@@ -1,73 +1,65 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
-import { removeLightFromCart } from '../../../../../../api/cart-api';
-import { increaseQuantities } from '../../../../../../api/lights-api';
+import { removeLightFromCart } from "../../../../../../api/cart-api";
+import { increaseQuantities } from "../../../../../../api/lights-api";
 
-import { useAuthContext } from '../../../../../contexts/AuthContext';
+import { useAuthContext } from "../../../../../contexts/AuthContext";
 
-import Spinner from '../../../../core/Spinner';
+import Spinner from "../../../../core/Spinner";
 
-import "../../Catalog Light/CatalogLight.css"
+import "../../Catalog Light/CatalogLight.css";
 
-export default function RemoveButton({props}) {
-  const { light } = props;
+export default function RemoveButton({ props }) {
+  const { light, setSpinner } = props;
   const authData = useAuthContext();
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currPage = location.pathname.split('/');
-
-  const [spinner, setSpinner] = useState(false);
+  const currPage = location.pathname.split("/");
 
   const removeClickHandler = async () => {
-
     try {
-        setSpinner(true);
+      setSpinner(true);
 
-        await removeLightFromCart(light._id);
+      await removeLightFromCart(light._id);
 
-        const lightId = light._id;
-        const lightIndex = authData.userCart.findIndex(light => light._id === lightId);
+      const lightId = light._id;
+      const lightIndex = authData.userCart.findIndex(
+        (light) => light._id === lightId
+      );
 
-        if (lightIndex !== -1) {
-          authData.userCart.splice(lightIndex, 1);
-          authData.changeAuthState(authData);
-          
+      if (lightIndex !== -1) {
+        authData.userCart.splice(lightIndex, 1);
+        authData.changeAuthState(authData);
+      } else {
+        toast("Light does not exist");
+
+        if (currPage == "cart") {
+          navigate(0);
         } else {
-          toast('Light does not exist');
-
-          if (currPage == 'cart') {
-            navigate(0);
-          } else {
-            navigate('/cart');
-          }
+          navigate("/cart");
         }
-        
-        if (currPage.length == 2) {
-            navigate(0);
-        } else {
-            navigate('/cart');
-        }
+      }
 
-        await increaseQuantities(light._id);
+      if (currPage.length > 2) {
+        navigate("/cart");
+      }
 
-    } catch(error) {
-        toast(error.message);
-
+      await increaseQuantities(light._id);
+    } catch (error) {
+      toast(error.message);
     } finally {
-        setSpinner(false);
+      setSpinner(false);
     }
   };
 
   return (
-    <>
-    {spinner 
-        ? <Spinner />
-        :  <button onClick={removeClickHandler} className="single_light_remove_btn">Remove</button>}
-    </>
+    <button onClick={removeClickHandler} className="single_light_remove_btn">
+      Remove
+    </button>
   );
 }
