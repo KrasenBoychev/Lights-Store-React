@@ -98,7 +98,7 @@ export default function Details() {
               <ProfileButtons props={{ light, setSpinner, navigate }} />
             )}
 
-            {currPage == "cart" && <RemoveButton props={{ light }} />}
+            {currPage == "cart" && <RemoveButton props={{ light, setSpinner }} />}
 
             {(currPage == "catalog" || currPage == "marketplace") &&
               (lightQuantities <= 0 ? (
