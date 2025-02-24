@@ -7,27 +7,37 @@ header {
 }
 
 nav {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 nav ul {
-    display: flex;
-    gap: 40px;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 nav ul li a {
+    cursor: default;
     padding: 6px;
     border-radius: 5px;
 }
 
-nav ul li a:hover, .header_active_link {
+nav ul li a:not(.header_active_link):hover {
     cursor: pointer;
+    color: var(--black);
+}
+
+.header_active_link {
     color: var(--white);
     background-color: #000;
+}
+
+.header_active_link:hover {
+    cursor: default;
 }
 
 .header_cart_items_num {
