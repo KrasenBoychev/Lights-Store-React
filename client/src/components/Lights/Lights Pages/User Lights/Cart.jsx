@@ -2,9 +2,12 @@ import { useAuthContext } from "../../../../contexts/AuthContext";
 import RenderLights from "../shared components/RenderLights";
 
 import "../lightsPages.css";
+import { useState } from "react";
 
 export default function Cart() {
   const { userCart } = useAuthContext();
+
+  const [spinner, setSpinner] = useState(false);
 
   return (
     <div
@@ -19,7 +22,8 @@ export default function Cart() {
         props={{
           filteredLights: userCart,
           currentItems: userCart,
-          spinner: false,
+          spinner,
+          setSpinner,
           cartMsg: true,
         }}
       />
