@@ -5,11 +5,11 @@ import OverlaySearchIcon from "../../../reusable components/OverlaySearchIcon";
 import RemoveButton from "../../../Lights/Single Light/Light Details/Buttons/RemoveButton";
 import "./CatalogLight.css";
 
-export default function CatalogLight(light) {
+export default function CatalogLight({ props }) {
   const location = useLocation();
   const currPage = location.pathname.split("/")[1];
 
-  const { imageURL, name, price, _id } = light;
+  const { imageURL, name, price, _id } = props.light;
 
   const [catalogLightHovered, setCatalogLightHovered] = useState(false);
 
@@ -38,7 +38,9 @@ export default function CatalogLight(light) {
       </div>
       <p className="single_light_name">{name}</p>
       <p className="single_light_price">{price.toFixed(2)}lv.</p>
-      {currPage == "cart" && <RemoveButton props={{ light }} />}
+      {currPage == "cart" && (
+        <RemoveButton props={{ light: props.light, setSpinner: props.setSpinner }} />
+      )}
     </div>
   );
 }
