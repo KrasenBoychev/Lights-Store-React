@@ -20,7 +20,7 @@ export default function RenderLights({ props }) {
           })}
         </div>
       ) : (
-        <p>
+        <p className="no_lights_available">
           There are no lights
           {props.cartMsg ? " added to the cart" : " available at the moment"}
         </p>

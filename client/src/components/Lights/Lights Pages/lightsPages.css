@@ -43,3 +43,7 @@
 .cart_container_lights_left .all_lights_wrapper {
     justify-content: left;
 }
+
+.no_lights_available {
+    text-align: center;
+}
