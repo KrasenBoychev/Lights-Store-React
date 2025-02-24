@@ -11,7 +11,12 @@ export default function RenderLights({ props }) {
       ) : filteredLights.length > 0 ? (
         <div className="all_lights_wrapper">
           {currentItems.map((light) => {
-            return <CatalogLight key={light._id} {...light} />;
+            return (
+              <CatalogLight
+                key={light._id}
+                props={{ light, setSpinner: props.setSpinner }}
+              />
+            );
           })}
         </div>
       ) : (
