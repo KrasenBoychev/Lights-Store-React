@@ -17,7 +17,6 @@ ul {
 
 #root {
   min-height: 100vh;
-  min-width: 1250px;
   margin: auto;
   font-family: "Montserrat", serif;
   display: flex;
@@ -31,4 +30,10 @@ ul {
 main {
   flex-grow: 1;
   display: flex;
+}
+
+@media screen and (min-width: 1250px) {
+  #root {
+    min-width: 1250px;
+  }
 }

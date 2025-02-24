@@ -19,7 +19,6 @@
 
 .section_light_description {
     display: flex;
-    flex-wrap: wrap;
     gap: 40px;
 }
 
@@ -144,4 +143,16 @@
     width: 200px;
     padding: 10px;
     letter-spacing: 2px;
+}
+
+@media screen and (min-width: 1080px) and (max-width: 1249px) {
+    .light_details_wrapper {
+        width: 900px;
+    }
+
+    .light_details_img img {
+        width: 400px;
+        height: 300px;
+        border-radius: 5px;
+    }
 }
