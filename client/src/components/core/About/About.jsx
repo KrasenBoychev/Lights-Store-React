@@ -26,7 +26,7 @@ export default function About() {
       </section>
       <aside className="about_image">
         <div>
-          <img src="/src/components/core/About/images/bulb-background.jpg" />
+          <img src="images/about/bulb-background.jpg" />
         </div>
       </aside>
     </div>

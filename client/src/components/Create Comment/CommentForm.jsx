@@ -109,7 +109,7 @@ export default function CommentForm() {
           </div>
           <div className="create_comment_img">
             <div>
-              <img src="/src/components/Create Comment/images/lights-comment.jpg" />
+              <img src="images/create comment/lights-comment.jpg" />
             </div>
           </div>
         </div>

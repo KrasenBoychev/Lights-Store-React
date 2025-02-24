@@ -4,7 +4,7 @@
     color: var(--white);
     text-align: center;
     text-transform: uppercase;
-    background-image: url(./images/background-home.jpg);
+    background-image: url(/images/banner/background-home.jpg);
     background-size: cover;
     display: flex;
     flex-direction: column;

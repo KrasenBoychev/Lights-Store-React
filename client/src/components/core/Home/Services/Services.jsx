@@ -4,19 +4,19 @@ import "./services.css";
 export default function Services() {
   const servicesInfo = {
     design: {
-      img: "/src/components/core/Home/Services/images/icon-2.png",
+      img: "images/services/icon-2.png",
       img_alt: "Design_Icon",
       heading: "Design",
       description: "We will create a 3D project for you",
     },
     delivery: {
-      img: "/src/components/core/Home/Services/images/icon-3.png",
+      img: "images/services/icon-3.png",
       img_alt: "Delivery_Icon",
       heading: "Delivery",
       description: "Free Home Delivery for orders over 100lv.",
     },
     installation: {
-      img: "/src/components/core/Home/Services/images/icon-4.png",
+      img: "images/services/icon-4.png",
       img_alt: "Installation_Icon",
       heading: "Installation",
       description: "Our Qualified Electricians can install your lights",

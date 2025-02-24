@@ -1,4 +1,4 @@
-import OverlaySearchIcon from "../../../reusable components/OverlaySearchIcon";
+import OverlaySearchIcon from "../../../reusable components/overlay search icon/OverlaySearchIcon";
 
 export default function OurLightsModel({ props }) {
   const { handlers, currState, imgProps, text, linkProps } = props;

@@ -13,15 +13,15 @@ export default function Footer() {
       heading: "Let us help you",
       list: {
         phone: [
-          "/src/components/core/Footer/images/phone.png",
+          "images/footer/phone.png",
           "+01 1234567890",
         ],
         email: [
-          "/src/components/core/Footer/images/email.png",
+          "images/footer/email.png",
           "lights@lights.com",
         ],
         store: [
-          "/src/components/core/Footer/images/shopping_cart.png",
+          "images/footer/shopping_cart.png",
           "our-store",
           "Store in Varna, Bulgaria",
         ],

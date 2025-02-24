@@ -35,7 +35,7 @@ export default function OurLights() {
             currState: ledFigureElHovered,
             imgProps: {
               imgPath:
-                "/src/components/core/Home/Our Lights/images/LED-ceiling-lights.jpg",
+                "images/our lights/LED-ceiling-lights.jpg",
               imgAlt: "Integrated LED Lights",
             },
             text: {
@@ -59,7 +59,7 @@ export default function OurLights() {
             currState: bulbsFigureElHovered,
             imgProps: {
               imgPath:
-                "/src/components/core/Home/Our Lights/images/ceiling-lights-home.jpg",
+                "images/our lights/ceiling-lights-home.jpg",
               imgAlt: "Lights with bulbs",
             },
             text: {

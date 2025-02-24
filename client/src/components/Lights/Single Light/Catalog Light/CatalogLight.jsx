@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-import OverlaySearchIcon from "../../../reusable components/OverlaySearchIcon";
+import OverlaySearchIcon from "../../../reusable components/overlay search icon/OverlaySearchIcon";
 import RemoveButton from "../../../Lights/Single Light/Light Details/Buttons/RemoveButton";
 import "./CatalogLight.css";
 
