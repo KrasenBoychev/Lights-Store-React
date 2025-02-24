@@ -39,7 +39,7 @@ footer {
     gap: 5px;
 }
 
-.footer_link li:hover {
+.footer_link a:hover, .let_us_help_details a:hover {
     cursor: pointer;
     color: var(--orange);
 }
