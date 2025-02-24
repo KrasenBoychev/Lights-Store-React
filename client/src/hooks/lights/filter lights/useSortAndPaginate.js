@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useScreenWidth from "../../useScreenWidth";
 
 export function useSortAndPaginate(filteredLights, sort) {
     const sortMethods = {
@@ -9,8 +10,15 @@ export function useSortAndPaginate(filteredLights, sort) {
     };
   
     const [itemOffset, setItemOffset] = useState(0);
-  
-    const itemsPerPage = 4;
+    const screenWidth = useScreenWidth();
+
+    let itemsPerPage = null;
+
+    if (screenWidth < 1250) {
+      itemsPerPage = 3;
+    } else {
+      itemsPerPage = 4;
+    }
   
     const items = filteredLights ? filteredLights.sort(sortMethods[sort].method) : '';
   
