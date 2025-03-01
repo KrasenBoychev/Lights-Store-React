@@ -24,3 +24,16 @@
     flex-direction: column;
     gap: 10px;
 }
+
+@media screen and (max-width: 1080px) {
+    .services_description {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .service_model_container {
+        width: 450px;
+    }
+}
