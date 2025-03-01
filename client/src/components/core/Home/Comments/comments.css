@@ -75,3 +75,14 @@
 .no_comments_yet {
     text-align: center;
 }
+
+@media screen and (max-width: 1080px) {
+    .comment_wrapper {
+        width: 90%;
+    }
+
+    .comment_author_image img {
+        width: 100px;
+        height: 120px;
+    }
+}
