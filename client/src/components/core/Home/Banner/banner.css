@@ -52,3 +52,18 @@
     color: var(--white);
     background-color: var(--black);
 }
+
+@media screen and (max-width: 800px) {
+    .banner_heading {
+        font-size: 1.8rem;
+    }
+
+    .banner_description {
+        font-size: 1rem;
+    }
+
+    .banner_heading,
+    .banner_description {
+        padding: 20px;
+    }
+}
