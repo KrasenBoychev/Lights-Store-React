@@ -6,7 +6,7 @@
     gap: 30px;
 }
 
-.our_lights_container > h2 {
+.our_lights_container>h2 {
     text-align: center;
     text-transform: uppercase;
     font-size: 1.6rem;
@@ -19,7 +19,7 @@
     gap: 60px;
 }
 
-.our_lights_wrapper > section {
+.our_lights_wrapper>section {
     position: relative;
     flex: 0 0 calc(50% - 30px);
 }
@@ -41,4 +41,8 @@
     border-radius: 5px;
 }
 
-
+@media screen and (max-width: 1080px) {
+    .our_lights_wrapper {
+        flex-direction: column;
+    }
+}
