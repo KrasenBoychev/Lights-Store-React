@@ -39,7 +39,8 @@ footer {
     gap: 5px;
 }
 
-.footer_link a:hover, .let_us_help_details a:hover {
+.footer_link a:hover,
+.let_us_help_details a:hover {
     cursor: pointer;
     color: var(--orange);
 }
@@ -51,4 +52,24 @@ footer {
     color: var(--orange);
     background-color: var(--black);
     border-top: 1px solid var(--white)
+}
+
+@media screen and (max-width: 900px) {
+    .footer_info {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .footer_info>div {
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer_column {
+        gap: 6px;
+    }
+
+    .let_us_help_details, .footer_link {
+        align-items: center;
+    }
 }
