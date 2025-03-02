@@ -139,7 +139,7 @@
     gap: 20px;
 }
 
-.light_delete_msg_buttons button{
+.light_delete_msg_buttons button {
     width: 200px;
     padding: 10px;
     letter-spacing: 2px;
@@ -153,6 +153,61 @@
     .light_details_img img {
         width: 400px;
         height: 300px;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 1079.99px) {
+    .light_details_container {
+        padding: 30px;
+    }
+
+    .light_details_wrapper {
+        width: 100%;
+    }
+
+    .light_details_img img {
+        width: 350px;
+        height: 250px;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .section_light_description {
+        flex-direction: column;
+    }
+
+    .light_details_wrapper {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .light_details_img img {
+        width: 250px;
+        height: 150px;
+        border-radius: 5px;
+    }
+
+    .light_details_buttons button {
+        width: 80px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .light_details_buttons p {
+        padding: 15px;
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .light_details_img img {
+        width: 200px;
+        height: 130px;
         border-radius: 5px;
     }
 }
