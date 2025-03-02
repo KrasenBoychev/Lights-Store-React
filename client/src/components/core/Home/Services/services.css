@@ -44,3 +44,18 @@
         width: 200px;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .services_container {
+        padding: 30px;
+    }
+
+    .services_container h2 {
+        font-size: 1.3rem;
+    }
+    .service_model_container {
+        flex-direction: column;
+        width: 150px;
+        font-size: 1rem;
+    }
+}
