@@ -14,6 +14,7 @@ export default function PaginateLights({ props }) {
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
+        marginPagesDisplayed={0}
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
