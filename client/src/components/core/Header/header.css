@@ -54,9 +54,20 @@ header nav ul li a:not(.header_active_link):hover {
 
 .header_nav_icon {
     display: none;
-    padding: 15px 20px;
-    background-color: #000;
+}
+
+.header_nav_icon li {
     border-radius: 5px;
+}
+
+.header_nav_icon li:first-child {
+    background-color: var(--black);
+    padding: 10px 15px;
+}
+
+.header_nav_icon li:nth-child(2) a {
+    padding: 10px;
+    border: 1px solid var(--orange);
 }
 
 @media screen and (max-width: 1080px) {
@@ -65,14 +76,18 @@ header nav ul li a:not(.header_active_link):hover {
     }
 
     .header_nav_icon {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    .header_nav_call_us {
+    .header_nav_call_us,
+    .header_cart {
         display: none;
     }
 
-    header nav ul:not(:first-of-type) {
+    header nav ul:not(:first-of-type):not(.header_cart) {
         display: none;
     }
 
@@ -84,15 +99,12 @@ header nav ul li a:not(.header_active_link):hover {
     header nav ul {
         flex-direction: column;
         align-items: start;
-    }
-
-    header nav,
-    header nav ul {
         gap: 8px;
+
     }
 
-    header nav ul:not(.header_nav_icon),
-    header nav ul li {
+    header nav ul,
+    header nav ul:not(.header_nav_icon) li {
         width: 100%;
     }
 
@@ -103,8 +115,10 @@ header nav ul li a:not(.header_active_link):hover {
     header nav ul li a {
         flex-grow: 1;
     }
+}
 
-    .header_nav_icon li {
-        padding: 8px 0;
+@media screen and (max-width: 600px) {
+    header nav ul {
+        font-size: 0.9rem;
     }
 }

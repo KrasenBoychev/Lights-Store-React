@@ -35,8 +35,22 @@ export default function Header() {
       <nav className={openDropDownMenu ? "header_opened_menu_nav" : ""}>
         <ul className="header_nav_icon">
           <li onClick={openNavMenuClickNadler}>
-            <i className="fa-solid fa-bars fa-2xl"></i>
+            <i className="fa-solid fa-bars fa-large"></i>
           </li>
+          {isAuthenticated && (
+            <li>
+              <Link
+                to="/cart"
+                className={currLocation == "/cart" ? "header_active_link" : ""}
+                onClick={clickLinkHeaderHandler}
+              >
+                <i className="fa-solid fa-cart-shopping fa-large"></i>
+                <span className="header_cart_items_num">
+                  {userCart?.length}
+                </span>
+              </Link>
+            </li>
+          )}
         </ul>
         <ul>
           <li>
@@ -84,7 +98,7 @@ export default function Header() {
         <ul>
           {isAuthenticated ? (
             <>
-              <li>
+              <li className="header_cart">
                 <Link
                   to="/cart"
                   className={
