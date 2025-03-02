@@ -86,3 +86,33 @@
         height: 120px;
     }
 }
+
+@media screen and (max-width: 1080px) {
+    .comment_wrapper {
+        width: 90%;
+    }
+
+    .comment_author_image img {
+        width: 100px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .comments_container {
+        padding: 30px;
+    }
+
+    .comments_container h2 {
+        font-size: 1.3rem;
+    }
+
+    .comment_wrapper {
+        width: 100%;
+    }
+
+    .comment_author_image img {
+        width: 50px;
+        height: 60px;
+    }
+}
