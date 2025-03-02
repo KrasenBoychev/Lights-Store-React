@@ -43,3 +43,24 @@
     height: 350px;
     border-radius: 5px;
 }
+
+@media screen and (max-width: 1080px) {
+    .about_container {
+        padding: 30px;
+    }
+
+    .about_image img {
+        width: 400px;
+        height: 280px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .about_container {
+       text-align: center;
+    }
+
+    .about_image {
+        display: none;
+    }
+}
