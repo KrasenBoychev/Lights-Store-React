@@ -54,22 +54,47 @@ footer {
     border-top: 1px solid var(--white)
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 600px) and (max-width: 800px) {
     .footer_info {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 20px;
     }
 
-    .footer_info>div {
-        width: 100%;
-        align-items: center;
+    .footer_column:nth-child(1),
+    .footer_column:nth-child(3) {
+        width: 60%;
+    }
+
+    .footer_column:nth-child(2),
+    .footer_column:nth-child(4) {
+        width: 170px;
     }
 
     .footer_column {
         gap: 6px;
     }
+}
 
-    .let_us_help_details, .footer_link {
+@media screen and (max-width: 599.9px) {
+    .footer_info {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer_column {
+        width: 100%;
         align-items: center;
+    }
+
+    .footer_info,
+    .let_us_help_details,
+    .footer_link {
+        align-items: center;
+    }
+
+    .footer_column {
+        gap: 6px;
+        text-align: center;
+
     }
 }
