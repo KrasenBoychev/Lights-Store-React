@@ -44,3 +44,47 @@
     color: var(--orange);
     background-color: var(--white);
 }
+
+@media screen and (max-width: 980px) {
+    .lights_search_container {
+        width: 100%;
+    }
+
+    .lights_search_wrapper {
+        flex-direction: row;
+    }
+
+    .lights_filter {
+        flex-direction: row;
+    }
+
+    .lights_filter button {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .lights_search_wrapper {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .lights_filter {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .lights_filter > input, .lights_filter > select {
+        flex: 0 0 45%;
+    }
+
+    .lights_filter button {
+        width: 30%;
+    }
+
+    .sort_lights {
+        display: flex;
+        order: 2;
+    }
+}
+

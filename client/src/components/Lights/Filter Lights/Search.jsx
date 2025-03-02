@@ -58,7 +58,7 @@ export default function Search(props) {
             value={lightType ? lightType : ""}
             onChange={changeHandler}
           >
-            <option value="defaultValue">--- Type of Light ---</option>
+            <option value="defaultValue">--- Type ---</option>
             <option value="integratedLed">Integrated LED</option>
             <option value="bulbType">Bulb Type</option>
           </select>
