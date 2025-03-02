@@ -67,3 +67,35 @@
         padding: 20px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .banner_section {
+        padding: 15px 10px;
+    }
+
+    .banner_heading {
+        font-size: 1.3rem;
+    }
+
+    .banner_description, .banner_catalog_link {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .banner_section {
+        padding: 15px 10px;
+    }
+
+    .banner_heading {
+        font-size: 1rem;
+    }
+
+    .banner_description, .banner_catalog_link {
+        font-size: 0.6rem;
+    }
+
+    .banner_heading, .banner_description, .banner_catalog_link {
+        padding: 10px;
+    }
+}
