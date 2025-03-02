@@ -46,8 +46,28 @@
     text-align: center;
 }
 
+.user_lights_container {
+    padding: 0 15px;
+}
+
 @media screen and (min-width: 1080px) and (max-width: 1249px) {
     .all_lights_wrapper {
         max-width: 690px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .lights_filter_wrapper {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .lights_filter_wrapper {
+        padding-top: 10px;
+    }
+
+    .lights_page_container h1 {
+        font-size: 1.5rem;
     }
 }

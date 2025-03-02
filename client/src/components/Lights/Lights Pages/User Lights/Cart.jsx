@@ -18,15 +18,16 @@ export default function Cart() {
       }
     >
       <h1>Cart</h1>
-      <RenderLights
-        props={{
-          filteredLights: userCart,
-          currentItems: userCart,
-          spinner,
-          setSpinner,
-          cartMsg: true,
-        }}
-      />
+      <div className="user_lights_container">
+        <RenderLights
+          props={{
+            currentItems: userCart,
+            spinner,
+            setSpinner,
+            cartMsg: true,
+          }}
+        />
+      </div>
     </div>
   );
 }

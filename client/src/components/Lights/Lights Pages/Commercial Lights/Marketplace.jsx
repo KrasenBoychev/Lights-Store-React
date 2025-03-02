@@ -35,7 +35,7 @@ export default function Marketplace() {
           searchFormProps={{ seacrhFormValues, setSearchFormValues }}
           sortState={{ sort, setSort }}
         />
-        <RenderLights props={{ filteredLights, currentItems, spinner }} />
+        <RenderLights props={{ currentItems, spinner }} />
       </section>
       <PaginateLights props={{ pageCount, handlePageClick }} />
     </div>
