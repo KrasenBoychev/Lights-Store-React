@@ -22,3 +22,15 @@
 .div_overlay_search_icon_active i {
     color: var(--white);
 }
+
+@media screen and (max-width: 600px) {
+    .div_overlay_search_icon_active {
+        top: calc(30%);
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .div_overlay_search_icon_active {
+        top: calc(25%);
+    }
+}
