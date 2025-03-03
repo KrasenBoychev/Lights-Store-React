@@ -96,3 +96,7 @@
     color: var(--red_error);
     border-color: var(--red_error);
 }
+
+@media screen and (max-width: 750px) {
+    
+}

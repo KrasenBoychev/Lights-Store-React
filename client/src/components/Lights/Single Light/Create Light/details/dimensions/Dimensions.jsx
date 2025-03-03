@@ -14,7 +14,7 @@ export default function Dimensions({ props }) {
   return (
     <section>
       <div className="create_light_form_row create_light_adjustable_height">
-        Can you adjust the height of the light?
+        <span>Can you adjust the height of the light?</span>
         <label>
           <input
             type="radio"

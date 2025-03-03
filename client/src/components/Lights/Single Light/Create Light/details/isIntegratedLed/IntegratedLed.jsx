@@ -31,7 +31,7 @@ export default function IsIntegratedLed({ props }) {
             : "create_light_form_row create_light_integrated_led"
         }
       >
-        Is it Integrated LED light?
+        <span>Is it Integrated LED light?</span>
         <label>
           <input
             type="radio"

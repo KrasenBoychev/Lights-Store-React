@@ -94,6 +94,11 @@
     align-self: center;
 }
 
+.create_light_adjustable_height span,
+.create_light_integrated_led span {
+    text-decoration: underline;
+}
+
 .create_light_dimesions label,
 .create_light_led_option label,
 .create_light_bulb_option label {
@@ -150,4 +155,66 @@
 .create_light_error select,
 .create_light_error textarea {
     border-color: var(--red_error);
+}
+
+@media screen and (max-width: 750px) {
+    .create_light_form_wrapper {
+        padding: 0 15px 15px;
+    }
+
+    .create_light_form {
+        width: 100%;
+    }
+
+    .create_light_form_row:not(.create_light_adjustable_height):not(.create_light_integrated_led) {
+        flex-direction: column;
+    }
+
+    .create_light_form label:not(.create_light_adjustable_height label):not(.create_light_integrated_led label) {
+        width: 90%;
+    }
+
+    .create_light_form input,
+    .create_light_form select {
+        flex-grow: 0;
+        width: 60%;
+    }
+
+    .create_light_notes,
+    .create_light_upload_img {
+        align-self: center;
+    }
+
+    .create_light_form label.create_light_upload_img {
+        justify-content: flex-start;
+    }
+
+    
+
+    .create_light_dimesions_unit_required {
+        align-items: end;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .create_light_form {
+        font-size: 0.9rem;
+    }
+
+    .create_light_form label {
+        gap: 5px;
+    }
+
+    .create_light_form input,
+    .create_light_form select {
+        width: 50%;
+    }
+
+    .create_light_form label.create_light_upload_img input {
+        width: 90%;
+    }
+
+    .create_light_form button {
+        width: 80%;
+    }
 }
