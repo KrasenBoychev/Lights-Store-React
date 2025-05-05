@@ -12,7 +12,7 @@ When an user clicks to see the details of a certain light, they can also see the
 - ### Google Maps
 - ### MongoDB Atlas Cluster
 
-[![Watch the video](https://img.youtube.com/watch?v=moFsK3aFCNI/0.jpg)](https://www.youtube.com/watch?v=moFsK3aFCNI)
+[![Watch the video](https://img.youtube.com/vi/moFsK3aFCNI/0.jpg)](https://www.youtube.com/watch?v=moFsK3aFCNI)
 
 ## Description
 
